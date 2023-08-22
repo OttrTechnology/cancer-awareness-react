@@ -1,0 +1,23 @@
+@use "variables";
+
+.ca {
+  &-heading {
+    // apply heading defaults below
+    @apply uppercase;
+    letter-spacing: -0.01em;
+
+    &--one {
+      @extend .ca-heading; // get heading defaults
+      @apply font-medium; // override any property after extending
+      font-size: 88px;
+    }
+  }
+
+  &-body {
+    &--sm {
+    }
+
+    &--md {
+    }
+  }
+}
