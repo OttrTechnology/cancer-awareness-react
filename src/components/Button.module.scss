@@ -1,5 +1,6 @@
 @use "main";
 
 .btn {
-  background-color: main.$primary-color;
+  @apply text-lg p-4;
+  background-color: main.$primary ;
 }

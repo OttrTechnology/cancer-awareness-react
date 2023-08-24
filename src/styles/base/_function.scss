@@ -1,0 +1,10 @@
+@use "sass:math";
+@use "variables";
+
+@function rem($pxValue) {
+    @return math.div(stripUnit($pxValue), 16) * 1rem;
+  }
+
+//   font-size: functions.rem(14px);
+// @use "variables";
+// @use "functions";

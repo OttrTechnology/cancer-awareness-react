@@ -1,17 +1,30 @@
-@forward "variables";
-@forward "typography";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@import  "./abstracts/variables";
+@import "./abstracts/mixins";
+@import "./abstracts/breakpoints";
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
+@import "./base/base";
+@import "./base/reset";
+@import "./base/fonts";
+@import "./base/typography";
+@import "./base/helpers";
+
+// @import "./layouts/header";
+
+// :root {
+//   color: rgba(255, 255, 255, 0.87);
+//   font-family: 'Figtree', sans-serif;
+//   background-color: variables.$lightYellow-color;
+
+//   background-image: url('../assets/pattern.svg');
+  
+
+//   font-synthesis: none;
+//   text-rendering: optimizeLegibility;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   -webkit-text-size-adjust: 100%;
+// }

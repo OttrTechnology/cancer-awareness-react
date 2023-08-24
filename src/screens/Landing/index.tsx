@@ -5,7 +5,7 @@ import viteLogo from "/vite.svg";
 export const Landing = () => {
   return (
     <>
-      <h1 className="text-lg">Hello Cancer Culture</h1>
+      <h1 className="ca-heading--one">Hello Cancer Culture</h1>
 
       <div className="flex">
         <img src={reactLogo} alt="Logo of React" />
