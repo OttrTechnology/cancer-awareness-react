@@ -1,0 +1,42 @@
+@use "main";
+
+.quizScreen {
+  @apply flex flex-col h-screen;
+  justify-content: space-between;
+}
+
+.quizContainer {
+  padding-top: 7.5rem;
+  position: relative;
+  width: 912px;
+}
+
+.quizImg {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.questionSection {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 10.5rem 6rem 5rem 6rem;
+  background-color: main.$light-yellow;
+}
+
+.quizQuestion {
+  display: flex;
+  justify-content: center;
+  // background-color: $light-yellow;
+  text-align: center;
+}
+
+.questionImg {
+  @apply absolute top-0;
+  display: flex;
+  justify-content: center;
+  height: 15rem;
+  width: 15rem;
+}

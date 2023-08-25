@@ -1,17 +1,17 @@
-.ca_header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 3.5rem 4rem 0rem 4rem;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3.5rem 4rem 0rem 4rem;
 }
 
-.ca_lives {
-    display: flex;
-    align-items: flex-start;
+.lives {
+  display: flex;
+  align-items: flex-start;
 }
 
-.ca_score {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+.score {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }

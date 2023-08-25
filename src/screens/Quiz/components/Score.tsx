@@ -1,12 +1,13 @@
 import styles from "./Header.module.scss";
-import Award from "../../../assets/award.svg";
+import Award from "../../../assets/headerAwardIcon.svg";
+import style from "./Score.module.scss";
 
 export const Score = () => {
   return (
-    <div className={styles.ca_score}>
-      <img src={Award} alt="heart" />
-      <div className="text-[#262730] text-xl">Score:</div>
-      <div className="text-[#262730] text-5xl">0 </div>
+    <div className={styles.score}>
+      <img src={Award} alt="Award" />
+      <div className={style.scoreTxt}>Score:</div>
+      <div className="ca-misc--points">0 </div>
     </div>
   );
 };

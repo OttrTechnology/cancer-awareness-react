@@ -1,21 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @forward "variables";
 @forward "functions";
 @forward "typography";
 @forward "spacing";
-@forward "helpers";
+
+@use "variables";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  color: rgba(255, 255, 255, 0.87);
-  font-family: 'Figtree', sans-serif;
-  background-color: variables.$lightYellow-color;
+  font-family: "Figtree", sans-serif;
+  background-color: variables.$light-yellow;
 
-  background-image: url('../assets/pattern.svg');
-  
-
+  background-image: url("../assets/backgroundPattern.svg");
+  color: variables.$dark-blue;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

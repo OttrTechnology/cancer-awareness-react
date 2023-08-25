@@ -1,50 +1,36 @@
 @use "main";
 
-.quizScreen {
-    @apply flex flex-col h-screen;
-    justify-content: space-between;
-}
-
-.quizContent {
-    display: flex;
-    // flex-direction: column;
-    justify-content: center;
-    // align-content: center;
-    // flex-wrap: wrap;
-}
-
-.quizContainer {
-    padding-top: 7.5rem;
-    position: relative;
-}
-
-.quizImg {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    border-radius: 50%;
-}
-
-.quizQuestion {
-    display: flex;
-    justify-content: center;
-    background-color: $light-yellow;
-    text-align: center;
+.resultSection {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 72px 6rem 4rem 6rem;
+  background-color: main.$light-yellow;
 }
 
 .resultContainer {
-    padding-top: 4rem;
-    position: relative;
+  padding-top: 4rem;
+  position: relative;
 }
 
-.resultImg{
-    display: flex;
-    justify-content: center;
-    height: 8rem;
-    width: 8rem;
+.resultImg {
+  @apply absolute top-0;
+  display: flex;
+  justify-content: center;
+  height: 8rem;
+  width: 8rem;
 }
-
-.resultInfo{
-    display: flex;
-    flex-direction: column;
+.correctAns {
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: main.$green;
+}
+.wrongAns {
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: main.$red;
 }
