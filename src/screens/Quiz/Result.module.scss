@@ -1,0 +1,50 @@
+@use "main";
+
+.quizScreen {
+    @apply flex flex-col h-screen;
+    justify-content: space-between;
+}
+
+.quizContent {
+    display: flex;
+    // flex-direction: column;
+    justify-content: center;
+    // align-content: center;
+    // flex-wrap: wrap;
+}
+
+.quizContainer {
+    padding-top: 7.5rem;
+    position: relative;
+}
+
+.quizImg {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.quizQuestion {
+    display: flex;
+    justify-content: center;
+    background-color: $light-yellow;
+    text-align: center;
+}
+
+.resultContainer {
+    padding-top: 4rem;
+    position: relative;
+}
+
+.resultImg{
+    display: flex;
+    justify-content: center;
+    height: 8rem;
+    width: 8rem;
+}
+
+.resultInfo{
+    display: flex;
+    flex-direction: column;
+}

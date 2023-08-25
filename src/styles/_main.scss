@@ -2,29 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-@import  "./abstracts/variables";
-@import "./abstracts/mixins";
-@import "./abstracts/breakpoints";
+@forward "variables";
+@forward "functions";
+@forward "typography";
+@forward "spacing";
+@forward "helpers";
 
-@import "./base/base";
-@import "./base/reset";
-@import "./base/fonts";
-@import "./base/typography";
-@import "./base/helpers";
+:root {
+  color: rgba(255, 255, 255, 0.87);
+  font-family: 'Figtree', sans-serif;
+  background-color: variables.$lightYellow-color;
 
-// @import "./layouts/header";
-
-// :root {
-//   color: rgba(255, 255, 255, 0.87);
-//   font-family: 'Figtree', sans-serif;
-//   background-color: variables.$lightYellow-color;
-
-//   background-image: url('../assets/pattern.svg');
+  background-image: url('../assets/pattern.svg');
   
 
-//   font-synthesis: none;
-//   text-rendering: optimizeLegibility;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-//   -webkit-text-size-adjust: 100%;
-// }
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}

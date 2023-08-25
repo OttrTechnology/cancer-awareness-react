@@ -1,39 +1,38 @@
 import Correct from "../../assets/correct.png";
-import Wrong from "../../assets/wrong.png";
-import Next from "../../assets/bx-arrow-back.svg.svg";
+// import Wrong from "../../assets/wrong.png";
+// import Next from "../../assets/bx-arrow-back.svg.svg";
+import styles from "./Result.module.scss";
 
 export const Result = () => {
   return (
-    <div>
-      <div className="relative my-11 min-w-[912px] min-h-[459px] flex flex-wrap justify-center content-center">
-        <div className="absolute bottom-0 bg-[#F7E9C1] text-[#262730] pt-[72px] px-24 pb-16 text-center ">
-          <div className="mb-8">
-            <div className="mb-6">
-              <div className="text-[44px] text-[#00886B]">Correct Answer </div>
-              <div className="text-lg text-[#262730]">
-                That’s great. Keep going
-              </div>
+    <div className={styles.quizContent}>
+      <div className="result_container container-w">
+        <div className="quiz_question pt-[72px] px-24 pb-16 ">
+          <img
+            className="result_img top-0 quiz_img"
+            src={Correct}
+            alt="smile"
+          />
+          <div className="result_info">
+            <div className="answer-mb">
+              <div className="text-[44px] text-[#00886B]">Correct Answer</div>
+              <div className="ca-body--md">That’s great. Keep going</div>
             </div>
-            <div className="text-[22px] text-[#262730]">
+            <div className="ca-body--sm explain-mb">
               Deodorants and antiperspirants sometimes contain ingredients
               linked to cancer. Some studies of antiperspirants have provided
               conflicting results, though, so more research is needed.
             </div>
-          </div>
-          <div className="text-xl text-[#470FF4] underline">
-            <a href="#">Learn more</a>
+            <div className="ca-misc--link">
+              <a href="#">Learn more</a>
+            </div>
           </div>
         </div>
-        <div className="absolute top-0 mx-auto rounded-full flex flex-wrap justify-center content-center">
-          <img className="h-32 w-32" src={Correct} alt="smile" />
-        </div>
       </div>
-      <div className=" flex justify-center gap-16">
-        <button className="bg-white text-[#262730] text-2xl rounded-full py-5 px-10 flex flex-wrap justify-center content-center">
-          Next
-          <img className="ml-3" src={Next} alt="next" />
-        </button>
-      </div>
+
+      {/* <div className="absolute top-0 mx-auto rounded-full flex flex-wrap justify-center content-center">
+          
+        </div> */}
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import { Lives } from "./Lives";
 import { Score } from "./Score";
+import styles from "./Header.module.scss";
 
 export const Info = () => {
   return (
-    <div className="flex justify-between items-center mt-14 mx-16">
+    <div className={styles.ca_header}>
       <Lives />
       <Score />
     </div>
