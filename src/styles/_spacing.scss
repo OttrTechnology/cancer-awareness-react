@@ -1,3 +1,5 @@
+@use "functions";
+
 .container-w {
-  width: 57rem;
+  width: functions.rem(912px);
 }
