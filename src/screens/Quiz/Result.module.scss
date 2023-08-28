@@ -1,34 +1,28 @@
 @use "main";
 
 .resultSection {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: 4.5rem 6rem 4rem 6rem;
+  @apply flex justify-center text-center px-24 pb-16;
+  padding-top: main.rem(72px);
   background-color: main.$light-yellow;
 }
 
-.resultContainer {
-  padding-top: 4rem;
-  position: relative;
+.image {
+  @apply absolute top-0 h-32 w-32 flex justify-center;
 }
 
-.resultImg {
-  @apply absolute top-0 flex justify-center;
-  height: 8rem;
-  width: 8rem;
-}
-.correctAns {
-  font-size: 2.75rem;
+.answer {
+  font-size: main.rem(44px);
   font-weight: 700;
   line-height: 120%;
   letter-spacing: -0.01em;
+}
+
+.correctAns {
+  @extend .answer;
   color: main.$green;
 }
+
 .wrongAns {
-  font-size: 2.75rem;
-  font-weight: 700;
-  line-height: 120%;
-  letter-spacing: -0.01em;
+  @extend .answer;
   color: main.$red;
 }

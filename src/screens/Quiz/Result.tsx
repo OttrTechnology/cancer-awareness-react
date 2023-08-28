@@ -8,7 +8,7 @@ export const Result = () => {
     <div className="flex justify-center">
       <div className="pt-16 relative container-w">
         <div className={styles.resultSection}>
-          <img className={styles.resultImg} src={Correct} alt="smile" />
+          <img className={styles.image} src={Correct} alt="smile" />
 
           <div className="flex flex-col">
             <div className="mb-6">
