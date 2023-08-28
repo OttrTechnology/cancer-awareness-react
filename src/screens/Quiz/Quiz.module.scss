@@ -1,14 +1,13 @@
 @use "main";
 
 .quizScreen {
-  @apply flex flex-col h-screen;
-  justify-content: space-between;
+  @apply flex flex-col h-screen justify-between;
 }
 
 .quizContainer {
   padding-top: 7.5rem;
   position: relative;
-  width: 912px;
+  width: 57rem;
 }
 
 .quizImg {
