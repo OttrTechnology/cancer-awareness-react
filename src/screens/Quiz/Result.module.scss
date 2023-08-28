@@ -1,6 +1,6 @@
 @use "main";
 
-.resultSection {
+.body {
   @apply flex justify-center text-center px-24 pb-16;
   padding-top: main.rem(72px);
   background-color: main.$light-yellow;
@@ -17,12 +17,12 @@
   letter-spacing: -0.01em;
 }
 
-.correctAns {
+.correctAnswer {
   @extend .answer;
   color: main.$green;
 }
 
-.wrongAns {
+.wrongAnswer {
   @extend .answer;
   color: main.$red;
 }

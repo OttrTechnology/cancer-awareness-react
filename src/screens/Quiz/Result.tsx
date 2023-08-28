@@ -6,13 +6,13 @@ import styles from "./Result.module.scss";
 export const Result = () => {
   return (
     <div className="flex justify-center">
-      <div className="pt-16 relative container-w">
-        <div className={styles.resultSection}>
+      <div className="relative container-w pt-16">
+        <div className={styles.body}>
           <img className={styles.image} src={Correct} alt="smile" />
 
           <div className="flex flex-col">
             <div className="mb-6">
-              <div className={styles.correctAns}>Correct Answer</div>
+              <div className={styles.correctAnswer}>Correct Answer</div>
               <div className="ca-body--sm">That’s great. Keep going</div>
             </div>
 

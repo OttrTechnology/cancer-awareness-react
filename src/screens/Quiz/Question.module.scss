@@ -3,17 +3,15 @@
 .container {
   padding-top: main.rem(120px);
   position: relative;
-  width: 57rem;
+  width: main.rem(912px);
 }
 
 .innerContainer {
-  @apply flex justify-center text-center;
-  padding: main.rem(168px) main.rem(96px) main.rem(80px) main.rem(96px);
+  @apply flex justify-center text-center px-24 pb-20;
+  padding-top: main.rem(168px);
   background-color: main.$light-yellow;
 }
 
 .image {
-  @apply flex justify-center absolute top-0;
-  height: 15rem;
-  width: 15rem;
+  @apply flex justify-center absolute top-0 h-60 w-60;
 }
