@@ -6,7 +6,7 @@ import styles from "./Result.module.scss";
 export const Result = () => {
   return (
     <div className="flex justify-center">
-      <div className="relative container-w pt-16">
+      <div className="relative ca-container pt-16">
         <div className={styles.body}>
           <img className={styles.image} src={Correct} alt="smile" />
 

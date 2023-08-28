@@ -1,39 +1,34 @@
 @use "main";
 
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: main.rem(96px);
+  gap: main.rem(64px);
+}
+
 .btn {
-  @apply text-lg p-4;
-  background-color: main.$primary;
-}
-
-.btn_container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 6rem;
-  gap: 4rem;
-}
-
-.btn_answer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
   background-color: main.$white;
-  border-radius: 7.8125rem;
-  height: 7.5rem;
-  width: 7.5rem;
 }
 
-.btn_next {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  background-color: main.$white;
+.btnIcon {
+  @extend .btn;
+  border-radius: main.rem(125px);
+  height: main.rem(120px);
+  width: main.rem(120px);
+}
+
+.btnNext {
+  @extend .btn;
   color: main.$dark-blue;
-  width: 11.25rem;
-  border-radius: 7.8125rem;
-  font-size: 1.5rem;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-  gap: 0.75rem;
+  width: main.rem(180px);
+  border-radius: main.rem(125px);
+  font-size: main.rem(24px);
+  padding-top: main.rem(20px);
+  padding-bottom: main.rem(20px);
+  gap: main.rem(12px);
 }
