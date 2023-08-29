@@ -1,7 +1,7 @@
 // import no from "assets/buttonIcon/no.svg";
 // import yes from "assets/buttonIcon/yes.svg";
 import Next from "assets/buttonIcon/next-arrow.svg";
-import { Button, IconButton } from "components";
+import { Button } from "components";
 
 export const GameActions = () => {
   return (
