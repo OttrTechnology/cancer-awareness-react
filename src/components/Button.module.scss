@@ -1,23 +1,16 @@
 @use "main";
 
-.btnContainer {
-  display: flex;
-  justify-content: center;
-  margin-bottom: main.rem(96px);
-  gap: main.rem(64px);
-}
-
 .btn {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
   background-color: main.$white;
+  border-radius: main.rem(125px);
 }
 
 .btnIcon {
   @extend .btn;
-  border-radius: main.rem(125px);
   height: main.rem(120px);
   width: main.rem(120px);
 }
@@ -26,9 +19,7 @@
   @extend .btn;
   color: main.$dark-blue;
   width: main.rem(180px);
-  border-radius: main.rem(125px);
+  height: main.rem(80px);
   font-size: main.rem(24px);
-  padding-top: main.rem(20px);
-  padding-bottom: main.rem(20px);
   gap: main.rem(12px);
 }
