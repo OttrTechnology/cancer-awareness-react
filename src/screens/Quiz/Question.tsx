@@ -1,6 +1,6 @@
-import deodorant from "../../assets/questionImg/deodorant.svg";
-// import no from "../../assets/bx-x.svg.svg";
-// import yes from "../../assets/bx-check.svg.svg";
+import deodorant from "assets/questionImg/deodorant.svg";
+// import no from "assets/bx-x.svg.svg";
+// import yes from "assets/bx-check.svg.svg";
 import styles from "./Question.module.scss";
 
 export const Question = () => {

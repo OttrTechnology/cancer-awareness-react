@@ -1,6 +1,6 @@
-import Correct from "../../assets/resultEmoji/right.png";
-// import Wrong from "../../assets/resultEmoji/wrong.png";
-// import Next from "../../assets/bx-arrow-back.svg.svg";
+import Correct from "assets/resultEmoji/right.png";
+// import Wrong from "assets/resultEmoji/wrong.png";
+// import Next from "assets/bx-arrow-back.svg.svg";
 import styles from "./Result.module.scss";
 
 export const Result = () => {
