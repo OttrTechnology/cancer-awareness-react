@@ -1,4 +1,4 @@
-import Award from "../../../assets/headerAwardIcon.svg";
+import Award from "assets/headerAwardIcon.svg";
 import styles from "./Score.module.scss";
 
 export const Score = () => {
