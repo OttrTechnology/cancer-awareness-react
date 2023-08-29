@@ -1,17 +1,7 @@
 @use "main";
 
-.btnContainer {
-  display: flex;
-  justify-content: center;
-  margin-bottom: main.rem(96px);
-  gap: main.rem(64px);
-}
-
 .btn {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
+  @apply flex flex-wrap justify-center content-center;
   background-color: main.$white;
 }
 
@@ -24,11 +14,9 @@
 
 .btnNext {
   @extend .btn;
+  @apply py-5 gap-3;
   color: main.$dark-blue;
   width: main.rem(180px);
   border-radius: main.rem(125px);
   font-size: main.rem(24px);
-  padding-top: main.rem(20px);
-  padding-bottom: main.rem(20px);
-  gap: main.rem(12px);
 }

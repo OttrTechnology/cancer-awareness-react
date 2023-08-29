@@ -1,8 +1,8 @@
 import styles from "./Button.module.scss";
 
 interface Props {
+  icon: string;
   onClick?: () => void;
-  icon?: string;
 }
 
 export const IconButton = ({ onClick, icon }: Props) => {
