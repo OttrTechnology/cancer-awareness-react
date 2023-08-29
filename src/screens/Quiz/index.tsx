@@ -1,7 +1,6 @@
-import { Header } from "./components/Header";
+import { Header, GameActions } from "./components";
 // import { Question } from "./Question";
 import { Result } from "./Result";
-import { GameActions } from "./GameActions";
 
 export const Quiz = () => {
   return (
