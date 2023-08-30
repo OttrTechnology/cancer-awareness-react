@@ -1,5 +1,5 @@
-import { Button } from "../../components";
-import Smile from "../../assets/resultEmoji/right.png";
+import { Button } from "components";
+import Smile from "assets/resultEmoji/right.png";
 
 export const Landing = () => {
   return (

@@ -7,7 +7,7 @@ export const Quiz = () => {
     <div className="h-screen flex flex-col justify-between">
       <Header />
       {/* <Question /> */}
-      <Result />
+      <Result isCorrect={true} />
       <GameActions />
     </div>
   );
