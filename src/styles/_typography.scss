@@ -1,23 +1,79 @@
 @use "variables";
+@use "functions";
+
+body {
+  font-size: functions.rem(18px);
+  line-height: 170%;
+  background-color: variables.$light-yellow;
+  background-image: url("../assets/backgroundPattern.svg");
+  height: 100vh;
+}
 
 .ca {
   &-heading {
-    // apply heading defaults below
-    @apply uppercase;
+    @apply uppercase font-semibold;
     letter-spacing: -0.01em;
+    color: variables.$dark-blue;
 
     &--one {
-      @extend .ca-heading; // get heading defaults
-      @apply font-medium; // override any property after extending
-      font-size: 88px;
+      @extend .ca-heading;
+      font-size: functions.rem(96px);
+      line-height: 100%;
+      letter-spacing: -0.03em;
+    }
+
+    &--two {
+      @extend .ca-heading;
+      font-size: functions.rem(44px);
+      font-weight: 700;
+      line-height: 120%;
+      letter-spacing: -0.01em;
+    }
+
+    &--three {
+      @extend .ca-heading;
+      font-size: functions.rem(32px);
+      line-height: 130%;
     }
   }
 
   &-body {
-    &--sm {
+    &--md {
+      color: variables.$dark-blue;
+      font-size: functions.rem(22px);
+      font-weight: 400;
+      line-height: 150%;
+      letter-spacing: -0.01em;
     }
 
-    &--md {
+    &--sm {
+      color: variables.$dark-blue;
+      font-size: functions.rem(18px);
+      font-weight: 400;
+      line-height: 140%;
+      letter-spacing: -0.01em;
+    }
+  }
+
+  &-misc {
+    &--points {
+      font-size: functions.rem(48px);
+      font-weight: 600;
+      line-height: 100%;
+    }
+
+    &--button-text {
+      @apply font-semibold not-italic;
+      font-size: functions.rem(24px);
+      line-height: 120%;
+    }
+
+    &--link {
+      @apply font-medium not-italic underline;
+      font-size: functions.rem(20px);
+      line-height: 120%;
+      letter-spacing: -0.0125rem;
+      color: variables.$primary;
     }
   }
 }

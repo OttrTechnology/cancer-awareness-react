@@ -1,0 +1,28 @@
+@use "main";
+
+.body {
+  @apply flex justify-center text-center px-24 pb-16;
+  padding-top: main.rem(72px);
+  background-color: main.$light-yellow;
+}
+
+.image {
+  @apply absolute top-0 h-32 w-32 flex justify-center;
+}
+
+.answer {
+  font-size: main.rem(44px);
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+}
+
+.correctAnswer {
+  @extend .answer;
+  color: main.$green;
+}
+
+.wrongAnswer {
+  @extend .answer;
+  color: main.$red;
+}

@@ -1,5 +1,22 @@
 @use "main";
 
 .btn {
-  background-color: main.$primary-color;
+  @apply flex flex-wrap justify-center content-center;
+  background-color: main.$white;
+  border-radius: main.rem(125px);
+}
+
+.btnIcon {
+  @extend .btn;
+  height: main.rem(120px);
+  width: main.rem(120px);
+}
+
+.btnNext {
+  @extend .btn;
+  @apply py-5 gap-3;
+  color: main.$dark-blue;
+  width: main.rem(180px);
+  height: main.rem(80px);
+  font-size: main.rem(24px);
 }

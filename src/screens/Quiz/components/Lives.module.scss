@@ -1,0 +1,6 @@
+@use "main";
+
+:export {
+  life: main.$primary;
+  lifeLost: #EDCDA6;
+}

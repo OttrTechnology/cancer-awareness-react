@@ -1,14 +1,20 @@
 @forward "variables";
+@forward "functions";
 @forward "typography";
+@forward "layouts";
+@forward "spacing";
+
+@use "variables";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: 'Figtree', sans-serif;
-  color: #262730;
-  background-color: #E6E5CF;
+  font-family: "Figtree", sans-serif;
+  background-color: variables.$light-yellow;
+  background-image: url("assets/backgroundPattern.svg");
+  color: variables.$dark-blue;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

@@ -1,0 +1,17 @@
+@use "main";
+
+.container {
+  padding-top: main.rem(120px);
+  position: relative;
+  width: main.rem(912px);
+}
+
+.innerContainer {
+  @apply flex justify-center text-center px-24 pb-20;
+  padding-top: main.rem(168px);
+  background-color: main.$light-yellow;
+}
+
+.image {
+  @apply flex justify-center absolute top-0 h-60 w-60;
+}
