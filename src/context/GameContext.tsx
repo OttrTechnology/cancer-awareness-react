@@ -63,13 +63,13 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     if (newAnswer !== actualAnswer) {
       setRemainingLives((prevLive) => prevLive - 1);
     }
-
-    setActiveIndex(index);
-    setAnswer(newAnswer);
-
-    if (remainingLives === 1) {
+    if (remainingLives === 1 && newAnswer !== actualAnswer) {
       setActiveIndex(2);
+    } else {
+      setActiveIndex(index);
     }
+
+    setAnswer(newAnswer);
   };
 
   const value: GameContextProps = {
