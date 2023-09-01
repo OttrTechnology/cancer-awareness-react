@@ -1,26 +1,33 @@
 import Correct from "assets/resultEmoji/right.png";
 import Wrong from "assets/resultEmoji/wrong.png";
 import styles from "./Result.module.scss";
+import { useGameContext } from "hooks/useGameContext";
 
 interface Props {
   isCorrect: boolean;
 }
 
 export const Result = ({ isCorrect }: Props) => {
+  const { answer, explanation } = useGameContext();
   return (
     <div className="flex justify-center">
       <div className="relative ca-container pt-16">
         <div className={styles.body}>
-          <img className={styles.image} src={isCorrect ? Correct : Wrong} />
+          <img
+            className={styles.image}
+            src={isCorrect === answer ? Correct : Wrong}
+          />
 
           <div className="flex flex-col">
             <div className="mb-6">
               <div
                 className={
-                  isCorrect ? styles.correctAnswer : styles.wrongAnswer
+                  isCorrect === answer
+                    ? styles.correctAnswer
+                    : styles.wrongAnswer
                 }
               >
-                {isCorrect ? "Correct Answer" : "Wrong Answer"}
+                {isCorrect === answer ? "Correct Answer" : "Wrong Answer"}
               </div>
               <div className="ca-body--sm">
                 {isCorrect
@@ -29,11 +36,7 @@ export const Result = ({ isCorrect }: Props) => {
               </div>
             </div>
 
-            <div className="ca-body--md mb-8">
-              Deodorants and antiperspirants sometimes contain ingredients
-              linked to cancer. Some studies of antiperspirants have provided
-              conflicting results, though, so more research is needed.
-            </div>
+            <div className="ca-body--md mb-8">{explanation}</div>
 
             <div className="ca-misc--link">
               <a href="#">Learn more</a>
