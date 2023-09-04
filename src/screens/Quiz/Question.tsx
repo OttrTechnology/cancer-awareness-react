@@ -9,11 +9,7 @@ export const Question = () => {
     <div className="flex justify-center">
       <div className={styles.container}>
         <div className={styles.innerContainer}>
-          <img
-            className={styles.image}
-            src={`/questionImg/${src}`}
-            alt="deodorant"
-          />
+          <img className={styles.image} src={`/questionImg/${src}`} alt={src} />
 
           <div className="ca-heading--three">{question}</div>
         </div>

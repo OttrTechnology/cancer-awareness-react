@@ -5,7 +5,8 @@ import { Button, IconButton } from "components";
 import { useGameContext } from "hooks/useGameContext";
 
 export const GameActions = () => {
-  const { activeIndex, handleAnswer, handleOnClick } = useGameContext();
+  const { activeIndex, handleAnswer, handleOnClick, handlePlayAgain } =
+    useGameContext();
 
   return (
     <div>
@@ -16,15 +17,15 @@ export const GameActions = () => {
         </div>
       ) : (
         <div
-          onClick={handleOnClick}
+          onClick={activeIndex === 1 ? handleOnClick : handlePlayAgain}
           className="flex justify-center mb-24 gap-16"
         >
-          <Button label="Next" icon={<img src={Next} />} />
+          <Button
+            label={activeIndex === 1 ? "Next" : "Try Again"}
+            icon={activeIndex === 1 && <img src={Next} />}
+          />
         </div>
       )}
-      {/* <Button label="Next" icon={<img src={Next} />} /> */}
-      {/* <IconButton icon={no} />
-      <IconButton icon={yes} /> */}
     </div>
   );
 };

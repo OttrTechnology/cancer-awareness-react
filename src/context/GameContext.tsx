@@ -10,12 +10,14 @@ interface GameContextProps {
   actualAnswer: boolean;
   screens: JSX.Element[];
   answer: boolean;
+  currentScore: number;
   activeIndex: number;
   remainingLives: number;
   question: string;
   explanation: string;
   src: string;
   handleOnClick: () => void;
+  handlePlayAgain: () => void;
   handleAnswer: (newAnswer: boolean) => void;
 }
 
@@ -41,6 +43,8 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const [currentScore, setCurrentScore] = useState(0);
+
   const [remainingLives, setRemainingLives] = useState(3);
 
   const handleOnClick = () => {
@@ -54,6 +58,13 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     setActiveIndex(index);
   };
 
+  const handlePlayAgain = () => {
+    setRemainingLives(3);
+    setCurrentScore(0);
+    setActiveQuestionIndex(0);
+    setActiveIndex(0);
+  };
+
   const handleAnswer = (newAnswer: boolean) => {
     let index = activeIndex;
 
@@ -62,6 +73,8 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
     if (newAnswer !== actualAnswer) {
       setRemainingLives((prevLive) => prevLive - 1);
+    } else {
+      setCurrentScore((prevScore) => prevScore + 1);
     }
     if (remainingLives === 1 && newAnswer !== actualAnswer) {
       setActiveIndex(2);
@@ -76,12 +89,14 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     actualAnswer,
     screens,
     answer,
+    currentScore,
     activeIndex,
     remainingLives,
     question,
     explanation,
     src,
     handleOnClick,
+    handlePlayAgain,
     handleAnswer,
   };
 
