@@ -9,7 +9,16 @@ interface Props {
 
 export const Button = ({ label = "", onClick, icon }: Props) => {
   return (
-    <button className={styles.btnNext} onClick={onClick}>
+    <button
+      className={
+        label == "Next"
+          ? styles.btnNext
+          : label == "Try Again"
+          ? styles.btnGameOver
+          : styles.btnShare
+      }
+      onClick={onClick}
+    >
       <div className="ca-misc--button-text">{label}</div>
       {icon}
     </button>

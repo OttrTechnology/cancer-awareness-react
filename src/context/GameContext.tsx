@@ -1,23 +1,28 @@
-// TODO: implement Game Logic
-// Remove this and create context
 import { createContext, useState } from "react";
 import { Question } from "screens/Quiz/Question";
 import { Result } from "screens/Quiz/Result";
-import { GameOver } from "screens";
-import mockData from "../screens/Quiz/cancer-findings-data.json";
+import { GameOver, Landing, Quiz } from "screens";
+import mockData from "screens/Quiz/cancer-findings-data.json";
+
+interface IQuiz {
+  fact: boolean;
+  claim: string;
+  explanation: string;
+  imgSrc: string;
+}
 
 interface GameContextProps {
-  actualAnswer: boolean;
+  currentQuestion: IQuiz;
+  currentScreen: object;
+  mainScreens: object;
   screens: JSX.Element[];
-  answer: boolean;
   currentScore: number;
   highScore: number;
   activeIndex: number;
+  activeScreen: number;
   remainingLives: number;
-  question: string;
-  explanation: string;
-  src: string;
-  handleOnClick: (currentScore: number) => void;
+  answer: boolean;
+  handleNext: (currentScore: number) => void;
   handlePlayAgain: () => void;
   handleAnswer: (newAnswer: boolean) => void;
 }
@@ -28,20 +33,10 @@ export const GameContext = createContext<GameContextProps | undefined>(
 
 export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const data = mockData;
-  //   const totalQuestions = data.length;
 
-  const [activeQuestionIndex, setActiveQuestionIndex] = useState(
-    0
-    // Math.floor(Math.random() * data.length)
-  );
+  const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
 
-  const question = data[activeQuestionIndex].claim;
-
-  const actualAnswer = data[activeQuestionIndex].fact;
-
-  const explanation = data[activeQuestionIndex].explanation;
-
-  const src = data[activeQuestionIndex].imgSrc;
+  const currentQuestion = data[activeQuestionIndex];
 
   const [answer, setAnswer] = useState(true);
 
@@ -51,9 +46,6 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const initialHighScore = parseInt(localStorage.getItem("highScore") ?? "0");
 
-  //   const highScoreString = localStorage.getItem("highScore");
-  //   const initialHighScore = highScoreString ? parseInt(highScoreString) : 0;
-
   const [highScore, setHighScore] = useState(initialHighScore);
 
   const [remainingLives, setRemainingLives] = useState(3);
@@ -61,13 +53,26 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const screens = [
     <Question key={1} />,
     <Result key={2} isCorrect={data[activeQuestionIndex].fact} />,
-    <GameOver key={3} />,
   ];
 
-  const handleOnClick = (currentScore: number) => {
+  enum currentScreen {
+    Landing,
+    Quiz,
+    GameOver,
+  }
+
+  const mainScreens = {
+    [currentScreen.Landing]: <Landing />,
+    [currentScreen.Quiz]: <Quiz />,
+    [currentScreen.GameOver]: <GameOver />,
+  };
+
+  const [activeScreen, setActiveScreen] = useState(currentScreen.Quiz);
+
+  const handleNext = (currentScore: number) => {
     let index = activeIndex;
 
-    if (index === screens.length - 2) index = 0;
+    if (index === screens.length - 1) index = 0;
     else index++;
 
     const newIndex = activeQuestionIndex + 1;
@@ -82,6 +87,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   const handlePlayAgain = () => {
+    setActiveScreen(1);
     setRemainingLives(3);
     setCurrentScore(0);
     setActiveQuestionIndex(0);
@@ -94,14 +100,14 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     if (index === screens.length - 1) index = 0;
     else index++;
 
-    if (newAnswer !== actualAnswer) {
+    if (newAnswer !== currentQuestion.fact) {
       setRemainingLives((prevLive) => prevLive - 1);
     } else {
       setCurrentScore((prevScore) => prevScore + 1);
     }
 
-    if (remainingLives === 1 && newAnswer !== actualAnswer) {
-      setActiveIndex(2);
+    if (remainingLives === 1 && newAnswer !== currentQuestion.fact) {
+      setActiveScreen(currentScreen.GameOver);
     } else {
       setActiveIndex(index);
     }
@@ -110,19 +116,19 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   const value: GameContextProps = {
-    actualAnswer,
     screens,
-    answer,
     currentScore,
     highScore,
     activeIndex,
     remainingLives,
-    question,
-    explanation,
-    src,
-    handleOnClick,
+    handleNext,
     handlePlayAgain,
     handleAnswer,
+    currentScreen,
+    activeScreen,
+    currentQuestion,
+    answer,
+    mainScreens,
   };
 
   return (

@@ -4,14 +4,14 @@
 body {
   font-size: functions.rem(18px);
   line-height: 170%;
-  background-color: variables.$light-yellow;
+  background-color: variables.$yellow;
   background-image: url("../assets/backgroundPattern.svg");
   height: 100vh;
 }
 
 .ca {
   &-heading {
-    @apply uppercase font-semibold;
+    @apply font-semibold;
     letter-spacing: -0.01em;
     color: variables.$dark-blue;
 

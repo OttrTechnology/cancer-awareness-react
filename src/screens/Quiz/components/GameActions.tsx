@@ -2,16 +2,11 @@ import no from "assets/buttonIcon/no.svg";
 import yes from "assets/buttonIcon/yes.svg";
 import Next from "assets/buttonIcon/next-arrow.svg";
 import { Button, IconButton } from "components";
-import { useGameContext } from "hooks/useGameContext";
+import { useGameContext } from "hooks";
 
 export const GameActions = () => {
-  const {
-    activeIndex,
-    handleAnswer,
-    handleOnClick,
-    handlePlayAgain,
-    currentScore,
-  } = useGameContext();
+  const { activeIndex, handleAnswer, handleNext, currentScore } =
+    useGameContext();
 
   return (
     <div>
@@ -21,15 +16,11 @@ export const GameActions = () => {
           <IconButton icon={yes} onClick={() => handleAnswer(true)} />
         </div>
       ) : (
-        <div className="flex justify-center mb-24">
+        <div className="flex justify-center mb-24 gap-8">
           <Button
-            onClick={() =>
-              activeIndex === 1
-                ? handleOnClick(currentScore)
-                : handlePlayAgain()
-            }
-            label={activeIndex === 1 ? "Next" : "Try Again"}
-            icon={activeIndex === 1 && <img src={Next} />}
+            onClick={() => handleNext(currentScore)}
+            label="Next"
+            icon={<img src={Next} />}
           />
         </div>
       )}

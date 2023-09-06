@@ -1,12 +1,11 @@
 import styles from "./Lives.module.scss";
-import { useGameContext } from "hooks/useGameContext";
+import { useGameContext } from "hooks";
 
 const { life, lifeLost } = styles;
 
 export const Lives = () => {
   const { remainingLives } = useGameContext();
 
-  // const REMAINING_LIVES = remainingLives;
   const TOTAL_LIVES = 3;
   return (
     <div className="flex items-start">
