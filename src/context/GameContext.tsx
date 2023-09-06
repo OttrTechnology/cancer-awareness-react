@@ -99,6 +99,11 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
       setHighScore(currentScore);
       localStorage.setItem("highScore", currentScore.toString());
     }
+    if (remainingLives === 0) {
+      setActiveScreen(currentScreen.GameOver);
+    } else {
+      setActiveIndex(index);
+    }
   };
 
   const handlePlayAgain = () => {
@@ -121,9 +126,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
       setCurrentScore((prevScore) => prevScore + 1);
     }
 
-    if (remainingLives === 1 && newAnswer !== currentQuestion.fact) {
-      setActiveScreen(currentScreen.GameOver);
-    } else {
+    if (remainingLives >= 0) {
       setActiveIndex(index);
     }
 
