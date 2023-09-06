@@ -9,6 +9,7 @@ interface IQuiz {
   claim: string;
   explanation: string;
   imgSrc: string;
+  source: string;
 }
 
 interface GameContextProps {

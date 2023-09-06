@@ -41,7 +41,7 @@ export const Result = ({ isCorrect }: Props) => {
             </div>
 
             <div className="ca-misc--link">
-              <a href="#">Learn more</a>
+              <a href={currentQuestion.source}>Learn more</a>
             </div>
           </div>
         </div>
