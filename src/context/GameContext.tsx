@@ -34,7 +34,25 @@ export const GameContext = createContext<GameContextProps | undefined>(
 export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const data = mockData;
 
-  const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
+  const [usedIndices, setUsedIndices] = useState<number[]>([]);
+
+  const getRandomUniqueIndex = () => {
+    if (usedIndices.length === data.length) {
+      setActiveScreen(currentScreen.GameOver);
+    }
+
+    let randomIndex: number;
+    do {
+      randomIndex = Math.floor(Math.random() * data.length);
+    } while (usedIndices.includes(randomIndex));
+
+    setUsedIndices((prevIndices) => [...prevIndices, randomIndex]);
+
+    return randomIndex;
+  };
+
+  const [activeQuestionIndex, setActiveQuestionIndex] =
+    useState(getRandomUniqueIndex);
 
   const currentQuestion = data[activeQuestionIndex];
 
@@ -74,10 +92,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
     if (index === screens.length - 1) index = 0;
     else index++;
-
-    const newIndex = activeQuestionIndex + 1;
-
-    setActiveQuestionIndex(newIndex);
+    setActiveQuestionIndex(getRandomUniqueIndex());
     setActiveIndex(index);
 
     if (currentScore > highScore) {
