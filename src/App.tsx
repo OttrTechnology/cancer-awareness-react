@@ -1,11 +1,11 @@
-// import { Landing, Quiz, GameOver } from "./screens";
-import { Quiz } from "./screens";
+// import { Landing, Home, GameOver } from "./screens";
+import { Home } from "screens";
 
 const App = () => {
   return (
     <>
       {/* <Landing /> */}
-      <Quiz />
+      <Home />
       {/* <GameOver /> */}
     </>
   );
