@@ -5,12 +5,12 @@ import { Button, IconButton } from "components";
 import { useGameContext } from "hooks";
 
 export const GameActions = () => {
-  const { activeIndex, handleAnswer, handleNext, currentScore } =
+  const { activeQuizIndex, handleAnswer, handleNext, currentScore } =
     useGameContext();
 
   return (
     <div>
-      {activeIndex === 0 ? (
+      {activeQuizIndex === "QUESTION" ? (
         <div className="flex justify-center mb-24 gap-16">
           <IconButton icon={no} onClick={() => handleAnswer(false)} />
           <IconButton icon={yes} onClick={() => handleAnswer(true)} />

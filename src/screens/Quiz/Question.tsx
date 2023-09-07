@@ -14,7 +14,7 @@ export const Question = () => {
             alt={currentQuestion.imgSrc}
           />
 
-          <div className="ca-heading--three">{currentQuestion.claim}</div>
+          <div className="ca-heading--three ">{currentQuestion.claim}</div>
         </div>
       </div>
     </div>

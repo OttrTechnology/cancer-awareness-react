@@ -4,10 +4,10 @@ import { useGameContext } from "hooks";
 const App = () => {
   const { activeScreen } = useGameContext();
   return (
-    <div className={activeScreen == 2 ? "ca-gameOver" : ""}>
-      {activeScreen === 0 ? (
+    <div className={activeScreen === "GAME_OVER" ? "ca-gameOver" : ""}>
+      {activeScreen === "LANDING" ? (
         <Landing />
-      ) : activeScreen === 1 ? (
+      ) : activeScreen === "QUIZ" ? (
         <Quiz />
       ) : (
         <GameOver />

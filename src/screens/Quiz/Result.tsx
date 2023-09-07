@@ -3,11 +3,7 @@ import Wrong from "assets/resultEmoji/wrong.png";
 import styles from "./Result.module.scss";
 import { useGameContext } from "hooks";
 
-interface Props {
-  isCorrect: boolean;
-}
-
-export const Result = ({ isCorrect }: Props) => {
+export const Result = () => {
   const { currentQuestion, answer } = useGameContext();
   return (
     <div className="flex justify-center">
@@ -15,22 +11,24 @@ export const Result = ({ isCorrect }: Props) => {
         <div className={styles.body}>
           <img
             className={styles.image}
-            src={isCorrect === answer ? Correct : Wrong}
+            src={currentQuestion.fact === answer ? Correct : Wrong}
           />
 
           <div className="flex flex-col">
             <div className="mb-6">
               <div
                 className={
-                  isCorrect === answer
+                  currentQuestion.fact === answer
                     ? styles.correctAnswer
                     : styles.wrongAnswer
                 }
               >
-                {isCorrect === answer ? "Correct Answer" : "Wrong Answer"}
+                {currentQuestion.fact === answer
+                  ? "Correct Answer"
+                  : "Wrong Answer"}
               </div>
               <div className="ca-body--sm">
-                {isCorrect === answer
+                {currentQuestion.fact === answer
                   ? "That’s great. Keep going"
                   : "It’s not the end. Try again."}
               </div>
@@ -41,7 +39,9 @@ export const Result = ({ isCorrect }: Props) => {
             </div>
 
             <div className="ca-misc--link">
-              <a href={currentQuestion.source}>Learn more</a>
+              <a target="_blank" href={currentQuestion.source} rel="noreferrer">
+                Learn more
+              </a>
             </div>
           </div>
         </div>

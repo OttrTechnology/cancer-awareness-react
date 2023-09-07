@@ -1,7 +1,4 @@
 import { createContext, useState } from "react";
-import { Question } from "screens/Quiz/Question";
-import { Result } from "screens/Quiz/Result";
-import { GameOver, Landing, Quiz } from "screens";
 import mockData from "screens/Quiz/cancer-findings-data.json";
 
 interface IQuiz {
@@ -12,17 +9,30 @@ interface IQuiz {
   source: string;
 }
 
+enum CurrentScreen {
+  LANDING = "LANDING",
+  QUIZ = "QUIZ",
+  GAME_OVER = "GAME_OVER",
+}
+
+enum QuizScreen {
+  QUESTION = "QUESTION",
+  RESULT = "RESULT",
+}
+
+export type CurrentScreenType = keyof typeof CurrentScreen;
+
+export type QuizScreenType = keyof typeof QuizScreen;
+
 interface GameContextProps {
   currentQuestion: IQuiz;
-  currentScreen: object;
-  mainScreens: object;
-  screens: JSX.Element[];
   currentScore: number;
   highScore: number;
-  activeIndex: number;
-  activeScreen: number;
+  activeQuizIndex: QuizScreenType;
+  activeScreen: CurrentScreenType;
   remainingLives: number;
   answer: boolean;
+
   handleNext: (currentScore: number) => void;
   handlePlayAgain: () => void;
   handleAnswer: (newAnswer: boolean) => void;
@@ -37,12 +47,17 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [usedIndices, setUsedIndices] = useState<number[]>([]);
 
+  const [activeScreen, setActiveScreen] = useState<CurrentScreenType>("QUIZ");
+
   const getRandomUniqueIndex = () => {
+    // ? Set game over if all questions have been used up
     if (usedIndices.length === data.length) {
-      setActiveScreen(currentScreen.GameOver);
+      setActiveScreen(CurrentScreen.GAME_OVER);
     }
 
     let randomIndex: number;
+
+    // ? get random index that isn't used already
     do {
       randomIndex = Math.floor(Math.random() * data.length);
     } while (usedIndices.includes(randomIndex));
@@ -59,7 +74,8 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [answer, setAnswer] = useState(true);
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeQuizIndex, setActiveQuizIndex] =
+    useState<QuizScreenType>("QUESTION");
 
   const [currentScore, setCurrentScore] = useState(0);
 
@@ -69,57 +85,38 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [remainingLives, setRemainingLives] = useState(3);
 
-  const screens = [
-    <Question key={1} />,
-    <Result key={2} isCorrect={data[activeQuestionIndex].fact} />,
-  ];
-
-  enum currentScreen {
-    Landing,
-    Quiz,
-    GameOver,
-  }
-
-  const mainScreens = {
-    [currentScreen.Landing]: <Landing />,
-    [currentScreen.Quiz]: <Quiz />,
-    [currentScreen.GameOver]: <GameOver />,
-  };
-
-  const [activeScreen, setActiveScreen] = useState(currentScreen.Quiz);
-
   const handleNext = (currentScore: number) => {
-    let index = activeIndex;
+    let index = activeQuizIndex;
 
-    if (index === screens.length - 1) index = 0;
-    else index++;
+    if (index === "RESULT") index = "QUESTION";
+    else index = "RESULT";
     setActiveQuestionIndex(getRandomUniqueIndex());
-    setActiveIndex(index);
+    setActiveQuizIndex(index);
 
     if (currentScore > highScore) {
       setHighScore(currentScore);
       localStorage.setItem("highScore", currentScore.toString());
     }
     if (remainingLives === 0) {
-      setActiveScreen(currentScreen.GameOver);
+      setActiveScreen(CurrentScreen.GAME_OVER);
     } else {
-      setActiveIndex(index);
+      setActiveQuizIndex(index);
     }
   };
 
   const handlePlayAgain = () => {
-    setActiveScreen(1);
+    setActiveScreen(CurrentScreen.QUIZ);
     setRemainingLives(3);
     setCurrentScore(0);
-    setActiveQuestionIndex(0);
-    setActiveIndex(0);
+    setActiveQuestionIndex(getRandomUniqueIndex());
+    setActiveQuizIndex("QUESTION");
   };
 
   const handleAnswer = (newAnswer: boolean) => {
-    let index = activeIndex;
+    let index = activeQuizIndex;
 
-    if (index === screens.length - 1) index = 0;
-    else index++;
+    if (index === "RESULT") index = "QUESTION";
+    else index = "RESULT";
 
     if (newAnswer !== currentQuestion.fact) {
       setRemainingLives((prevLive) => prevLive - 1);
@@ -127,27 +124,21 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
       setCurrentScore((prevScore) => prevScore + 1);
     }
 
-    if (remainingLives >= 0) {
-      setActiveIndex(index);
-    }
-
+    setActiveQuizIndex(index);
     setAnswer(newAnswer);
   };
 
   const value: GameContextProps = {
-    screens,
     currentScore,
     highScore,
-    activeIndex,
+    activeQuizIndex,
     remainingLives,
     handleNext,
     handlePlayAgain,
     handleAnswer,
-    currentScreen,
     activeScreen,
     currentQuestion,
     answer,
-    mainScreens,
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useGameContext } from "hooks/useGameContext";
+import { useGameContext } from "hooks";
 import styles from "./GameOver.module.scss";
 import trophy from "assets/trophy.svg";
 import { Button } from "components";
