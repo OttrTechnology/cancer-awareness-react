@@ -1,42 +1,53 @@
 import { useEffect, useRef } from "react";
+
+import homepageArrow from "assets/homepageArrow.svg";
 import homeLogo from "assets/homeLogo.svg";
 
 import styles from "./index.module.scss";
 
 import {
-  BiLogoFacebook,
-  BiLogoLinkedin,
   BiLogoDiscordAlt,
+  BiLogoFacebook,
   BiLink,
+  BiLogoLinkedin,
 } from "react-icons/bi";
 
 import datas from "../Quiz/cancer-findings-data.json";
+
 import {
-  Engine,
-  Render,
   Bodies,
+  Composite,
+  Engine,
   Mouse,
   MouseConstraint,
-  Composite,
+  Render,
   Runner,
 } from "matter-js";
 
+import { useGameContext } from "hooks";
+
 export const Home = () => {
-  const scene = useRef(null);
-  const engine = useRef(Engine.create());
+  const { setActiveScreen } = useGameContext();
+
   const canvasRef = useRef(null);
+  const engine = useRef(Engine.create());
+  const scene = useRef(null);
+
+  const changePage = () => {
+    setActiveScreen("QUIZ");
+  };
 
   useEffect(() => {
-    const cw = window.innerWidth;
-    const ch = window.innerHeight;
+    const canvasWidth = window.innerWidth;
+    const canvasHeight = window.innerHeight;
 
     const render = Render.create({
       element: scene.current || undefined,
       engine: engine.current,
       canvas: canvasRef.current || undefined,
       options: {
-        width: cw,
-        height: ch,
+        width: canvasWidth,
+        height: canvasHeight,
         wireframes: false,
         background: "transparent",
       },
@@ -48,29 +59,25 @@ export const Home = () => {
     });
 
     Composite.add(engine.current.world, [
-      Bodies.rectangle(-120, ch / 2, 20 + 180, ch + 10, {
+      Bodies.rectangle(-120, canvasHeight / 2, 20 + 180, canvasHeight + 10, {
         isStatic: true,
-        render: {
-          fillStyle: "##FFDA91",
-          strokeStyle: "#FFDA91",
-          lineWidth: 3,
-        },
       }),
-      Bodies.rectangle(cw / 2, ch + 40, cw + 120, 90, {
+      Bodies.rectangle(
+        canvasWidth / 2,
+        canvasHeight + 40,
+        canvasWidth + 120,
+        90,
+        {
+          isStatic: true,
+          render: {
+            fillStyle: "#FFDA91",
+            strokeStyle: "#FFDA91",
+            lineWidth: 3,
+          },
+        }
+      ),
+      Bodies.rectangle(canvasWidth + 80, canvasHeight / 2, 120, canvasHeight, {
         isStatic: true,
-        render: {
-          fillStyle: "#FFDA91",
-          strokeStyle: "#FFDA91",
-          lineWidth: 3,
-        },
-      }),
-      Bodies.rectangle(cw + 80, ch / 2, 120, ch, {
-        isStatic: true,
-        render: {
-          fillStyle: "#FFDA91",
-          strokeStyle: "#FFDA91",
-          lineWidth: 3,
-        },
       }),
     ]);
 
@@ -79,7 +86,7 @@ export const Home = () => {
       .splice(0, 10)
       .forEach((App, index) => {
         Composite.add(engine.current.world, [
-          Bodies.circle(cw / 2, -90 * index, 70, {
+          Bodies.circle(canvasWidth / 2, -90 * index, 70, {
             density: 1,
             frictionAir: 0.02,
             restitution: 0.3,
@@ -119,8 +126,6 @@ export const Home = () => {
       Composite.clear(engine.current.world, true);
       Engine.clear(engine.current);
       render.canvas.remove();
-      // render.canvas = null;
-      // render.context = null;
       render.textures = {};
     };
   }, []);
@@ -132,17 +137,16 @@ export const Home = () => {
         style={{
           background: `url("../../assets/backgroundPattern.svg")`,
           position: "fixed",
-          top: 0,
-          // left: 0,
           width: "100%",
           height: "100%",
         }}
       >
         <canvas ref={canvasRef} />
       </div>
-      <div className="relative container px-auto pt-[7.5rem] z-0 pointer-events-none">
+
+      <div className="relative container mx-auto pt-[7.5rem] pointer-events-none">
         <div className="grid grid-cols-12 gap-6">
-          <div className="col-start-2 col-span-6">
+          <div className="col-start-2 col-span-6 relative">
             <div className="flex items-center gap-2 mb-8">
               <img src={homeLogo} alt="Ottr Logo" />
               <span className={styles.logoTitle}>Presents</span>
@@ -176,6 +180,15 @@ export const Home = () => {
                 </a>
               </div>
             </div>
+            <div className={styles.arrow}>
+              <img src={homepageArrow} alt="arrow" />
+            </div>
+          </div>
+
+          <div className="col-start-9 col-span-3 mt-36 pointer-events-auto">
+            <button className={styles.primaryButton} onClick={changePage}>
+              Take the quiz
+            </button>
           </div>
         </div>
       </div>

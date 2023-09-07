@@ -1,0 +1,28 @@
+@use "main";
+
+.container {
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
+  position: relative;
+  width: 728px;
+  padding-top: 5rem;
+}
+
+.innerContainer {
+  @apply flex justify-center text-center;
+  padding-top: main.rem(112px);
+  padding-bottom: main.rem(40px);
+  background-color: main.$yellow;
+}
+
+.image {
+  @apply flex justify-center absolute top-0 h-40 w-40;
+}
+
+.score {
+  font-size: main.rem(82px);
+  font-weight: 600;
+  line-height: 100%;
+  letter-spacing: -0.03em;
+}

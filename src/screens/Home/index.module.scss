@@ -27,3 +27,50 @@
     letter-spacing: -0.01em;
     opacity: 0.8;
 }
+
+.arrow{
+    position: absolute;
+    right: -8%;
+    bottom: 2%;
+}
+
+.primaryButton{
+    position: relative;
+	text-decoration: none;
+    width: 15rem;
+    height: 15rem;
+	font-size: 1.25rem;
+	color: main.$white;
+	padding: 1.5em 2.2em;
+	background: main.$primary;
+	border-radius: 200px;
+	overflow: hidden;
+	letter-spacing: 0.01em;
+	transition: background .4s ease,color .3s ease,border .3s ease;
+	
+	// creating stacking context so to fix psudo element stacking
+	isolation: isolate;
+	
+	&::before {
+		content: '';
+		position: absolute;
+		width: calc(100% + 2px);
+		height: calc(100% + 2px);
+		background: main.$white;
+		border-radius: 100% 100% 0 0;
+		left: -1px;
+		top: -1px;
+		transform: scaleY(0) translateZ(0);
+		transform-origin: bottom center;
+		transition: transform .4s main.$ease 40ms,border-radius .5s main.$ease;
+		z-index: -1;
+	}
+	
+	&:hover {
+		color: main.$dark-blue;
+		&::before {
+			border-radius: 10rem;
+			transform: scaleY(1) translateZ(0);
+		}
+	}
+}
