@@ -7,7 +7,7 @@
     "imgSrc": "deodorant.svg"
   },
   {
-    "claim": "Wearing bras can cause breast cancer",
+    "claim": "Wearing bras can cause breast cancer.",
     "explanation": "There is no epidemiological evidence that supports an association between bra use and breast cancer.\n",
     "source": "https:\/\/cancerfactfinder.org\/consumer-products\/bras\/",
     "fact": false,
@@ -28,7 +28,7 @@
     "imgSrc": "chopsticks.svg"
   },
   {
-    "claim": "The use of bug spray with DEET can cause cancer.\n",
+    "claim": "The use of bug spray with DEET (diethyltoluamide - commonly found active ingredient) can cause cancer.\n",
     "explanation": "Insect repellents containing DEET do not have a cancer-causing effect in humans, but alternatives are available that do not contain DEET.\n",
     "source": "https:\/\/cancerfactfinder.org\/consumer-products\/bug-spray-with-deet\/",
     "fact": false,
@@ -49,7 +49,7 @@
     "imgSrc": "heat-and-freeze-plastic.svg"
   },
   {
-    "claim": "Plastic water bottles cause cancer",
+    "claim": "Plastic water bottles cause cancer.",
     "explanation": "There is not enough evidence to suggest that plastic water bottles cause cancer. However, not all plastic water bottles have the same chemical composition, and ongoing studies about exposure to specific components of water bottles are ongoing.\n",
     "source": "https:\/\/cancerfactfinder.org\/consumer-products\/plastic-water-bottles\/",
     "fact": false,
@@ -63,14 +63,14 @@
     "imgSrc": "candle.svg"
   },
   {
-    "claim": "You may have seen a viral TikTok video claiming that tampons contain an ingredient called titanium dioxide, which is responsible for increasing the risk of cancer.",
+    "claim": "Tampons contain an ingredient called titanium dioxide, which is responsible for increasing the risk of cancer.",
     "explanation": "Based on the current evidence, titanium dioxide exposure from tampon use does not cause cancer.\n",
     "source": "https:\/\/cancerfactfinder.org\/consumer-products\/titanium-dioxide-in-tampons\/",
     "fact": false,
     "imgSrc": "tampons.svg"
   },
   {
-    "claim": "A very acidic diet increases cancer risk",
+    "claim": "A very acidic diet increases cancer risk.",
     "explanation": "Your blood pH is not affected by your diet, and there is no one diet to prevent cancer. Instead, focus on eating a balanced diet and exercising regularly.\n",
     "source": "https:\/\/cancerfactfinder.org\/diet-nutrition\/acidic-ph\/",
     "fact": false,
@@ -84,7 +84,7 @@
     "imgSrc": "alcohol.svg"
   },
   {
-    "claim": "Aspartame consumption can cause cancer.",
+    "claim": "Aspartame (artificial sweetener) consumption can cause cancer.",
     "explanation": "Eating food that contains Aspartame may not increase your cancer risk; however, a diet with excess sugar or Aspartame could have harmful health effects.\n",
     "source": "https:\/\/cancerfactfinder.org\/diet-nutrition\/aspartame\/",
     "fact": false,
@@ -112,7 +112,7 @@
     "imgSrc": "coffee.svg"
   },
   {
-    "claim": "Eating hazelnut spreads with palm oil causes cancer",
+    "claim": "Eating hazelnut spreads with palm oil causes cancer.",
     "explanation": "Hazelnut spreads do not have any known carcinogenic effects. These foods are high in saturated fats, though, and should be consumed in moderation",
     "source": "https:\/\/cancerfactfinder.org\/diet-nutrition\/hazelnut-spreads-and-palm-oil\/",
     "fact": false,
@@ -126,14 +126,14 @@
     "imgSrc": "high-fat.svg"
   },
   {
-    "claim": "Ketchup ingredients (MSG and high fructose corn syrup) cause cancer",
+    "claim": "Ketchup ingredients (MSG and high fructose corn syrup) cause cancer.",
     "explanation": "Eating ketchup itself does not appear to cause cancer. However, high consumption of high fructose corn syrup, a key component in ketchup, is linked to obesity and an increased risk of colon cancer. While there are no direct links between cancer risk and MSG, there are other harmful health effects that should be considered when eating ketchup.",
     "source": "https:\/\/cancerfactfinder.org\/diet-nutrition\/ketchup\/",
     "fact": false,
     "imgSrc": "ketchup.svg"
   },
   {
-    "claim": "Consuming MSG increases your risk of cancer.",
+    "claim": "Consuming MSG (aka Ajinomoto) increases your risk of cancer.",
     "explanation": "MSG does not appear to cause cancer or increase cancer risk.",
     "source": "https:\/\/cancerfactfinder.org\/diet-nutrition\/monosodium-glutamate\/",
     "fact": false,
@@ -154,14 +154,14 @@
     "imgSrc": "red-meat.svg"
   },
   {
-    "claim": "Ingredients specifically in spicy chips cause cancer",
+    "claim": "Ingredients specifically in spicy chips cause cancer.",
     "explanation": "It is not likely that consumption of spicy chips increases cancer risk. However, these chips are high in saturated fats and should be eaten in moderation to avoid risk of heart disease, stroke, and other diseases.",
     "source": "https:\/\/cancerfactfinder.org\/diet-nutrition\/spicy-chips\/",
     "fact": false,
     "imgSrc": "chips.svg"
   },
   {
-    "claim": "Eating fruits and vegetables (such as apples) that have a wax coating causes cancer",
+    "claim": "Eating fruits and vegetables (such as apples) that have a wax coating causes cancer.",
     "explanation": "Coatings on fruits and vegetables are not dangerous under FDA and EPA guidelines, but rinsing off or peeling produce helps to remove the wax.",
     "source": "https:\/\/cancerfactfinder.org\/diet-nutrition\/wax-on-fruits-and-vegetables\/",
     "fact": false,
@@ -196,42 +196,42 @@
     "imgSrc": "low-physical.svg"
   },
   {
-    "claim": "Sitting too close to the TV causes cancer",
+    "claim": "Sitting too close to the TV causes cancer.",
     "explanation": "Watching TV and distance to the TV do not cause cancer. However, a sedentary lifestyle (for example, a lot of TV watching) is associated with low levels of physical activity and contributes to increased risk of obesity, heart disease, and cancer.",
     "source": "https:\/\/cancerfactfinder.org\/lifestyle\/sitting-too-close-to-the-tv\/",
     "fact": false,
     "imgSrc": "television.svg"
   },
   {
-    "claim": "Lack of sleep increases your risk of cancer",
+    "claim": "Lack of sleep increases your risk of cancer.",
     "explanation": "Circadian disruption is high among people who experience jet lag, travel across multiple time zones, work on overnight shifts, or are exposed to light at night. This population may have an increased risk of cancers of the prostate, breast, colon, liver, pancreas, ovary, and lung (Shafi et al.). It is important to talk with a health provider if you have sleep disruption and to seek resources to improve your quality of sleep.\n",
     "source": "https:\/\/cancerfactfinder.org\/lifestyle\/sleep-problems\/",
     "fact": true,
     "imgSrc": "sleep-deprived.svg"
   },
   {
-    "claim": "Stress increases cancer risk",
+    "claim": "Stress increases cancer risk.",
     "explanation": "Chronic stress makes an individual more susceptible to cancer and other diseases. There are many methods available to help reduce stress (such as yoga, meditation, and exercise); it’s important to find methods that work for you.",
     "source": "https:\/\/cancerfactfinder.org\/lifestyle\/stress\/",
     "fact": true,
     "imgSrc": "stress.svg"
   },
   {
-    "claim": "Tanning beds cause skin cancer",
+    "claim": "Tanning beds cause skin cancer.",
     "explanation": "Indoor tanning (as well as outdoor tanning) increases your risk of developing skin cancer, including melanoma, basal cell carcinoma, and squamous cell carcinoma, and should be avoided.",
     "source": "https:\/\/cancerfactfinder.org\/lifestyle\/tanning-beds\/",
     "fact": true,
     "imgSrc": "tanning-bed.svg"
   },
   {
-    "claim": "Tobacco use causes cancer",
+    "claim": "Tobacco use causes cancer.",
     "explanation": "Tobacco use does increase risk of cancer. Avoid smoking and smoke exposure. Resources are available to help quit smoking.",
     "source": "https:\/\/cancerfactfinder.org\/lifestyle\/tobacco-use\/",
     "fact": true,
     "imgSrc": "cigratte.svg"
   },
   {
-    "claim": "Birth control pills (oral contraceptives) cause cancer",
+    "claim": "Birth control pills (oral contraceptives) cause cancer.",
     "explanation": "Oral contraceptives slightly increase risk of breast and cervical cancer, yet decrease risk of endometrial, ovarian, and colorectal cancers. Talk to your doctor to find the best contraception for you.\n\n",
     "source": "https:\/\/cancerfactfinder.org\/medical-exposures-procedures\/birth-control-pills\/",
     "fact": true,
@@ -245,14 +245,14 @@
     "imgSrc": "hrt.svg"
   },
   {
-    "claim": "Induced abortion causes breast cancer",
+    "claim": "Induced abortion causes breast cancer.",
     "explanation": "Neither induced (medical) nor spontaneous abortions appear to increase breast cancer risk.\n",
     "source": "https:\/\/cancerfactfinder.org\/medical-exposures-procedures\/induced-medical-abortion\/",
     "fact": false,
     "imgSrc": "induced-abortion.svg"
   },
   {
-    "claim": "Exposure to asbestos causes cancer.",
+    "claim": "Exposure to asbestos (used in fireproofing and construction) causes cancer.",
     "explanation": "Asbestos is a known carcinogen, but for most people, asbestos exposure is not a concern. To ensure that your exposure is low, verify that your home and workplace are up to national standards.",
     "source": "https:\/\/cancerfactfinder.org\/occupational-environmental-exposure\/asbestos\/",
     "fact": true,
@@ -273,14 +273,14 @@
     "imgSrc": "plane.svg"
   },
   {
-    "claim": "Exposure to formaldehyde can cause cancer.\n",
+    "claim": "Exposure to formaldehyde (commonly used in adhesives and by the textiles industry) can cause cancer.\n",
     "explanation": "Formaldehyde is a known human carcinogen. Exposure to formaldehyde should be reduced or avoided entirely when possible.",
     "source": "https:\/\/cancerfactfinder.org\/occupational-environmental-exposure\/formaldehyde\/",
     "fact": true,
     "imgSrc": "formaldehyde.svg"
   },
   {
-    "claim": "Lead exposure causes cancer",
+    "claim": "Lead exposure causes cancer.",
     "explanation": "Lead exposure is associated with severe health outcomes, such as cancer, and should be avoided",
     "source": "https:\/\/cancerfactfinder.org\/occupational-environmental-exposure\/lead\/",
     "fact": true,
@@ -301,28 +301,28 @@
     "imgSrc": "pesticides.svg"
   },
   {
-    "claim": "Radon exposure causes lung cancer",
+    "claim": "Radon exposure (used in radiation therapy) causes lung cancer.",
     "explanation": "Radon exposure is the second-leading cause of lung cancer in the United States, after cigarette smoking. Decreasing your cigarette use and ensuring your workplace and home are up to national standards for radon levels are the most effective ways to reduce your risk of lung cancer.",
     "source": "https:\/\/cancerfactfinder.org\/occupational-environmental-exposure\/radon\/",
     "fact": true,
     "imgSrc": "radon.svg"
   },
   {
-    "claim": "Shampoos with formaldehyde cause cancer",
+    "claim": "Shampoos with formaldehyde cause cancer.",
     "explanation": "People who work in salons are at an increased risk of cancer due to repeated exposure to formaldehyde gas, which is produced when shampoos with formaldehyde are heated. Consider switching to formaldehyde-free shampoos.",
     "source": "https:\/\/cancerfactfinder.org\/occupational-environmental-exposure\/shampoo-with-formaldehyde\/",
     "fact": true,
     "imgSrc": "formaldehyde.svg"
   },
   {
-    "claim": "Sodium lauryl sulfate (found in many shampoos) causes cancer",
+    "claim": "Sodium lauryl sulfate (found in many shampoos) causes cancer.",
     "explanation": "SLS is not a carcinogen, yet there are many platforms that provide information and alternative products if the chemical causes eye or skin irritation.",
     "source": "https:\/\/cancerfactfinder.org\/occupational-environmental-exposure\/shampoo-with-sodium-lauryl-sulfate\/",
     "fact": false,
     "imgSrc": "sls.svg"
   },
   {
-    "claim": "UV radiation",
+    "claim": "UV radiation exposure causes cancer.",
     "explanation": "UV radiation from the sun increases your risk of skin cancer. Avoid tanning, and wear broad spectrum sunscreen 30 or higher when outside.\n",
     "source": "https:\/\/cancerfactfinder.org\/occupational-environmental-exposure\/uv-radiation\/",
     "fact": true,
