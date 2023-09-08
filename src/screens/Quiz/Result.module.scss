@@ -1,28 +1,24 @@
 @use "main";
 
 .body {
-  @apply flex justify-center text-center px-24 pb-16;
-  padding-top: main.rem(72px);
+  @apply flex justify-center text-center;
+  padding: main.em(80) main.em(96) main.em(64) main.em(96);
   background-color: main.$light-yellow;
 }
 
 .image {
-  @apply absolute top-0 h-32 w-32 flex justify-center;
-}
-
-.answer {
-  font-size: main.rem(44px);
-  font-weight: 700;
-  line-height: 120%;
-  letter-spacing: -0.01em;
+  @apply absolute top-0 flex justify-center;
+  height: main.em(128);
+  width: main.em(128);
 }
 
 .correctAnswer {
-  @extend .answer;
+  @extend .ca-heading--two;
+
   color: main.$green;
 }
 
 .wrongAnswer {
-  @extend .answer;
+  @extend .ca-heading--two;
   color: main.$red;
 }

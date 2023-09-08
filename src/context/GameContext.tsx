@@ -84,6 +84,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
     if (index === "RESULT") index = "QUESTION";
     else index = "RESULT";
+
     setActiveQuestionIndex((prev) => prev + 1);
     setActiveQuizIndex(index);
 

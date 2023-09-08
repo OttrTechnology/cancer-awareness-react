@@ -1,1 +1,52 @@
 @use "functions";
+
+.ca-mb {
+  &--8 {
+    margin-bottom: functions.em(8);
+  }
+
+  &--16 {
+    margin-bottom: functions.em(16);
+  }
+
+  &--24 {
+    margin-bottom: functions.em(24);
+  }
+
+  &--32 {
+    margin-bottom: functions.em(32);
+  }
+
+  &--96 {
+    margin-bottom: functions.em(96);
+  }
+}
+
+.ca-pt--64 {
+  padding-top: functions.em(64);
+}
+
+.ca-gap {
+  &--4 {
+    gap: functions.em(4);
+  }
+  &--16 {
+    gap: functions.em(16);
+  }
+
+  &--32 {
+    gap: functions.em(32);
+  }
+
+  &--40 {
+    gap: functions.em(40);
+  }
+
+  &--64 {
+    gap: functions.em(64);
+  }
+
+  &--80 {
+    gap: functions.em(80);
+  }
+}
