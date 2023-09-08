@@ -6,7 +6,7 @@ export const Question = () => {
 
   return (
     <div className="flex justify-center">
-      <div className={styles.container}>
+      <div className={styles.wrapper}>
         <div className={styles.innerContainer}>
           <img
             className={styles.image}

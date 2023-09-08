@@ -6,8 +6,8 @@ interface Props {
   label?: string;
   onClick?: () => void;
   icon?: ReactNode;
-  size: string;
-  color: string;
+  size?: string;
+  color?: string;
 }
 
 export const Button = ({

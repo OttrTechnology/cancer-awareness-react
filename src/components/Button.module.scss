@@ -3,7 +3,7 @@
 // .btn {
 //   @apply flex flex-wrap justify-center content-center;
 //   background-color: main.$white;
-//   border-radius: main.rem(125px);
+//   border-radius: main.em(125px);
 // }
 
 .btn {
@@ -11,7 +11,7 @@
   position: relative;
   color: black;
   background: white;
-  border-radius: main.rem(125px);
+  border-radius: main.em(125px);
   overflow: hidden;
   transition: background 0.4s ease, color 0.3s ease, border 0.3s ease;
 
@@ -37,7 +37,7 @@
     color: white;
 
     &::before {
-      border-radius: 10rem;
+      border-radius: 10em;
       transform: scaleY(1) translateZ(0);
       svg path {
         fill: white;
@@ -46,18 +46,16 @@
   }
 
   &.medium {
-    @apply py-5 gap-3;
     @extend .btn;
-    width: main.rem(180px);
-    height: main.rem(80px);
-    width: main.rem(180px);
-    height: main.rem(80px);
-    font-size: main.rem(24px);
+    padding: main.em(20) main.em(40);
+    gap: main.em(12);
+    // width: main.em(180);
+    // height: main.em(80);
   }
 
   &.large {
-    width: main.rem(280px);
-    height: main.rem(80px);
+    width: main.em(280px);
+    height: main.em(80px);
     padding: 1.25rem 2.5rem;
     justify-content: center;
     align-items: center;
@@ -71,8 +69,8 @@
 
 .btnIcon {
   @extend .btn;
-  height: main.rem(120px);
-  width: main.rem(120px);
+  height: main.em(120px);
+  width: main.em(120px);
   &::before {
     content: "";
     position: absolute;
