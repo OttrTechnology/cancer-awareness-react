@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import mockData from "screens/Quiz/cancer-findings-data.json";
 
 interface IQuiz {
@@ -43,34 +43,28 @@ export const GameContext = createContext<GameContextProps | undefined>(
 );
 
 export const GameContextProvider = (props: { children: React.ReactNode }) => {
-  const data = mockData;
+  const [shuffledData, setShuffledData] = useState<IQuiz[]>([]);
 
-  const [usedIndices, setUsedIndices] = useState<number[]>([]);
+  const shuffle = (array: IQuiz[]) => {
+    return array
+      .map((a) => ({ sort: Math.random(), value: a }))
+      .sort((a, b) => a.sort - b.sort)
+      .map((a) => a.value);
+  };
+
+  useEffect(() => {
+    const data = mockData;
+    const shuffledArray = shuffle(data);
+    setShuffledData(shuffledArray);
+  }, []);
+
+  console.log(shuffledData);
 
   const [activeScreen, setActiveScreen] = useState<CurrentScreenType>("QUIZ");
 
-  const getRandomUniqueIndex = () => {
-    // ? Set game over if all questions have been used up
-    if (usedIndices.length === data.length) {
-      setActiveScreen(CurrentScreen.GAME_OVER);
-    }
+  const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
 
-    let randomIndex: number;
-
-    // ? get random index that isn't used already
-    do {
-      randomIndex = Math.floor(Math.random() * data.length);
-    } while (usedIndices.includes(randomIndex));
-
-    setUsedIndices((prevIndices) => [...prevIndices, randomIndex]);
-
-    return randomIndex;
-  };
-
-  const [activeQuestionIndex, setActiveQuestionIndex] =
-    useState(getRandomUniqueIndex);
-
-  const currentQuestion = data[activeQuestionIndex];
+  const currentQuestion = shuffledData[activeQuestionIndex];
 
   const [answer, setAnswer] = useState(true);
 
@@ -90,7 +84,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
     if (index === "RESULT") index = "QUESTION";
     else index = "RESULT";
-    setActiveQuestionIndex(getRandomUniqueIndex());
+    setActiveQuestionIndex((prev) => prev + 1);
     setActiveQuizIndex(index);
 
     if (currentScore > highScore) {
@@ -108,7 +102,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     setActiveScreen(CurrentScreen.QUIZ);
     setRemainingLives(3);
     setCurrentScore(0);
-    setActiveQuestionIndex(getRandomUniqueIndex());
+    setActiveQuestionIndex(0);
     setActiveQuizIndex("QUESTION");
   };
 
