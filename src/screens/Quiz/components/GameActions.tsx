@@ -1,8 +1,8 @@
-import no from "assets/buttonIcon/no.svg";
-import yes from "assets/buttonIcon/yes.svg";
-import Next from "assets/buttonIcon/next-arrow.svg";
 import { Button, IconButton } from "components";
 import { useGameContext } from "hooks";
+import { BiCheck } from "react-icons/bi";
+import { BiRightArrowAlt } from "react-icons/bi";
+import { BiX } from "react-icons/bi";
 
 export const GameActions = () => {
   const { activeQuizIndex, handleAnswer, handleNext, currentScore } =
@@ -12,15 +12,23 @@ export const GameActions = () => {
     <div>
       {activeQuizIndex === "QUESTION" ? (
         <div className="flex justify-center mb-24 gap-16">
-          <IconButton icon={no} onClick={() => handleAnswer(false)} />
-          <IconButton icon={yes} onClick={() => handleAnswer(true)} />
+          <IconButton
+            icon={<BiX size={64} />}
+            onClick={() => handleAnswer(false)}
+          />
+          <IconButton
+            icon={<BiCheck size={64} />}
+            onClick={() => handleAnswer(true)}
+          />
         </div>
       ) : (
         <div className="flex justify-center mb-24 gap-8">
           <Button
+            size="medium"
+            color=""
             onClick={() => handleNext(currentScore)}
             label="Next"
-            icon={<img src={Next} />}
+            icon={<BiRightArrowAlt size={28} />}
           />
         </div>
       )}

@@ -47,9 +47,16 @@ export const GameOver = () => {
             <Button
               onClick={() => handlePlayAgain()}
               label="Share Your Score"
+              color="primary"
+              size="large"
             />
 
-            <Button onClick={() => handlePlayAgain()} label="Try Again" />
+            <Button
+              color=""
+              size="large"
+              onClick={() => handlePlayAgain()}
+              label="Try Again"
+            />
           </div>
         </div>
       </div>
