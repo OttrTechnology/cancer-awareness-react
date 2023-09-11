@@ -1,4 +1,4 @@
-import { useGameContext } from "hooks/useGameContext";
+import { useGameContext } from "hooks";
 import styles from "./GameOver.module.scss";
 import trophy from "assets/trophy.svg";
 // import gameover from "assets/resultEmoji/gameover.svg";
@@ -52,9 +52,16 @@ export const GameOver = () => {
             <Button
               onClick={() => handlePlayAgain()}
               label="Share Your Score"
+              color="primary"
+              size="large"
             />
 
-            <Button onClick={() => handlePlayAgain()} label="Try Again" />
+            <Button
+              color=""
+              size="large"
+              onClick={() => handlePlayAgain()}
+              label="Try Again"
+            />
           </div>
         </div>
       </div>

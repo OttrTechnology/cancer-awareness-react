@@ -1,37 +1,81 @@
 @use "main";
 
+// .btn {
+//   @apply flex flex-wrap justify-center content-center;
+//   background-color: main.$white;
+//   border-radius: main.em(125px);
+// }
+
 .btn {
   @apply flex flex-wrap justify-center content-center;
-  background-color: main.$white;
-  border-radius: main.rem(125px);
+  position: relative;
+  color: black;
+  background: white;
+  border-radius: main.em(125px);
+  overflow: hidden;
+  transition: background 0.4s ease, color 0.3s ease, border 0.3s ease;
+
+  // creating stacking context so to fix psudo element stacking
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    background: black;
+    border-radius: 100% 100% 0 0;
+    left: -1px;
+    top: -1px;
+    transform: scaleY(0) translateZ(0);
+    transform-origin: bottom center;
+    transition: transform 0.4s main.$ease 40ms, border-radius 0.5s main.$ease;
+    z-index: -1;
+  }
+
+  &:hover {
+    color: white;
+
+    &::before {
+      border-radius: 10em;
+      transform: scaleY(1) translateZ(0);
+      svg path {
+        fill: white;
+      }
+    }
+  }
+
+  &.medium {
+    @extend .btn;
+    padding: main.em(20) main.em(40);
+    gap: main.em(12);
+    // width: main.em(180);
+    // height: main.em(80);
+  }
+
+  &.large {
+    width: main.em(280px);
+    height: main.em(80px);
+    padding: 1.25rem 2.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.primary {
+    background-color: main.$primary;
+    color: white;
+  }
 }
 
 .btnIcon {
   @extend .btn;
-  height: main.rem(120px);
-  width: main.rem(120px);
-}
-
-.btnNext {
-  @extend .btn;
-  @apply py-5 gap-3;
-  color: main.$dark-blue;
-  width: main.rem(180px);
-  height: main.rem(80px);
-  font-size: main.rem(24px);
-}
-
-.btnGameOver {
-  @extend .btn;
-  width: main.rem(280px);
-  height: main.rem(80px);
-  padding: 20px 40px;
-  justify-content: center;
-  align-items: center;
-}
-
-.btnShare {
-  @extend .btnGameOver;
-  background-color: main.$primary;
-  color: main.$white;
+  height: main.em(120px);
+  width: main.em(120px);
+  &::before {
+    content: "";
+    position: absolute;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    background: main.$primary;
+  }
 }

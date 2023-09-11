@@ -6,15 +6,15 @@ export const Question = () => {
 
   return (
     <div className="flex justify-center">
-      <div className={styles.container}>
+      <div className={styles.wrapper}>
         <div className={styles.innerContainer}>
           <img
             className={styles.image}
-            src={`/questionImg/${currentQuestion.imgSrc}`}
-            alt={currentQuestion.imgSrc}
+            src={`/questionImg/${currentQuestion?.imgSrc}`}
+            alt={currentQuestion?.imgSrc}
           />
 
-          <div className="ca-heading--three">{currentQuestion.claim}</div>
+          <div className="ca-heading--three ">{currentQuestion?.claim}</div>
         </div>
       </div>
     </div>
