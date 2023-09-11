@@ -139,39 +139,43 @@ export const Home = () => {
 
   return (
     <>
-      <div
-        ref={scene}
-        style={{
-          position: "fixed",
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        <canvas ref={canvasRef} />
-      </div>
+      {window.innerWidth > 640 && (
+        <div
+          ref={scene}
+          style={{
+            position: "fixed",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <canvas ref={canvasRef} />
+        </div>
+      )}
 
-      <div className="relative container mx-auto pt-[7.5rem] pointer-events-none">
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-start-2 col-span-6 relative">
-            <div className="flex items-center gap-2 mb-8">
-              <img src={homeLogo} alt="Ottr Logo" />
+      <div className="flex justify-center items-center h-[100vh] lg:block relative container mx-auto sm:pt-[7.5rem] lg:pointer-events-none">
+        <div className="grid lg:grid-cols-12 lg:gap-6">
+          <div className="lg:col-start-2 col-span-12 lg:col-span-6 relative">
+            <div className="flex items-center gap-2 mb-6 lg:mb-8">
+              <img src={homeLogo} alt="Ottr Logo" className={styles.logo} />
               <span className={styles.logoTitle}>Presents</span>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-4 lg:mb-6">
               <h1 className={styles.Heading}>Cancer Insights Challenge</h1>
             </div>
 
-            <div className="mb-16">
+            <div className="mb-12 lg:mb-16">
               <p className={styles.description}>
-                Test your cancer knowledge and elevate your <br></br>{" "}
-                understanding of the disease
+                Test your cancer knowledge and elevate your understanding of the
+                disease
               </p>
             </div>
 
             <div className="flex align-center gap-4 pointer-events-auto">
-              <span className="ca-body--sm">Share</span>
-              <div className="flex gap-3">
+              <span className="text-base tracking-[0.01rem] leading-[140%] font-medium lg:ca-body--sm">
+                Share
+              </span>
+              <div className="flex gap-6 lg:gap-3">
                 <a className="cursor-pointer" href="https://www.google.com">
                   <BiLink color={"#470FF4"} size={24} />
                 </a>
@@ -191,7 +195,7 @@ export const Home = () => {
             </div>
           </div>
 
-          <div className="col-start-9 col-span-3 mt-36 pointer-events-auto">
+          <div className="col-start-9 col-span-3 mt-14 lg:mt-36 pointer-events-auto">
             <button className={styles.primaryButton} onClick={changePage}>
               Take the quiz
             </button>
