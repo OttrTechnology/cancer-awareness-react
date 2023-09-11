@@ -75,7 +75,6 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     useState(getRandomUniqueIndex);
 
   const currentQuestion = data[activeQuestionIndex];
-  console.log("active", activeQuestionIndex);
 
   const [answer, setAnswer] = useState(true);
 

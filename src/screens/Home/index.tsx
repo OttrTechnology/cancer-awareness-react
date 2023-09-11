@@ -142,7 +142,6 @@ export const Home = () => {
       <div
         ref={scene}
         style={{
-          background: `url("../../assets/backgroundPattern.svg")`,
           position: "fixed",
           width: "100%",
           height: "100%",

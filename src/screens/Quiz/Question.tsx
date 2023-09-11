@@ -3,7 +3,6 @@ import { useGameContext } from "hooks";
 
 export const Question = () => {
   const { currentQuestion } = useGameContext();
-  console.log(currentQuestion);
 
   return (
     <div className="flex justify-center">
