@@ -81,9 +81,16 @@ export const Home = () => {
       }),
     ]);
 
+    let numberOfBalls = 0;
+    if (canvasWidth > 640) {
+      numberOfBalls = canvasWidth / 144;
+    } else {
+      numberOfBalls = 0;
+    }
+
     datas
       .sort(() => 0.5 - Math.random())
-      .splice(0, 10)
+      .splice(0, numberOfBalls)
       .forEach((App, index) => {
         Composite.add(engine.current.world, [
           Bodies.circle(canvasWidth / 2, -90 * index, 70, {
