@@ -1,6 +1,7 @@
 import { useGameContext } from "hooks";
 import styles from "./GameOver.module.scss";
 import trophy from "assets/trophy.svg";
+// import gameover from "assets/resultEmoji/gameover.svg";
 import { Button } from "components";
 import { useLayoutEffect } from "react";
 
@@ -21,6 +22,10 @@ export const GameOver = () => {
   return (
     <div className="h-screen flex flex-col justify-center">
       <div className="flex justify-center">
+        {/* <div className={styles.gameOver}>
+          <img className={styles.gameOverImg} src={gameover} />
+          <div className="ca-heading--one">Game Over !</div>
+        </div> */}
         <div className={styles.container}>
           <div className={styles.innerContainer}>
             <img className={styles.image} src={trophy} alt={trophy} />
