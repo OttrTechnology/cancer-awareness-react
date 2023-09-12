@@ -12,15 +12,15 @@ export const GameActions = () => {
     <div>
       {activeQuizIndex === "QUESTION" ? (
         <div className="flex justify-center ca-mb--96 ca-gap--64">
-          <IconButton icon={<BiX />} onClick={() => handleAnswer(false)} />
-          <IconButton icon={<BiCheck />} onClick={() => handleAnswer(true)} />
+          <IconButton icon={<BiX />} onClick={handleAnswer(false)} />
+          <IconButton icon={<BiCheck />} onClick={handleAnswer(true)} />
         </div>
       ) : (
         <div className="flex justify-center ca-mb--96 ca-gap--32">
           <Button
             size="medium"
             color=""
-            onClick={() => handleNext(currentScore)}
+            onClick={handleNext(currentScore)}
             label="Next"
             icon={<BiRightArrowAlt />}
           />

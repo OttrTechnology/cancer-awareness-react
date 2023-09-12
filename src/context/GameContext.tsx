@@ -36,9 +36,9 @@ interface GameContextProps {
   >;
   answer: boolean;
 
-  handleNext: (currentScore: number) => void;
+  handleNext: (currentScore: number) => () => void;
   handlePlayAgain: () => void;
-  handleAnswer: (newAnswer: boolean) => void;
+  handleAnswer: (newAnswer: boolean) => () => void;
 }
 
 export const GameContext = createContext<GameContextProps | undefined>(
@@ -81,7 +81,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [remainingLives, setRemainingLives] = useState(3);
 
-  const handleNext = (currentScore: number) => {
+  const handleNext = (currentScore: number) => () => {
     let index = activeQuizIndex;
 
     if (index === "RESULT") index = "QUESTION";
@@ -109,7 +109,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     setActiveQuizIndex("QUESTION");
   };
 
-  const handleAnswer = (newAnswer: boolean) => {
+  const handleAnswer = (newAnswer: boolean) => () => {
     let index = activeQuizIndex;
 
     if (index === "RESULT") index = "QUESTION";
