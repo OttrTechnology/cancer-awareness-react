@@ -14,10 +14,6 @@
 .logo{
 	height: main.em(40);
 	width: auto;
-	// @media only screen and (max-width: main.$breakpoint-mobile) {
-	// 	width: 4.156rem;
-	// 	height: 1.75rem;
-	//   }
 }
 
 .logoTitle{
@@ -29,7 +25,7 @@
     line-height: 150%; 
     letter-spacing: -0.01em;
 
-	@media only screen and (max-width: main.$breakpoint-mobile) {
+	@media(max-width: main.$breakpoint-mobile) {
 		text-align: center;
 		font-size: main.em(18);
 		font-style: normal;
@@ -50,7 +46,7 @@
 		height: main.em(100);
 	}
 
-	@media only screen and (max-width: main.$breakpoint-mobile) {
+	@media(max-width: main.$breakpoint-mobile) {
 		width: 6.5959375rem;
 		height: 1.8565625rem;
 		left: 7%;
@@ -79,7 +75,7 @@
 	transition: background .4s ease,color .3s ease,border .3s ease;
 
 
-	@media only screen and (max-width: main.$breakpoint-mobile) {
+	@media(max-width: main.$breakpoint-mobile) {
 		$btn-font: 18;
 		display: flex;
 		width: main.em(160,$btn-font);

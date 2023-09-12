@@ -28,7 +28,7 @@ export const GameOver = () => {
             <div className="flex flex-col ca-gap--40">
               <div className="flex flex-col">
                 <div className="ca-mb--8">
-                  <div className="ca-heading--three ">
+                  <div className="ca-heading--three">
                     Appreciate your effort
                   </div>
                 </div>
