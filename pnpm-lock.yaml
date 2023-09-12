@@ -8,6 +8,9 @@ dependencies:
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
+  matter-js:
+    specifier: ^0.19.0
+    version: 0.19.0
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -19,6 +22,9 @@ dependencies:
     version: 4.11.0(react@18.2.0)
 
 devDependencies:
+  '@types/matter-js':
+    specifier: ^0.19.0
+    version: 0.19.0
   '@types/react':
     specifier: ^18.2.15
     version: 18.2.15
@@ -500,6 +506,10 @@ packages:
 
   /@types/json-schema@7.0.12:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
+    dev: true
+
+  /@types/matter-js@0.19.0:
+    resolution: {integrity: sha512-SqgYUc8j68n/R2p8rVgpxTVC6gwCby+93dd5eWqjQdpL3l3JUqxzhbEJH/X0NXv+pmoAeWheH1kPvFIgC904Bw==}
     dev: true
 
   /@types/prop-types@15.7.5:
@@ -1807,6 +1817,10 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /matter-js@0.19.0:
+    resolution: {integrity: sha512-v2huwvQGOHTGOkMqtHd2hercCG3f6QAObTisPPHg8TZqq2lz7eIY/5i/5YUV8Ibf3mEioFEmwibcPUF2/fnKKQ==}
+    dev: false
 
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}

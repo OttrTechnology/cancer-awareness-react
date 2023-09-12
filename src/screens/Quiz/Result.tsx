@@ -2,12 +2,13 @@ import Correct from "assets/resultEmoji/right.png";
 import Wrong from "assets/resultEmoji/wrong.png";
 import styles from "./Result.module.scss";
 import { useGameContext } from "hooks";
+import { clsx } from "clsx";
 
 export const Result = () => {
   const { currentQuestion, answer } = useGameContext();
   return (
     <div className="flex justify-center">
-      <div className="relative ca-container pt-16">
+      <div className="relative ca-container ca-pt--64">
         <div className={styles.body}>
           <img
             className={styles.image}
@@ -15,34 +16,41 @@ export const Result = () => {
           />
 
           <div className="flex flex-col">
-            <div className="mb-6">
+            <div className="ca-mb--8">
               <div
-                className={
+                className={clsx(
                   currentQuestion.fact === answer
                     ? styles.correctAnswer
                     : styles.wrongAnswer
-                }
+                )}
               >
                 {currentQuestion.fact === answer
                   ? "Correct Answer"
                   : "Wrong Answer"}
               </div>
-              <div className="ca-body--sm">
+            </div>
+            <div className="ca-mb--24">
+              <div className="ca-body--sm ca-text--black-70">
                 {currentQuestion.fact === answer
                   ? "That’s great. Keep going"
                   : "It’s not the end. Try again."}
               </div>
             </div>
 
-            <div className="ca-body--md mb-8">
-              {currentQuestion.explanation}
+            <div className="ca-mb--32">
+              <p className="ca-body--md ca-text--black-80">
+                {currentQuestion.explanation}
+              </p>
             </div>
 
-            <div className="ca-misc--link">
-              <a target="_blank" href={currentQuestion.source} rel="noreferrer">
-                Learn more
-              </a>
-            </div>
+            <a
+              className="ca-misc--link"
+              target="_blank"
+              href={currentQuestion.source}
+              rel="noreferrer"
+            >
+              Learn more
+            </a>
           </div>
         </div>
       </div>

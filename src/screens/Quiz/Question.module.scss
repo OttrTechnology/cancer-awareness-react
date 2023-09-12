@@ -1,19 +1,19 @@
 @use "main";
 
 .wrapper {
-  padding-top: main.em(120px);
+  padding-top: main.em(104px);
   position: relative;
   width: main.em(912px);
 }
 
 .innerContainer {
   @apply flex justify-center text-center;
-  padding: main.em(168px) main.em(96px) main.em(80px) main.em(96px);
+  padding: main.em(152px) main.em(96px) main.em(80px) main.em(96px);
   background-color: main.$light-yellow;
 }
 
 .image {
   @apply flex justify-center absolute top-0;
-  height: main.em(240);
-  width: main.em(240);
+  height: main.em(208);
+  width: main.em(208);
 }

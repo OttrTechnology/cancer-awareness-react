@@ -31,11 +31,14 @@ interface GameContextProps {
   activeQuizIndex: QuizScreenType;
   activeScreen: CurrentScreenType;
   remainingLives: number;
+  setActiveScreen: React.Dispatch<
+    React.SetStateAction<"LANDING" | "QUIZ" | "GAME_OVER">
+  >;
   answer: boolean;
 
-  handleNext: (currentScore: number) => void;
+  handleNext: (currentScore: number) => () => void;
   handlePlayAgain: () => void;
-  handleAnswer: (newAnswer: boolean) => void;
+  handleAnswer: (newAnswer: boolean) => () => void;
 }
 
 export const GameContext = createContext<GameContextProps | undefined>(
@@ -58,9 +61,8 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     setShuffledData(shuffledArray);
   }, []);
 
-  console.log(shuffledData);
-
-  const [activeScreen, setActiveScreen] = useState<CurrentScreenType>("QUIZ");
+  const [activeScreen, setActiveScreen] =
+    useState<CurrentScreenType>("LANDING");
 
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
 
@@ -79,11 +81,12 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [remainingLives, setRemainingLives] = useState(3);
 
-  const handleNext = (currentScore: number) => {
+  const handleNext = (currentScore: number) => () => {
     let index = activeQuizIndex;
 
     if (index === "RESULT") index = "QUESTION";
     else index = "RESULT";
+
     setActiveQuestionIndex((prev) => prev + 1);
     setActiveQuizIndex(index);
 
@@ -106,7 +109,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     setActiveQuizIndex("QUESTION");
   };
 
-  const handleAnswer = (newAnswer: boolean) => {
+  const handleAnswer = (newAnswer: boolean) => () => {
     let index = activeQuizIndex;
 
     if (index === "RESULT") index = "QUESTION";
@@ -132,6 +135,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     handleAnswer,
     activeScreen,
     currentQuestion,
+    setActiveScreen,
     answer,
   };
 

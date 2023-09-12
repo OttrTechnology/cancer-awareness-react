@@ -6,36 +6,53 @@
 //   line-height: 150%;
 // }
 
+/*
+* Debug styles for home page
+*/
+// .select-none {
+//   user-select: auto !important;
+// }
+// .pointer-events-none {
+//   pointer-events: all !important;
+// }
+// .lg\:pointer-events-none {
+//   pointer-events: unset !important;
+// }
+
 body {
   line-height: 170%;
+  background-color: variables.$light-yellow;
   background-color: variables.$yellow;
   background-image: url("../assets/backgroundPattern.svg");
   height: 100vh;
 
-  font-size: 1.1111111111111112vw;
+  font-size: 1vw;
 
   @media screen and (min-width: 1920px) {
-    font-size: 21.333333333333332px;
+    font-size: 19.2px; 
   }
+   @media screen and (max-width:1600px) {
+    font-size: 16px;
+   }
 }
 
 .ca {
   &-heading {
     @apply font-semibold;
     letter-spacing: -0.01em;
-    color: variables.$dark-blue;
+    color: variables.$black;
 
     &--one {
       @extend .ca-heading;
-      font-size: functions.em(96px);
+      font-size: functions.em(82);
       line-height: 100%;
       letter-spacing: -0.03em;
     }
 
     &--two {
       @extend .ca-heading;
-      font-size: functions.em(44px);
-      font-weight: 700;
+      font-size: functions.em(40px);
+      font-weight: 650;
       line-height: 120%;
       letter-spacing: -0.01em;
     }
@@ -49,15 +66,15 @@ body {
 
   &-body {
     &--md {
-      color: variables.$dark-blue;
-      font-size: functions.em(22px);
+      color: variables.$black;
+      font-size: functions.em(20px);
       font-weight: 400;
       line-height: 150%;
       letter-spacing: -0.01em;
     }
 
     &--sm {
-      color: variables.$dark-blue;
+      color: variables.$black;
       font-size: functions.em(18px);
       font-weight: 400;
       line-height: 140%;
@@ -73,17 +90,28 @@ body {
     }
 
     &--button-text {
-      @apply font-semibold not-italic;
-      font-size: functions.em(24px);
+      font-weight: 550;
+      font-size: 1em;
       line-height: 120%;
     }
 
     &--link {
-      @apply font-medium not-italic underline;
+      @apply underline underline-offset-4;
+      font-weight: 550;
       font-size: functions.em(20px);
       line-height: 120%;
-      letter-spacing: -0.0125rem;
+      letter-spacing: -0.01em;
       color: variables.$primary;
     }
+  }
+}
+
+.ca-text {
+  &--black-70 {
+    color: rgba(variables.$black, 0.7);
+  }
+
+  &--black-80 {
+    color: rgba(variables.$black, 0.8);
   }
 }
