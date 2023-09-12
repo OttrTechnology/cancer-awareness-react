@@ -1,6 +1,6 @@
 import Award from "assets/headerAwardIcon.svg";
 import styles from "./Score.module.scss";
-import { useGameContext } from "hooks/useGameContext";
+import { useGameContext } from "hooks";
 
 export const Score = () => {
   const { currentScore } = useGameContext();

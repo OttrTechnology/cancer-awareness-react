@@ -1,13 +1,18 @@
-// import { Landing, Home, GameOver } from "./screens";
-import { Home } from "screens";
+import { Landing, Quiz, GameOver } from "screens";
+import { useGameContext } from "hooks";
 
 const App = () => {
+  const { activeScreen } = useGameContext();
   return (
-    <>
-      {/* <Landing /> */}
-      <Home />
-      {/* <GameOver /> */}
-    </>
+    <div className={activeScreen === "GAME_OVER" ? "ca-gameOver" : ""}>
+      {activeScreen === "LANDING" ? (
+        <Landing />
+      ) : activeScreen === "QUIZ" ? (
+        <Quiz />
+      ) : (
+        <GameOver />
+      )}
+    </div>
   );
 };
 

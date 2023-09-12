@@ -1,21 +1,15 @@
 import { Header, GameActions } from "./components";
-// import { Question } from "./Question";
-// import { Result } from "./Result";
-// import mockData from "./cancer-findings-data.json";
-import { useGameContext } from "hooks/useGameContext";
+import { useGameContext } from "hooks";
+import { Question } from "screens/Quiz/Question";
+import { Result } from "screens/Quiz/Result";
 
 export const Quiz = () => {
-  // const MOCKDATA = mockData;
-  // console.log(MOCKDATA[0].fact);
-
-  const { screens, activeIndex } = useGameContext();
+  const { activeQuizIndex } = useGameContext();
 
   return (
-    <div className="h-screen flex flex-col justify-between">
+    <div className="h-screen flex flex-col justify-between ca-gap--16">
       <Header />
-      {/* <Question /> */}
-      {/* <Result isCorrect={false} /> */}
-      {screens[activeIndex]}
+      {activeQuizIndex === "QUESTION" ? <Question /> : <Result />}
       <GameActions />
     </div>
   );

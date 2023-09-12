@@ -1,46 +1,56 @@
 import Correct from "assets/resultEmoji/right.png";
 import Wrong from "assets/resultEmoji/wrong.png";
 import styles from "./Result.module.scss";
-import { useGameContext } from "hooks/useGameContext";
+import { useGameContext } from "hooks";
+import { clsx } from "clsx";
 
-interface Props {
-  isCorrect: boolean;
-}
-
-export const Result = ({ isCorrect }: Props) => {
-  const { answer, explanation } = useGameContext();
+export const Result = () => {
+  const { currentQuestion, answer } = useGameContext();
   return (
     <div className="flex justify-center">
-      <div className="relative ca-container pt-16">
+      <div className="relative ca-container ca-pt--64">
         <div className={styles.body}>
           <img
             className={styles.image}
-            src={isCorrect === answer ? Correct : Wrong}
+            src={currentQuestion.fact === answer ? Correct : Wrong}
           />
 
           <div className="flex flex-col">
-            <div className="mb-6">
+            <div className="ca-mb--8">
               <div
-                className={
-                  isCorrect === answer
+                className={clsx(
+                  currentQuestion.fact === answer
                     ? styles.correctAnswer
                     : styles.wrongAnswer
-                }
+                )}
               >
-                {isCorrect === answer ? "Correct Answer" : "Wrong Answer"}
+                {currentQuestion.fact === answer
+                  ? "Correct Answer"
+                  : "Wrong Answer"}
               </div>
-              <div className="ca-body--sm">
-                {isCorrect
+            </div>
+            <div className="ca-mb--24">
+              <div className="ca-body--sm ca-text--black-70">
+                {currentQuestion.fact === answer
                   ? "That’s great. Keep going"
                   : "It’s not the end. Try again."}
               </div>
             </div>
 
-            <div className="ca-body--md mb-8">{explanation}</div>
-
-            <div className="ca-misc--link">
-              <a href="#">Learn more</a>
+            <div className="ca-mb--32">
+              <p className="ca-body--md ca-text--black-80">
+                {currentQuestion.explanation}
+              </p>
             </div>
+
+            <a
+              className=" ca-misc--link "
+              target="_blank"
+              href={currentQuestion.source}
+              rel="noreferrer"
+            >
+              Learn more
+            </a>
           </div>
         </div>
       </div>

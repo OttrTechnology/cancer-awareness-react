@@ -1,0 +1,28 @@
+@use "main";
+
+.container {
+  display: flex;
+  gap: main.em(40px);
+  flex-direction: column;
+  position: relative;
+  width: main.em(728px);
+  padding-top: main.em(80);
+}
+
+.innerContainer {
+  @apply flex justify-center text-center;
+  padding-top: main.em(104px);
+  padding-bottom: main.em(40px);
+  background-color: main.$yellow;
+}
+
+.image {
+  @apply flex justify-center absolute top-0;
+  height: main.em(160);
+  width: main.em(160);
+}
+
+.score {
+  @extend .ca-heading--one;
+  font-weight: 550;
+}

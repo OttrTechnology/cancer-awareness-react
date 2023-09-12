@@ -1,35 +1,28 @@
-import no from "assets/buttonIcon/no.svg";
-import yes from "assets/buttonIcon/yes.svg";
-import Next from "assets/buttonIcon/next-arrow.svg";
 import { Button, IconButton } from "components";
-import { useGameContext } from "hooks/useGameContext";
+import { useGameContext } from "hooks";
+import { BiCheck } from "react-icons/bi";
+import { BiRightArrowAlt } from "react-icons/bi";
+import { BiX } from "react-icons/bi";
 
 export const GameActions = () => {
-  const {
-    activeIndex,
-    handleAnswer,
-    handleOnClick,
-    handlePlayAgain,
-    currentScore,
-  } = useGameContext();
+  const { activeQuizIndex, handleAnswer, handleNext, currentScore } =
+    useGameContext();
 
   return (
     <div>
-      {activeIndex === 0 ? (
-        <div className="flex justify-center mb-24 gap-16">
-          <IconButton icon={no} onClick={() => handleAnswer(false)} />
-          <IconButton icon={yes} onClick={() => handleAnswer(true)} />
+      {activeQuizIndex === "QUESTION" ? (
+        <div className="flex justify-center ca-mb--96 ca-gap--64">
+          <IconButton icon={<BiX />} onClick={() => handleAnswer(false)} />
+          <IconButton icon={<BiCheck />} onClick={() => handleAnswer(true)} />
         </div>
       ) : (
-        <div className="flex justify-center mb-24">
+        <div className="flex justify-center ca-mb--96 ca-gap--32">
           <Button
-            onClick={() =>
-              activeIndex === 1
-                ? handleOnClick(currentScore)
-                : handlePlayAgain()
-            }
-            label={activeIndex === 1 ? "Next" : "Try Again"}
-            icon={activeIndex === 1 && <img src={Next} />}
+            size="medium"
+            color=""
+            onClick={() => handleNext(currentScore)}
+            label="Next"
+            icon={<BiRightArrowAlt />}
           />
         </div>
       )}
