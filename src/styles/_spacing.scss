@@ -17,21 +17,48 @@
     margin-bottom: functions.em(32);
   }
 
+  &--48 {
+    margin-bottom: functions.em(48);
+  }
+
+  &--64 {
+    margin-bottom: functions.em(64);
+  }
+
   &--96 {
     margin-bottom: functions.em(96);
   }
 }
 
-.ca-pt--64 {
+.ca-pt{
+  &--64 {
   padding-top: functions.em(64);
+  }
+
+  &--home {
+    padding-top: functions.em(120);
+  }
 }
 
 .ca-gap {
   &--4 {
     gap: functions.em(4);
   }
+
+  &--8 {
+    gap: functions.em(8);
+  }
+  
+  &--12 {
+    gap: functions.em(12);
+  }
+
   &--16 {
     gap: functions.em(16);
+  }
+
+  &--24 {
+    gap: functions.em(24);
   }
 
   &--32 {
