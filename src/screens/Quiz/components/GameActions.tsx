@@ -11,24 +11,18 @@ export const GameActions = () => {
   return (
     <div>
       {activeQuizIndex === "QUESTION" ? (
-        <div className="flex justify-center mb-24 gap-16">
-          <IconButton
-            icon={<BiX size={64} />}
-            onClick={() => handleAnswer(false)}
-          />
-          <IconButton
-            icon={<BiCheck size={64} />}
-            onClick={() => handleAnswer(true)}
-          />
+        <div className="flex justify-center ca-mb--96 ca-gap--64">
+          <IconButton icon={<BiX />} onClick={() => handleAnswer(false)} />
+          <IconButton icon={<BiCheck />} onClick={() => handleAnswer(true)} />
         </div>
       ) : (
-        <div className="flex justify-center mb-24 gap-8">
+        <div className="flex justify-center ca-mb--96 ca-gap--32">
           <Button
             size="medium"
             color=""
             onClick={() => handleNext(currentScore)}
             label="Next"
-            icon={<BiRightArrowAlt size={28} />}
+            icon={<BiRightArrowAlt />}
           />
         </div>
       )}

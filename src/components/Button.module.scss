@@ -14,8 +14,6 @@
   border-radius: main.em(125px);
   overflow: hidden;
   transition: background 0.4s ease, color 0.3s ease, border 0.3s ease;
-
-  // creating stacking context so to fix psudo element stacking
   isolation: isolate;
 
   &::before {
@@ -46,17 +44,25 @@
   }
 
   &.medium {
+    $btn-font: 22;
     @extend .btn;
-    padding: main.em(20) main.em(40);
-    gap: main.em(12);
+    padding: 0 main.em(36, $btn-font) 0 main.em(40, $btn-font);
+    gap: main.em(8, $btn-font);
     // width: main.em(180);
-    // height: main.em(80);
+    height: main.em(72, $btn-font);
+    font-size: main.em($btn-font);
+
+    > svg {
+      height: main.em(28, $btn-font);
+      width: main.em(28, $btn-font);
+    }
   }
 
-  &.large {
-    width: main.em(280px);
-    height: main.em(80px);
-    padding: 1.25rem 2.5rem;
+  &.fixed-width {
+    $btn-font: 22;
+    font-size: main.em($btn-font);
+    width: main.em(256, $btn-font);
+    height: main.em(72, $btn-font);
     justify-content: center;
     align-items: center;
   }
@@ -69,8 +75,14 @@
 
 .btnIcon {
   @extend .btn;
-  height: main.em(120px);
-  width: main.em(120px);
+  height: main.em(104);
+  width: main.em(104);
+
+  > svg {
+    height: main.em(48);
+    width: main.em(48);
+  }
+
   &::before {
     content: "";
     position: absolute;

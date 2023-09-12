@@ -1,10 +1,11 @@
 @use "main";
 
 .container {
-  @apply flex items-center gap-3;
+  @apply flex items-center;
+  gap: main.em(12);
 }
 
 .label {
-  font-size: main.rem(22px);
+  font-size: main.em(22px);
   font-weight: 600;
 }
