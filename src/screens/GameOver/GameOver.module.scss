@@ -26,3 +26,13 @@
   @extend .ca-heading--one;
   font-weight: 550;
 }
+
+.gameOver {
+  @apply flex flex-col justify-center text-center;
+  gap: main.rem(48px);
+  background-color: main.$yellow;
+}
+
+.gameOverImg {
+  height: main.rem(200px);
+}
