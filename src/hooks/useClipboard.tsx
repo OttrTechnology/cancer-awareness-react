@@ -16,11 +16,9 @@ export function useClipboard({ timeout = 2000 } = {}) {
 
   const copy = (valueToCopy: string) => {
     if ("clipboard" in navigator) {
-      console.log("here");
       navigator.clipboard
         .writeText(valueToCopy)
         .then(() => {
-          console.log("tse");
           handleCopyResult(true);
         })
         .catch((err: Error) => setError(err));

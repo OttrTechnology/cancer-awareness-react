@@ -1,7 +1,6 @@
-import { useClipboard } from "hooks";
-import styles from "./Share.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
+import { useClipboard } from "hooks";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -14,6 +13,7 @@ import {
   BiLogoLinkedin,
   BiLogoTwitter,
 } from "react-icons/bi";
+import styles from "./Share.module.scss";
 
 const shareData = {
   title: "Cancer Awareness",
@@ -21,12 +21,11 @@ const shareData = {
 };
 
 export const Share = (props: { toggleShare: () => void }) => {
-  const { toggleShare } = props;
   const { clipboardSupported, copy, copied } = useClipboard();
   const [showShare, setShowShare] = useState(false);
   const ref = useRef(null);
 
-  useOnClickOutside(ref, toggleShare);
+  useOnClickOutside(ref, props.toggleShare);
 
   useEffect(() => {
     if ("canShare" in navigator && navigator.canShare(shareData)) {
@@ -42,7 +41,6 @@ export const Share = (props: { toggleShare: () => void }) => {
         console.error("Error sharing:", error);
       });
     } else {
-      console.log("test");
       copy(import.meta.env.VITE_BASE_URL);
     }
   };
@@ -54,7 +52,7 @@ export const Share = (props: { toggleShare: () => void }) => {
           <div className="flex justify-between">
             <div className={styles.shareText}>Share with</div>
 
-            <button onClick={toggleShare}>
+            <button onClick={props.toggleShare}>
               <BiX className={styles.closebtn} />
             </button>
           </div>

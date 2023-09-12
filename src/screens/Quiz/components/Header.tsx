@@ -3,9 +3,11 @@ import { Score } from "./Score";
 
 export const Header = () => {
   return (
-    <div className="flex justify-between items-center ca-mt--56 mx-auto ca-header-container">
-      <Lives />
-      <Score />
+    <div className="ca-header-container ca-mt--56 mx-auto">
+      <div className="flex justify-between items-center  ">
+        <Lives />
+        <Score />
+      </div>
     </div>
   );
 };

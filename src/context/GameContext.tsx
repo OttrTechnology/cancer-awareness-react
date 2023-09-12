@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import mockData from "screens/Quiz/cancer-findings-data.json";
+import data from "screens/Quiz/cancer-findings-data.json";
 
 interface IQuiz {
   fact: boolean;
@@ -72,7 +72,6 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    const data = mockData;
     const shuffledArray = shuffle(data);
     setShuffledData(shuffledArray);
   }, []);

@@ -28,8 +28,10 @@
   }
 }
 
-.ca-pt--64 {
-  padding-top: functions.em(64);
+.ca-pt {
+  &--64 {
+    padding-top: functions.em(64);
+  }
 }
 
 .ca-gap {

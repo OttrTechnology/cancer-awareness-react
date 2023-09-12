@@ -1,9 +1,9 @@
 import { useGameContext } from "hooks";
-import styles from "./GameOver.module.scss";
 import trophy from "assets/trophy.svg";
 import { Button } from "components";
 import { Share } from "./components";
 import { useLayoutEffect, useState } from "react";
+import styles from "./GameOver.module.scss";
 
 export const GameOver = () => {
   const { currentScore, highScore, handlePlayAgain } = useGameContext();
@@ -21,9 +21,7 @@ export const GameOver = () => {
 
   const [share, setShare] = useState(false);
 
-  const toggleShare = () => {
-    setShare((prev) => !prev);
-  };
+  const toggleShare = () => setShare((prev) => !prev);
 
   return (
     <div>
