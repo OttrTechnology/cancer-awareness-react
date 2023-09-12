@@ -157,6 +157,7 @@ export const Landing = () => {
                   alt="Ottr Logo"
                   className={styles.logo}
                 />
+
                 <span className={clsx(styles.logoTitle, "ca-text--black-80")}>
                   Presents
                 </span>
@@ -175,16 +176,20 @@ export const Landing = () => {
 
               <div className="flex align-center ca-gap--16 pointer-events-auto select-none">
                 <span className="ca-body--sm">Share</span>
+
                 <div className="flex ca-gap--12">
                   <a className="cursor-pointer" href="https://www.google.com">
                     <BiLink className={styles.social} />
                   </a>
+
                   <a className="cursor-pointer" href="https://www.linkedin.com">
                     <BiLogoLinkedin className={styles.social} />
                   </a>
+
                   <a className="cursor-pointer" href="https://www.facebook.com">
                     <BiLogoFacebook className={styles.social} />
                   </a>
+
                   <a className="cursor-pointer" href="https://www.discord.com">
                     <BiLogoDiscordAlt className={styles.social} />
                   </a>
