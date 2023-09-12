@@ -7,7 +7,7 @@ export const Score = () => {
   return (
     <div>
       <div className={styles.container}>
-        <img src={Award} alt="Award" />
+        <img className={styles.awardImg} src={Award} alt="Award" />
         <div className={styles.label}>Score:</div>
         <div className="ca-misc--points">{currentScore}</div>
       </div>

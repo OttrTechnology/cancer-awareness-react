@@ -45,21 +45,6 @@ export const GameContext = createContext<GameContextProps | undefined>(
 export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const [shuffledData, setShuffledData] = useState<IQuiz[]>([]);
 
-  const shuffle = (array: IQuiz[]) => {
-    return array
-      .map((a) => ({ sort: Math.random(), value: a }))
-      .sort((a, b) => a.sort - b.sort)
-      .map((a) => a.value);
-  };
-
-  useEffect(() => {
-    const data = mockData;
-    const shuffledArray = shuffle(data);
-    setShuffledData(shuffledArray);
-  }, []);
-
-  console.log(shuffledData);
-
   const [activeScreen, setActiveScreen] = useState<CurrentScreenType>("QUIZ");
 
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
@@ -78,6 +63,19 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const [highScore, setHighScore] = useState(initialHighScore);
 
   const [remainingLives, setRemainingLives] = useState(3);
+
+  const shuffle = (array: IQuiz[]) => {
+    return array
+      .map((a) => ({ sort: Math.random(), value: a }))
+      .sort((a, b) => a.sort - b.sort)
+      .map((a) => a.value);
+  };
+
+  useEffect(() => {
+    const data = mockData;
+    const shuffledArray = shuffle(data);
+    setShuffledData(shuffledArray);
+  }, []);
 
   const handleNext = (currentScore: number) => {
     let index = activeQuizIndex;

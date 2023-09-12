@@ -13,8 +13,7 @@ export const Lives = () => {
         .fill(0)
         .map((_, index) => (
           <svg
-            width="40"
-            height="40"
+            className={styles.live}
             viewBox="0 0 40 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
