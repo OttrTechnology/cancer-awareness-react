@@ -1,126 +1,122 @@
 @use "main";
-@use "functions";
-@use "variables";
 
 .wrapper {
-	width: 100%;
-    max-width: main.em(1000);
-	margin: 0 auto;
-    padding-right: 1.25rem/* 20px */;
-    padding-left: 1.25rem/* 20px */;
+  width: 100%;
+  max-width: main.em(1000);
+  margin: 0 auto;
+  padding-right: 1.25rem /* 20px */;
+  padding-left: 1.25rem /* 20px */;
 }
 
-
-.logo{
-	height: main.em(40);
-	width: auto;
+.logo {
+  height: main.em(40);
+  width: auto;
 }
 
-.logoTitle{
-    color: main.$black;
+.logoTitle {
+  color: main.$black;
+  text-align: center;
+  font-size: main.em(22);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+
+  @include main.breakpoint-down(small) {
     text-align: center;
-    font-size: main.em(22);
+    font-size: main.em(18);
     font-style: normal;
     font-weight: 500;
-    line-height: 150%; 
-    letter-spacing: -0.01em;
-
-	@media(max-width: main.$breakpoint-mobile) {
-		text-align: center;
-		font-size: main.em(18);
-		font-style: normal;
-		font-weight: 500;
-		line-height: 150%; /* 27px */
-	  }
+    line-height: 150%; /* 27px */
+  }
 }
 
-.arrow{
-	@apply select-none;
+.arrow {
+  @apply select-none;
+  position: absolute;
+  right: main.em(-72);
+  bottom: 0;
+
+  &__img {
+    width: main.em(200);
+    height: main.em(100);
+  }
+
+  @include main.breakpoint-down(small) {
+    width: 6.5959375rem;
+    height: 1.8565625rem;
+    left: 7%;
+    transform: rotate(40deg);
+    bottom: -29%;
+  }
+}
+
+.primaryButton {
+  $btn-font: 22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-decoration: none;
+  margin-bottom: main.em(40, $btn-font);
+  width: main.em(240, $btn-font);
+  height: main.em(240, $btn-font);
+  font-size: main.em($btn-font);
+  color: main.$white;
+  background: main.$primary;
+  font-weight: 600;
+  border-radius: 200px;
+  overflow: hidden;
+  letter-spacing: 0.01em;
+  transition: background 0.4s ease, color 0.3s ease, border 0.3s ease;
+
+  @include main.breakpoint-down(small) {
+    $btn-font: 18;
+    display: flex;
+    width: main.em(160, $btn-font);
+    height: main.em(160, $btn-font);
+    font-size: $btn-font;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    line-height: 120%;
+  }
+
+  // creating stacking context so to fix psudo element stacking
+  isolation: isolate;
+
+  &::before {
+    content: "";
     position: absolute;
-    right: main.em(-72);
-    bottom: 0;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    background: main.$white;
+    border-radius: 100% 100% 0 0;
+    left: -1px;
+    top: -1px;
+    transform: scaleY(0) translateZ(0);
+    transform-origin: bottom center;
+    transition: transform 0.4s main.$ease 40ms, border-radius 0.5s main.$ease;
+    z-index: -1;
+  }
 
-	&__img {
-		width: main.em(200);
-		height: main.em(100);
-	}
-
-	@media(max-width: main.$breakpoint-mobile) {
-		width: 6.5959375rem;
-		height: 1.8565625rem;
-		left: 7%;
-		transform: rotate(40deg);
-		bottom: -29%;
-	}
-}
-
-.primaryButton{
-	$btn-font: 22;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-    position: relative;
-	text-decoration: none;
-	margin-bottom: main.em(40,$btn-font);
-    width: main.em(240,$btn-font);
-    height: main.em(240,$btn-font);
-	font-size: main.em($btn-font);
-	color: main.$white;
-	background: main.$primary;
-	font-weight: 600;
-	border-radius: 200px;
-	overflow: hidden;
-	letter-spacing: 0.01em;
-	transition: background .4s ease,color .3s ease,border .3s ease;
-
-
-	@media(max-width: main.$breakpoint-mobile) {
-		$btn-font: 18;
-		display: flex;
-		width: main.em(160,$btn-font);
-    	height: main.em(160,$btn-font);
-		font-size: $btn-font;
-		justify-content: center;
-		align-items: center;
-		gap: 0.5rem;
-		flex-shrink: 0;
-		line-height: 120%;
-	  }
-	
-	// creating stacking context so to fix psudo element stacking
-	isolation: isolate;
-	
-	&::before {
-		content: '';
-		position: absolute;
-		width: calc(100% + 2px);
-		height: calc(100% + 2px);
-		background: main.$white;
-		border-radius: 100% 100% 0 0;
-		left: -1px;
-		top: -1px;
-		transform: scaleY(0) translateZ(0);
-		transform-origin: bottom center;
-		transition: transform .4s main.$ease 40ms,border-radius .5s main.$ease;
-		z-index: -1;
-	}
-	
-	&:hover {
-		color: main.$dark-blue;
-		&::before {
-			border-radius: 10rem;
-			transform: scaleY(1) translateZ(0);
-		}
-	}
+  &:hover {
+    color: main.$dark-blue;
+    &::before {
+      border-radius: 10rem;
+      transform: scaleY(1) translateZ(0);
+    }
+  }
 }
 
 .social {
-	width: main.em(26);
-	height: main.em(26);
-	color: variables.$primary;
-	transition: color 0.3s ease;
+  width: main.em(26);
+  height: main.em(26);
+  color: main.$primary;
+  transition: color 0.3s ease;
 
-	&:hover {
-		color: variables.$dark-blue;
-	}
+  &:hover {
+    color: main.$dark-blue;
+  }
 }
