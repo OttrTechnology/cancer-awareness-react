@@ -48,7 +48,7 @@ export const Share = (props: { toggleShare: () => void }) => {
   return (
     <div className={styles.mainWrapper}>
       <div ref={ref} className={styles.wrapper}>
-        <div className="flex flex-col gap-8 ">
+        <div className="flex flex-col gap-6 lg:gap-8 ">
           <div className="flex justify-between">
             <div className={styles.shareText}>Share with</div>
 
@@ -59,7 +59,7 @@ export const Share = (props: { toggleShare: () => void }) => {
 
           <div className="flex justify-between">
             {clipboardSupported && (
-              <div className="flex flex-col items-center gap-2 w-20">
+              <div className={styles.shareContainer}>
                 <button onClick={handleButtonClick}>
                   <div className={styles.shareButton}>
                     <BiLink className={styles.shareIcon} />
@@ -71,7 +71,7 @@ export const Share = (props: { toggleShare: () => void }) => {
               </div>
             )}
 
-            <div className="flex flex-col items-center gap-2 w-20">
+            <div className={styles.shareContainer}>
               <FacebookShareButton url={import.meta.env.VITE_BASE_URL}>
                 <div className={styles.shareButton}>
                   <BiLogoFacebook className={styles.shareIcon} />
@@ -80,7 +80,7 @@ export const Share = (props: { toggleShare: () => void }) => {
               <div className="ca-body--sm">Facebook</div>
             </div>
 
-            <div className="flex flex-col items-center gap-2 w-20">
+            <div className={styles.shareContainer}>
               <LinkedinShareButton url={import.meta.env.VITE_BASE_URL}>
                 <div className={styles.shareButton}>
                   <BiLogoLinkedin className={styles.shareIcon} />
@@ -89,7 +89,7 @@ export const Share = (props: { toggleShare: () => void }) => {
               <div className="ca-body--sm">LinkedIn</div>
             </div>
 
-            <div className="flex flex-col items-center gap-2 w-20">
+            <div className={styles.shareContainer}>
               <TwitterShareButton url={import.meta.env.VITE_BASE_URL}>
                 <div className={styles.shareButton}>
                   <BiLogoTwitter className={styles.shareIcon} />

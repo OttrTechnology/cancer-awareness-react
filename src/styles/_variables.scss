@@ -9,3 +9,35 @@ $red: #cb4549;
 $yellow: #ffda91;
 
 $ease: cubic-bezier(0.5, 0, 0, 1);
+
+// $breakpoints: (
+//   "phone": 640px,
+//   "tablet": 920px,
+//   "desktop": 1024px,
+//   "desktop-xl": 1280px,
+// ) !default;
+
+$breakpoints-up: (
+  "medium": "40em",
+  "large": "64em",
+  "xlarge": "150em",
+);
+
+$breakpoints-down: (
+  "small": "39.9375em",
+  "medium": "63.9375em",
+  "large": "81.51em",
+  "xlarge": "87.4375em",
+);
+
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoints-up,$size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints-down,$size)) {
+    @content;
+  }
+}

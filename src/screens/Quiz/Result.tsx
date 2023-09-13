@@ -8,7 +8,7 @@ export const Result = () => {
   const { currentQuestion, answer } = useGameContext();
   return (
     <div className="flex justify-center">
-      <div className="relative ca-container ca-pt--64">
+      <div className={styles.wrapper}>
         <div className={styles.body}>
           <img
             className={styles.image}

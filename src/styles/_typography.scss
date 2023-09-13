@@ -1,10 +1,5 @@
 @use "variables";
 @use "functions";
-// p,
-// span {
-//   font-size: functions.em(16px);
-//   line-height: 150%;
-// }
 
 body {
   line-height: 170%;
@@ -13,10 +8,14 @@ body {
   background-image: url("../assets/backgroundPattern.svg");
   height: 100vh;
 
-  font-size: calc(0.7519157088122606vw + 0.22270114942528743em);
+  font-size: 1vw;
 
   @media screen and (min-width: 1920px) {
-    font-size: 1.125em;
+    font-size: 19.2px;
+  }
+
+  @media screen and (max-width: 1440px) {
+    font-size: 15px;
   }
 }
 
@@ -31,6 +30,14 @@ body {
       font-size: functions.em(82);
       line-height: 100%;
       letter-spacing: -0.03em;
+
+      @include variables.breakpoint-down(medium) {
+        font-size: functions.em(65);
+      }
+
+      @include variables.breakpoint-down(small) {
+        font-size: 48px;
+      }
     }
 
     &--two {
@@ -39,22 +46,42 @@ body {
       font-weight: 650;
       line-height: 120%;
       letter-spacing: -0.01em;
+
+      @include variables.breakpoint-down(small) {
+        font-size: 30px;
+      }
     }
 
     &--three {
       @extend .ca-heading;
       font-size: functions.em(32px);
       line-height: 130%;
+
+      // @include variables.breakpoint-down(medium) {
+      //   font-size: functions.em(28px);
+      // }
+
+      @include variables.breakpoint-down(small) {
+        font-size: 22px;
+      }
     }
   }
 
   &-body {
     &--md {
       color: variables.$black;
-      font-size: functions.em(20px);
+      font-size: functions.em(22px);
       font-weight: 400;
       line-height: 150%;
       letter-spacing: -0.01em;
+
+      @include variables.breakpoint-down(medium) {
+        font-size: 18px;
+      }
+
+      @include variables.breakpoint-down(small) {
+        font-size: 16px;
+      }
     }
 
     &--sm {
@@ -63,6 +90,14 @@ body {
       font-weight: 400;
       line-height: 140%;
       letter-spacing: -0.01em;
+
+      @include variables.breakpoint-down(medium) {
+        font-size: 16px;
+      }
+
+      @include variables.breakpoint-down(small) {
+        font-size: 14px;
+      }
     }
   }
 
@@ -71,12 +106,24 @@ body {
       font-size: functions.em(48px);
       font-weight: 600;
       line-height: 100%;
+
+      @include variables.breakpoint-up(xlarge) {
+        font-size: functions.em(70);
+      }
+
+      @include variables.breakpoint-down(small) {
+        font-size: 28px;
+      }
     }
 
     &--button-text {
       font-weight: 550;
       font-size: 1em;
       line-height: 120%;
+
+      @include variables.breakpoint-down(small) {
+        font-size: 16px;
+      }
     }
 
     &--link {
@@ -86,6 +133,15 @@ body {
       line-height: 120%;
       letter-spacing: -0.01em;
       color: variables.$primary;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: variables.$dark-blue;
+      }
+
+      @include variables.breakpoint-down(small) {
+        font-size: 16px;
+      }
     }
   }
 }

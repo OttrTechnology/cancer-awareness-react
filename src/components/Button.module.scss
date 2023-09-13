@@ -1,13 +1,7 @@
 @use "main";
 
-// .btn {
-//   @apply flex flex-wrap justify-center content-center;
-//   background-color: main.$white;
-//   border-radius: main.em(125px);
-// }
-
 .btn {
-  @apply flex flex-wrap justify-center content-center;
+  @apply flex flex-wrap justify-center content-center items-center;
   position: relative;
   color: black;
   background: white;
@@ -46,15 +40,26 @@
   &.medium {
     $btn-font: 22;
     @extend .btn;
-    padding: 0 main.em(36, $btn-font) 0 main.em(40, $btn-font);
-    gap: main.em(8, $btn-font);
-    // width: main.em(180);
-    height: main.em(72, $btn-font);
     font-size: main.em($btn-font);
+    padding: 0 main.em(32, $btn-font) 0 main.em(40, $btn-font);
+    gap: main.em(12, $btn-font);
+    height: main.em(80, $btn-font);
+
+    @include main.breakpoint-down(small) {
+      font-size: 16px;
+      height: 56px;
+      padding: 0 24px 0 32px;
+      gap: 8px;
+    }
 
     > svg {
       height: main.em(28, $btn-font);
       width: main.em(28, $btn-font);
+
+      @include main.breakpoint-down(small) {
+        height: main.em(20);
+        width: main.em(20);
+      }
     }
   }
 
@@ -62,9 +67,14 @@
     $btn-font: 22;
     font-size: main.em($btn-font);
     width: main.em(256, $btn-font);
-    height: main.em(72, $btn-font);
+    height: main.em(80, $btn-font);
     justify-content: center;
     align-items: center;
+
+    @include main.breakpoint-down(small) {
+      width: 180px;
+      height: 56px;
+    }
   }
 
   &.primary {
@@ -78,9 +88,19 @@
   height: main.em(104);
   width: main.em(104);
 
+  @include main.breakpoint-down(small) {
+    height: main.em(80);
+    width: main.em(80);
+  }
+
   > svg {
     height: main.em(48);
     width: main.em(48);
+
+    @include main.breakpoint-down(small) {
+      height: main.em(40);
+      width: main.em(40);
+    }
   }
 
   &::before {

@@ -2,19 +2,46 @@
 
 .body {
   @apply flex justify-center text-center;
-  padding: main.em(80) main.em(96) main.em(64) main.em(96);
+  padding: main.em(80) main.em(96) main.em(64);
   background-color: main.$light-yellow;
+
+  @include main.breakpoint-down(medium) {
+    padding: main.em(72) main.em(32) main.em(48);
+  }
+
+  @include main.breakpoint-down(small) {
+    padding: main.em(72) main.em(16) main.em(48);
+  }
+}
+
+.wrapper {
+  position: relative;
+  padding-top: main.em(64);
+  max-width: main.em(912px);
+
+  @include main.breakpoint-down(medium) {
+    max-width: main.em(650);
+  }
+
+  @include main.breakpoint-down(small) {
+    max-width: main.em(343px);
+    padding-top: main.em(48);
+  }
 }
 
 .image {
   @apply absolute top-0 flex justify-center;
   height: main.em(128);
   width: main.em(128);
+
+  @include main.breakpoint-down(small) {
+    height: main.em(96);
+    width: main.em(96);
+  }
 }
 
 .correctAnswer {
   @extend .ca-heading--two;
-
   color: main.$green;
 }
 

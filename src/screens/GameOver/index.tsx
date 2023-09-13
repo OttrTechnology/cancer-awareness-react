@@ -26,13 +26,13 @@ export const GameOver = () => {
   return (
     <div>
       {share && <Share toggleShare={toggleShare} />}
-      <div className="relative h-screen flex flex-col justify-center ">
+      <div className="relative ca-min-h-screen flex flex-col justify-center ">
         <div className="flex justify-center">
           <div className={styles.container}>
             <div className={styles.innerContainer}>
               <img className={styles.image} src={trophy} alt={trophy} />
 
-              <div className="flex flex-col ca-gap--40">
+              <div className="flex flex-col ca-gap--32 lg:ca-gap--40">
                 <div className="flex flex-col">
                   <div className="ca-mb--8">
                     <div className="ca-heading--three ">
@@ -44,15 +44,15 @@ export const GameOver = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-center ca-gap--80">
-                  <div className="flex flex-col ca-gap--4">
+                <div className="flex justify-center ca-gap--48 lg:ca-gap--80">
+                  <div className="flex flex-col ca-gap--6 lg:ca-gap--4">
                     <div className={styles.score}>{currentScore}</div>
                     <div className="ca-body--md ca-text--black-80">
                       Your Score
                     </div>
                   </div>
 
-                  <div className="flex flex-col ca-gap--4">
+                  <div className="flex flex-col ca-gap--6 lg:ca-gap--4">
                     <div className={styles.score}>{highScore}</div>
                     <div className="ca-body--md ca-text--black-80">
                       High Score
@@ -62,7 +62,7 @@ export const GameOver = () => {
               </div>
             </div>
 
-            <div className="flex justify-center ca-gap--32">
+            <div className="flex flex-col md:flex-row items-center justify-center ca-gap--16 md:ca-gap--32">
               <Button
                 onClick={toggleShare}
                 label="Share Your Score"

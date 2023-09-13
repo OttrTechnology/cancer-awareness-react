@@ -102,6 +102,8 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     setCurrentScore(0);
     setActiveQuestionIndex(0);
     setActiveQuizIndex("QUESTION");
+    const shuffledArray = shuffle(data);
+    setShuffledData(shuffledArray);
   };
 
   const handleAnswer = (newAnswer: boolean) => {

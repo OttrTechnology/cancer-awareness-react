@@ -16,6 +16,11 @@
   padding: main.em(32px) main.em(40px) main.em(48px) main.em(40px);
   width: main.em(474px);
   border-radius: main.em(12px);
+
+  @include main.breakpoint-down(small) {
+    padding: main.em(24) main.em(24) main.em(40) main.em(24);
+    width: main.em(343);
+  }
 }
 
 .shareText {
@@ -23,27 +28,56 @@
   font-weight: 600;
   line-height: 150%;
   letter-spacing: -0.01em;
+
+  @include main.breakpoint-down(small) {
+    font-size: main.em(18);
+  }
+}
+
+.shareContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: main.em(8);
+  width: main.em(80);
+  @include main.breakpoint-down(small) {
+    gap: main.em(6);
+    width: main.em(74);
+  }
 }
 
 .shareButton {
   display: flex;
   width: main.em(72px);
   height: main.em(72px);
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: main.em(8px);
-  flex-shrink: 0;
   border-radius: main.em(200px);
   background-color: main.$primary;
+
+  @include main.breakpoint-down(small) {
+    width: main.em(48);
+    height: main.em(48);
+  }
 }
+
 .closebtn {
   width: main.em(28);
   height: main.em(28);
+
+  @include main.breakpoint-down(small) {
+    width: main.em(24);
+    height: main.em(24);
+  }
 }
 
 .shareIcon {
   width: main.em(32);
   height: main.em(32);
   fill: main.$white;
+
+  @include main.breakpoint-down(small) {
+    width: main.em(24);
+    height: main.em(24);
+  }
 }

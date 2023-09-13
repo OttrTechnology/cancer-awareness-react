@@ -1,10 +1,35 @@
 @use "functions";
 @use "variables";
 
-.ca-container {
-  width: functions.em(912px);
+// .ca-container {
+//   max-width: functions.em(912px);
+
+//   @include variables.breakpoint-down(medium) {
+//     max-width: functions.em(650);
+//   }
+
+//   @include variables.breakpoint-down(small) {
+//     max-width: functions.em(343px);
+//   }
+// }
+
+.ca-min-h-screen {
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .ca-header-container {
   width: functions.em(1312);
+
+  @include variables.breakpoint-down(large) {
+    max-width: functions.em(1045);
+  }
+
+  @include variables.breakpoint-down(medium) {
+    max-width: functions.em(650);
+  }
+
+  @include variables.breakpoint-down(small) {
+    max-width: functions.em(343);
+  }
 }
