@@ -1,6 +1,19 @@
 @use "variables";
 @use "functions";
 
+/*
+* Debug styles for home page
+*/
+// .select-none {
+//   user-select: auto !important;
+// }
+// .pointer-events-none {
+//   pointer-events: all !important;
+// }
+// .lg\:pointer-events-none {
+//   pointer-events: unset !important;
+// }
+
 body {
   line-height: 170%;
   background-color: variables.$light-yellow;
@@ -11,12 +24,19 @@ body {
   font-size: 1vw;
 
   @media screen and (min-width: 1920px) {
+<<<<<<< HEAD
     font-size: 19.2px;
   }
 
   @media screen and (max-width: 1440px) {
     font-size: 15px;
+=======
+    font-size: 19.2px; 
+>>>>>>> main
   }
+   @media screen and (max-width:1600px) {
+    font-size: 16px;
+   }
 }
 
 .ca {

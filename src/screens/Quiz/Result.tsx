@@ -44,7 +44,7 @@ export const Result = () => {
             </div>
 
             <a
-              className=" ca-misc--link "
+              className="ca-misc--link"
               target="_blank"
               href={currentQuestion.source}
               rel="noreferrer"
