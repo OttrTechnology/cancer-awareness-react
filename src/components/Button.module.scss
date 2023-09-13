@@ -111,3 +111,18 @@
     background: main.$primary;
   }
 }
+
+.btnGameOver {
+  @extend .btn;
+  width: main.rem(280px);
+  height: main.rem(80px);
+  padding: 20px 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnShare {
+  @extend .btnGameOver;
+  background-color: main.$primary;
+  color: main.$white;
+}
