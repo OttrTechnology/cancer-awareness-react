@@ -1,13 +1,16 @@
 import { useLayoutEffect } from "react";
-import { useBoolean } from "usehooks-ts";
+import { useBoolean, useElementSize } from "usehooks-ts";
 import { useGameContext } from "hooks";
 import { Button } from "components";
 import trophy from "assets/trophy.svg";
 import { Share } from "./components";
+import Confetti from "react-confetti";
 import styles from "./GameOver.module.scss";
 
 export const GameOver = () => {
   const { currentScore, highScore, handlePlayAgain } = useGameContext();
+
+  const [squareRef, { width, height }] = useElementSize();
 
   useLayoutEffect(() => {
     document.documentElement.style.setProperty("--background-color", "#ffda91");
@@ -23,8 +26,15 @@ export const GameOver = () => {
   const { value: share, toggle } = useBoolean(false);
 
   return (
-    <div>
+    <div ref={squareRef}>
       {share && <Share toggleShare={toggle} />}
+
+      <Confetti
+        width={width}
+        height={height}
+        numberOfPieces={currentScore * 3}
+      />
+
       <div className="relative ca-min-h-screen flex flex-col justify-center ">
         <div className="flex justify-center">
           <div className={styles.container}>
