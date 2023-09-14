@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import styles from "./gameOver.module.scss";
+import styles from "./GameOver.module.scss";
 import gameover from "assets/resultEmoji/gameover.svg";
 import { useGameContext } from "hooks";
 
