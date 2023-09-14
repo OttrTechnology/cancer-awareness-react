@@ -1,8 +1,9 @@
+import { useLayoutEffect } from "react";
+import { useBoolean } from "usehooks-ts";
 import { useGameContext } from "hooks";
-import trophy from "assets/trophy.svg";
 import { Button } from "components";
+import trophy from "assets/trophy.svg";
 import { Share } from "./components";
-import { useLayoutEffect, useState } from "react";
 import styles from "./GameOver.module.scss";
 
 export const GameOver = () => {
@@ -19,13 +20,11 @@ export const GameOver = () => {
     };
   }, []);
 
-  const [share, setShare] = useState(false);
-
-  const toggleShare = () => setShare((prev) => !prev);
+  const { value: share, toggle } = useBoolean(false);
 
   return (
     <div>
-      {share && <Share toggleShare={toggleShare} />}
+      {share && <Share toggleShare={toggle} />}
       <div className="relative ca-min-h-screen flex flex-col justify-center ">
         <div className="flex justify-center">
           <div className={styles.container}>
@@ -64,7 +63,7 @@ export const GameOver = () => {
 
             <div className="flex flex-col md:flex-row items-center justify-center ca-gap--16 md:ca-gap--32">
               <Button
-                onClick={toggleShare}
+                onClick={toggle}
                 label="Share Your Score"
                 color="primary"
                 size="fixed-width"
