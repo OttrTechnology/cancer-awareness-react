@@ -1,14 +1,14 @@
+import { clsx } from "clsx";
+import { useGameContext } from "hooks";
 import Correct from "assets/resultEmoji/right.png";
 import Wrong from "assets/resultEmoji/wrong.png";
 import styles from "./Result.module.scss";
-import { useGameContext } from "hooks";
-import { clsx } from "clsx";
 
 export const Result = () => {
   const { currentQuestion, answer } = useGameContext();
   return (
     <div className="flex justify-center">
-      <div className="relative ca-container ca-pt--64">
+      <div className={styles.wrapper}>
         <div className={styles.body}>
           <img
             className={styles.image}

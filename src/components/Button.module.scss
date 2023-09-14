@@ -1,18 +1,10 @@
 @use "main";
 
-// .btn {
-//   @apply flex flex-wrap justify-center content-center;
-//   background-color: main.$white;
-//   border-radius: main.em(125px);
-// }
-
 .btn {
-  @apply flex flex-wrap justify-center content-center;
-  position: relative;
+  @apply flex flex-wrap justify-center content-center items-center relative overflow-hidden;
   color: black;
   background: white;
   border-radius: main.em(125px);
-  overflow: hidden;
   transition: background 0.4s ease, color 0.3s ease, border 0.3s ease;
   isolation: isolate;
 
@@ -46,25 +38,39 @@
   &.medium {
     $btn-font: 22;
     @extend .btn;
-    padding: 0 main.em(36, $btn-font) 0 main.em(40, $btn-font);
-    gap: main.em(8, $btn-font);
-    // width: main.em(180);
-    height: main.em(72, $btn-font);
     font-size: main.em($btn-font);
+    padding: 0 main.em(32, $btn-font) 0 main.em(40, $btn-font);
+    gap: main.em(12, $btn-font);
+    height: main.em(80, $btn-font);
+
+    @include main.breakpoint-down(small) {
+      @apply gap-2 pr-6 pl-8;
+      font-size: 16px;
+      height: main.em(56px);
+    }
 
     > svg {
       height: main.em(28, $btn-font);
       width: main.em(28, $btn-font);
+
+      @include main.breakpoint-down(small) {
+        height: main.em(20);
+        width: main.em(20);
+      }
     }
   }
 
   &.fixed-width {
+    @apply justify-center items-center;
     $btn-font: 22;
     font-size: main.em($btn-font);
     width: main.em(256, $btn-font);
-    height: main.em(72, $btn-font);
-    justify-content: center;
-    align-items: center;
+    height: main.em(80, $btn-font);
+
+    @include main.breakpoint-down(small) {
+      width: main.em(180px);
+      height: main.em(56px);
+    }
   }
 
   &.primary {
@@ -78,9 +84,19 @@
   height: main.em(104);
   width: main.em(104);
 
+  @include main.breakpoint-down(small) {
+    height: main.em(80);
+    width: main.em(80);
+  }
+
   > svg {
     height: main.em(48);
     width: main.em(48);
+
+    @include main.breakpoint-down(small) {
+      height: main.em(40);
+      width: main.em(40);
+    }
   }
 
   &::before {
@@ -93,12 +109,11 @@
 }
 
 .btnGameOver {
+  @apply justify-center items-center;
   @extend .btn;
   width: main.rem(280px);
   height: main.rem(80px);
   padding: 20px 40px;
-  justify-content: center;
-  align-items: center;
 }
 
 .btnShare {

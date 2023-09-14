@@ -1,9 +1,10 @@
-import { useGameContext } from "hooks";
-import styles from "./GameOver.module.scss";
-import trophy from "assets/trophy.svg";
-// import gameover from "assets/resultEmoji/gameover.svg";
-import { Button } from "components";
 import { useLayoutEffect } from "react";
+import { useBoolean } from "usehooks-ts";
+import { useGameContext } from "hooks";
+import { Button } from "components";
+import trophy from "assets/trophy.svg";
+import { Share } from "./components";
+import styles from "./GameOver.module.scss";
 
 export const GameOver = () => {
   const { currentScore, highScore, handlePlayAgain } = useGameContext();
@@ -19,61 +20,61 @@ export const GameOver = () => {
     };
   }, []);
 
+  const { value: share, toggle } = useBoolean(false);
+
   return (
-    <div className="h-screen flex flex-col justify-center">
-      <div className="flex justify-center">
-        {/* <div className={styles.gameOver}>
-          <img className={styles.gameOverImg} src={gameover} />
-          <div className="ca-heading--one">Game Over !</div>
-        </div> */}
-        <div className={styles.container}>
-          <div className={styles.innerContainer}>
-            <img className={styles.image} src={trophy} alt={trophy} />
+    <div>
+      {share && <Share toggleShare={toggle} />}
+      <div className="relative ca-min-h-screen flex flex-col justify-center ">
+        <div className="flex justify-center">
+          <div className={styles.container}>
+            <div className={styles.innerContainer}>
+              <img className={styles.image} src={trophy} alt={trophy} />
 
-            <div className="flex flex-col ca-gap--40">
-              <div className="flex flex-col">
-                <div className="ca-mb--8">
-                  <div className="ca-heading--three">
-                    Appreciate your effort
+              <div className="flex flex-col ca-gap--32 lg:ca-gap--40">
+                <div className="flex flex-col">
+                  <div className="ca-mb--8">
+                    <div className="ca-heading--three ">
+                      Appreciate your effort
+                    </div>
                   </div>
-                </div>
-                <div className="ca-body--sm ca-text--black-70">
-                  Try again! Beat your high score.
-                </div>
-              </div>
-
-              <div className="flex justify-center ca-gap--80">
-                <div className="flex flex-col ca-gap--4">
-                  <div className={styles.score}>{currentScore}</div>
-                  <div className="ca-body--md ca-text--black-80">
-                    Your Score
+                  <div className="ca-body--sm ca-text--black-70">
+                    Try again! Beat your high score.
                   </div>
                 </div>
 
-                <div className="flex flex-col ca-gap--4">
-                  <div className={styles.score}>{highScore}</div>
-                  <div className="ca-body--md ca-text--black-80">
-                    High Score
+                <div className="flex justify-center ca-gap--48 lg:ca-gap--80">
+                  <div className="flex flex-col ca-gap--6 lg:ca-gap--4">
+                    <div className={styles.score}>{currentScore}</div>
+                    <div className="ca-body--md ca-text--black-80">
+                      Your Score
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col ca-gap--6 lg:ca-gap--4">
+                    <div className={styles.score}>{highScore}</div>
+                    <div className="ca-body--md ca-text--black-80">
+                      High Score
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="flex justify-center ca-gap--32">
-            <Button
-              onClick={handlePlayAgain}
-              label="Share Your Score"
-              color="primary"
-              size="fixed-width"
-            />
+            <div className="flex flex-col md:flex-row items-center justify-center ca-gap--16 md:ca-gap--32">
+              <Button
+                onClick={toggle}
+                label="Share Your Score"
+                color="primary"
+                size="fixed-width"
+              />
 
-            <Button
-              color=""
-              size="fixed-width"
-              onClick={handlePlayAgain}
-              label="Try Again"
-            />
+              <Button
+                size="fixed-width"
+                onClick={handlePlayAgain}
+                label="Try Again"
+              />
+            </div>
           </div>
         </div>
       </div>

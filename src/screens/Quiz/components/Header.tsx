@@ -3,7 +3,7 @@ import { Score } from "./Score";
 
 export const Header = () => {
   return (
-    <div className="flex justify-between items-center mt-14 mx-16">
+    <div className=" ca-header-container flex justify-between items-center  ca-mt--40 md:ca-mt--56  ">
       <Lives />
       <Score />
     </div>
