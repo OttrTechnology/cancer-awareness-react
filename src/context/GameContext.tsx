@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
 import data from "screens/Quiz/cancer-findings-data.json";
 
+const TOTAL_LIVES = 3;
 interface IQuiz {
   fact: boolean;
   claim: string;
@@ -63,13 +65,9 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [currentScore, setCurrentScore] = useState(0);
 
-  const initialHighScore = parseInt(localStorage.getItem("highScore") ?? "0");
+  const [highScore, setHighScore] = useLocalStorage("highScore", 0);
 
-  const [highScore, setHighScore] = useState(initialHighScore);
-
-  const totalLives = 3;
-
-  const [remainingLives, setRemainingLives] = useState(totalLives);
+  const [remainingLives, setRemainingLives] = useState(TOTAL_LIVES);
 
   const shuffle = (array: IQuiz[]) => {
     return array
@@ -89,10 +87,8 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     if (index === "RESULT") index = "QUESTION";
     else index = "RESULT";
 
-    if (currentScore > highScore) {
-      setHighScore(currentScore);
-      localStorage.setItem("highScore", currentScore.toString());
-    }
+    if (currentScore > highScore) setHighScore(currentScore);
+
     if (remainingLives === 0) {
       setActiveScreen(CurrentScreen.GAME_OVER);
     } else {
@@ -102,13 +98,16 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   const handlePlayAgain = () => {
-    setActiveScreen(CurrentScreen.QUIZ);
-    setRemainingLives(totalLives);
-    setCurrentScore(0);
-    setActiveQuestionIndex(0);
-    setActiveQuizIndex("QUESTION");
     const shuffledArray = shuffle(data);
     setShuffledData(shuffledArray);
+
+    setRemainingLives(TOTAL_LIVES);
+    setCurrentScore(0);
+
+    setActiveQuestionIndex(0);
+
+    setActiveQuizIndex("QUESTION");
+    setActiveScreen(CurrentScreen.QUIZ);
   };
 
   const handleAnswer = (newAnswer: boolean) => () => {
@@ -131,7 +130,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     currentScore,
     highScore,
     activeQuizIndex,
-    totalLives,
+    totalLives: TOTAL_LIVES,
     remainingLives,
     handleNext,
     handlePlayAgain,
