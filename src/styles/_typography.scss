@@ -102,13 +102,9 @@ body {
 
   &-misc {
     &--points {
-      font-size: functions.em(48px);
+      font-size: functions.em(40px);
       font-weight: 600;
       line-height: 100%;
-
-      @include variables.breakpoint-up(xlarge) {
-        font-size: functions.em(70);
-      }
 
       @include variables.breakpoint-down(small) {
         font-size: 28px;

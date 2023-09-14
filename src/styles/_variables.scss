@@ -13,14 +13,12 @@ $ease: cubic-bezier(0.5, 0, 0, 1);
 $breakpoints-up: (
   "medium": "40em",
   "large": "64em",
-  "xlarge": "150em",
 );
 
 $breakpoints-down: (
   "small": "39.9375em",
   "medium": "63.9375em",
   "large": "81.51em",
-  "xlarge": "87.4375em",
 );
 
 @mixin breakpoint-up($size) {
