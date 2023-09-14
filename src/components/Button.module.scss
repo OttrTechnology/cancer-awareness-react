@@ -1,12 +1,10 @@
 @use "main";
 
 .btn {
-  @apply flex flex-wrap justify-center content-center items-center;
-  position: relative;
+  @apply flex flex-wrap justify-center content-center items-center relative overflow-hidden;
   color: black;
   background: white;
   border-radius: main.em(125px);
-  overflow: hidden;
   transition: background 0.4s ease, color 0.3s ease, border 0.3s ease;
   isolation: isolate;
 
@@ -46,10 +44,9 @@
     height: main.em(80, $btn-font);
 
     @include main.breakpoint-down(small) {
+      @apply gap-2 pr-6 pl-8;
       font-size: 16px;
-      height: 56px;
-      padding: 0 24px 0 32px;
-      gap: 8px;
+      height: main.em(56px);
     }
 
     > svg {
@@ -64,16 +61,15 @@
   }
 
   &.fixed-width {
+    @apply justify-center items-center;
     $btn-font: 22;
     font-size: main.em($btn-font);
     width: main.em(256, $btn-font);
     height: main.em(80, $btn-font);
-    justify-content: center;
-    align-items: center;
 
     @include main.breakpoint-down(small) {
-      width: 180px;
-      height: 56px;
+      width: main.em(180px);
+      height: main.em(56px);
     }
   }
 
@@ -113,12 +109,11 @@
 }
 
 .btnGameOver {
+  @apply justify-center items-center;
   @extend .btn;
   width: main.rem(280px);
   height: main.rem(80px);
   padding: 20px 40px;
-  justify-content: center;
-  align-items: center;
 }
 
 .btnShare {
