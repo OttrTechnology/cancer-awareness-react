@@ -1,249 +1,46 @@
 @use "functions";
 @use "variables";
 
-.ca-mb {
-  &--8 {
-    margin-bottom: functions.em(8);
-  }
-
-  &--16 {
-    margin-bottom: functions.em(16);
-  }
-
-  &--24 {
-    margin-bottom: functions.em(24);
-  }
-
-  &--32 {
-    margin-bottom: functions.em(32);
-  }
-
-  &--48 {
-    margin-bottom: functions.em(48);
-  }
-
-  &--64 {
-    margin-bottom: functions.em(64);
-  }
-
-  &--96 {
-    margin-bottom: functions.em(96);
-  }
-}
-
-.ca-mt {
-  &--56 {
-    margin-top: functions.em(56);
-  }
-
-  &--40 {
-    margin-top: functions.em(40);
-  }
-}
-
-.ca-pt {
-  &--80 {
-    padding-top: functions.em(80);
-  }
-
-  &--64 {
-    padding-top: functions.em(64);
-  }
-
-  &--48 {
-    padding-top: functions.em(48);
-  }
-
-  &--home {
-    padding-top: functions.em(120);
-  }
-}
-
-.ca-gap {
-  &--4 {
-    gap: functions.em(4);
-  }
-
-  &--6 {
-    gap: functions.em(6);
-  }
-
-  &--16 {
-    gap: functions.em(16);
-  }
-
-  &--24 {
-    gap: functions.em(24);
-  }
-
-  &--32 {
-    gap: functions.em(32);
-  }
-
-  &--40 {
-    gap: functions.em(40);
-  }
-
-  &--48 {
-    gap: functions.em(48);
-  }
-
-  &--64 {
-    gap: functions.em(64);
-  }
-
-  &--80 {
-    gap: functions.em(80);
-  }
-}
-
-@include variables.breakpoint-up(large) {
-  .lg\:ca-mt {
-    &--56 {
-      margin-top: functions.em(56);
+@each $spacing-type, $spaces in variables.$spacing {
+  @each $space, $value in $spaces {
+    .ca-#{$spacing-type}--#{$space} {
+      @if $spacing-type == mb {
+        margin-bottom: functions.em($value);
+      } @else if $spacing-type == mt {
+        margin-top: functions.em($value);
+      } @else if $spacing-type == pt {
+        padding-top: functions.em($value);
+      } @else {
+        gap: functions.em($value);
+      }
     }
 
-    &--40 {
-      margin-top: functions.em(40);
-    }
-  }
-
-  .lg\:ca-gap {
-    &--4 {
-      gap: functions.em(4);
-    }
-
-    &--6 {
-      gap: functions.em(6);
-    }
-
-    &--16 {
-      gap: functions.em(16);
+    @include variables.breakpoint-up(large) {
+      .lg\:ca-#{$spacing-type}--#{$space} {
+        @if $spacing-type == mb {
+          margin-bottom: functions.em($value);
+        } @else if $spacing-type == mt {
+          margin-top: functions.em($value);
+        } @else if $spacing-type == pt {
+          padding-top: functions.em($value);
+        } @else {
+          gap: functions.em($value);
+        }
+      }
     }
 
-    &--32 {
-      gap: functions.em(32);
-    }
-
-    &--40 {
-      gap: functions.em(40);
-    }
-
-    &--48 {
-      gap: functions.em(48);
-    }
-
-    &--64 {
-      gap: functions.em(64);
-    }
-
-    &--80 {
-      gap: functions.em(80);
-    }
-  }
-
-  .lg\:ca-mb {
-    &--8 {
-      margin-bottom: functions.em(8);
-    }
-
-    &--16 {
-      margin-bottom: functions.em(16);
-    }
-
-    &--24 {
-      margin-bottom: functions.em(24);
-    }
-
-    &--32 {
-      margin-bottom: functions.em(32);
-    }
-
-    &--48 {
-      margin-bottom: functions.em(48);
-    }
-
-    &--64 {
-      margin-bottom: functions.em(64);
-    }
-
-    &--96 {
-      margin-bottom: functions.em(96);
-    }
-  }
-}
-@include variables.breakpoint-up(medium) {
-  .md\:ca-mt {
-    &--56 {
-      margin-top: functions.em(56);
-    }
-
-    &--40 {
-      margin-top: functions.em(40);
-    }
-  }
-
-  .md\:ca-gap {
-    &--4 {
-      gap: functions.em(4);
-    }
-
-    &--6 {
-      gap: functions.em(6);
-    }
-
-    &--16 {
-      gap: functions.em(16);
-    }
-
-    &--32 {
-      gap: functions.em(32);
-    }
-
-    &--40 {
-      gap: functions.em(40);
-    }
-
-    &--48 {
-      gap: functions.em(48);
-    }
-
-    &--64 {
-      gap: functions.em(64);
-    }
-
-    &--80 {
-      gap: functions.em(80);
-    }
-  }
-
-  .md\:ca-mb {
-    &--8 {
-      margin-bottom: functions.em(8);
-    }
-
-    &--16 {
-      margin-bottom: functions.em(16);
-    }
-
-    &--24 {
-      margin-bottom: functions.em(24);
-    }
-
-    &--32 {
-      margin-bottom: functions.em(32);
-    }
-
-    &--48 {
-      margin-bottom: functions.em(48);
-    }
-
-    &--64 {
-      margin-bottom: functions.em(64);
-    }
-
-    &--96 {
-      margin-bottom: functions.em(96);
+    @include variables.breakpoint-up(medium) {
+      .md\:ca-#{$spacing-type}--#{$space} {
+        @if $spacing-type == mb {
+          margin-bottom: functions.em($value);
+        } @else if $spacing-type == mt {
+          margin-top: functions.em($value);
+        } @else if $spacing-type == pt {
+          padding-top: functions.em($value);
+        } @else {
+          gap: functions.em($value);
+        }
+      }
     }
   }
 }
