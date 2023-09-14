@@ -48,7 +48,8 @@ export const GameContext = createContext<GameContextProps | undefined>(
 export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const [shuffledData, setShuffledData] = useState<IQuiz[]>([]);
 
-  const [activeScreen, setActiveScreen] = useState<CurrentScreenType>("QUIZ");
+  const [activeScreen, setActiveScreen] =
+    useState<CurrentScreenType>("LANDING");
 
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
 
