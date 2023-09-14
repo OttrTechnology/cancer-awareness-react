@@ -86,9 +86,6 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     if (index === "RESULT") index = "QUESTION";
     else index = "RESULT";
 
-    setActiveQuestionIndex((prev) => prev + 1);
-    setActiveQuizIndex(index);
-
     if (currentScore > highScore) {
       setHighScore(currentScore);
       localStorage.setItem("highScore", currentScore.toString());
@@ -96,6 +93,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     if (remainingLives === 0) {
       setActiveScreen(CurrentScreen.GAME_OVER);
     } else {
+      setActiveQuestionIndex((prev) => prev + 1);
       setActiveQuizIndex(index);
     }
   };
