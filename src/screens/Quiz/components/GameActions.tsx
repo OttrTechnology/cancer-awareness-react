@@ -19,7 +19,6 @@ export const GameActions = () => {
         <div className="flex justify-center ca-mb--64 md:ca-mb--96 ca-gap--32">
           <Button
             size="medium"
-            color=""
             onClick={() => handleNext(currentScore)}
             label="Next"
             icon={<BiRightArrowAlt />}

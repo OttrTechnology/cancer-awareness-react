@@ -1,11 +1,9 @@
 @use "main";
 
 .wrapper {
-  width: 100%;
+  @apply w-full px-5;
   max-width: main.em(1000);
   margin: 0 auto;
-  padding-right: 1.25rem /* 20px */;
-  padding-left: 1.25rem /* 20px */;
 }
 
 .logo {
@@ -14,19 +12,17 @@
 }
 
 .logoTitle {
+  @apply text-center font-medium;
   color: main.$black;
-  text-align: center;
   font-size: main.em(22);
   font-style: normal;
-  font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.01em;
 
   @include main.breakpoint-down(small) {
-    text-align: center;
+    @apply text-center font-medium;
     font-size: main.em(18);
     font-style: normal;
-    font-weight: 500;
     line-height: 150%; /* 27px */
   }
 }
@@ -52,11 +48,8 @@
 }
 
 .primaryButton {
+  @apply flex items-center justify-center relative font-semibold overflow-hidden;
   $btn-font: 22;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
   text-decoration: none;
   margin-bottom: main.em(40, $btn-font);
   width: main.em(240, $btn-font);
@@ -64,21 +57,16 @@
   font-size: main.em($btn-font);
   color: main.$white;
   background: main.$primary;
-  font-weight: 600;
   border-radius: 200px;
-  overflow: hidden;
   letter-spacing: 0.01em;
   transition: background 0.4s ease, color 0.3s ease, border 0.3s ease;
 
   @include main.breakpoint-down(small) {
+    @apply flex items-center justify-center gap-2;
     $btn-font: 18;
-    display: flex;
     width: main.em(160, $btn-font);
     height: main.em(160, $btn-font);
     font-size: $btn-font;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
     flex-shrink: 0;
     line-height: 120%;
   }

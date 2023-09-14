@@ -40,6 +40,7 @@
   align-items: center;
   gap: main.em(8);
   width: main.em(80);
+
   @include main.breakpoint-down(small) {
     gap: main.em(6);
     width: main.em(74);
