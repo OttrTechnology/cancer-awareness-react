@@ -54,8 +54,8 @@
       width: main.em(28, $btn-font);
 
       @include main.breakpoint-down(small) {
-        height: main.em(20);
-        width: main.em(20);
+        height: 20px;
+        width: 20px;
       }
     }
   }
@@ -68,8 +68,8 @@
     height: main.em(80, $btn-font);
 
     @include main.breakpoint-down(small) {
-      width: main.em(180px);
-      height: main.em(56px);
+      width: 180px;
+      height: 56px;
     }
   }
 
@@ -85,8 +85,8 @@
   width: main.em(104);
 
   @include main.breakpoint-down(small) {
-    height: main.em(80);
-    width: main.em(80);
+    height: 80px;
+    width: 80px;
   }
 
   > svg {
@@ -94,8 +94,8 @@
     width: main.em(48);
 
     @include main.breakpoint-down(small) {
-      height: main.em(40);
-      width: main.em(40);
+      height: 40px;
+      width: 40px;
     }
   }
 

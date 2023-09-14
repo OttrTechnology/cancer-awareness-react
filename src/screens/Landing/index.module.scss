@@ -15,9 +15,9 @@
   @apply text-center font-medium;
   color: main.$black;
   font-size: main.em(22);
-  font-style: normal;
   line-height: 150%;
   letter-spacing: -0.01em;
+  text-align: center;
 
   @include main.breakpoint-down(small) {
     @apply text-center font-medium;
@@ -38,17 +38,25 @@
     height: main.em(100);
   }
 
+  
+  @include main.breakpoint-down(medium) {
+    width: 10.5959375em;
+    left: 10%;
+    transform: rotate(40deg);
+    bottom: -59%;
+  }
+
   @include main.breakpoint-down(small) {
     width: 6.5959375rem;
     height: 1.8565625rem;
-    left: 7%;
+    left: 9%;
     transform: rotate(40deg);
     bottom: -29%;
   }
 }
 
 .primaryButton {
-  @apply flex items-center justify-center relative font-semibold overflow-hidden;
+  @apply flex items-center touch-auto justify-center relative font-semibold overflow-hidden;
   $btn-font: 22;
   text-decoration: none;
   margin-bottom: main.em(40, $btn-font);
