@@ -28,11 +28,7 @@ export const GameOver = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(gameOverRef.current, {
-        autoAlpha: 0,
-        delay: 3,
-        duration: 1,
-      });
+      gsap.from(gameOverRef.current, { autoAlpha: 0, delay: 3, duration: 1 });
     });
 
     return () => ctx.revert();
@@ -40,9 +36,9 @@ export const GameOver = () => {
 
   return (
     <>
-      {share && <Share toggleShare={toggle} />}
       <div className="relative ca-min-h-screen flex flex-col justify-center overflow-hidden">
         <GameOverAnimation />
+
         <div className="flex justify-center" ref={gameOverRef}>
           <div className={styles.container}>
             <div className={styles.innerContainer}>
@@ -95,6 +91,8 @@ export const GameOver = () => {
           </div>
         </div>
       </div>
+
+      {share && <Share toggleShare={toggle} />}
     </>
   );
 };
