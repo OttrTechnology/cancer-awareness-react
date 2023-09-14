@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import LandingpageArrow from "assets/homepageArrow.svg";
 import LandingLogo from "assets/homeLogo.svg";
@@ -30,6 +30,11 @@ import clsx from "clsx";
 export const Landing = () => {
   const { setActiveScreen } = useGameContext();
 
+  const [dimensions, setDimensions] = useState({
+    canvasHeight: window.innerHeight,
+    canvasWidth: window.innerWidth,
+  });
+
   const canvasRef = useRef(null);
   const engine = useRef(Engine.create());
   const scene = useRef(null);
@@ -38,23 +43,29 @@ export const Landing = () => {
     setActiveScreen("QUIZ");
   };
 
-  useEffect(() => {
-    const canvasWidth = window.innerWidth;
-    const canvasHeight = window.innerHeight;
+  const handleResize = () => {
+    setDimensions({
+      canvasHeight: window.innerHeight,
+      canvasWidth: window.innerWidth,
+    });
+  };
 
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  });
+
+  useEffect(() => {
     const render = Render.create({
       element: scene.current || undefined,
       engine: engine.current,
       canvas: canvasRef.current || undefined,
       options: {
-        width: canvasWidth,
-        height: canvasHeight,
+        width: dimensions.canvasWidth,
+        height: dimensions.canvasHeight,
         wireframes: false,
         background: "transparent",
       },
     });
-
-    // engine.current.gravity.scale = 0.001;
 
     Render.lookAt(render, {
       min: { x: 0, y: 0 },
@@ -62,34 +73,56 @@ export const Landing = () => {
     });
 
     Composite.add(engine.current.world, [
-      Bodies.rectangle(-120, canvasHeight / 2, 20 + 180, canvasHeight + 10, {
-        isStatic: true,
-      }),
       Bodies.rectangle(
-        canvasWidth / 2,
-        canvasHeight + 40,
-        canvasWidth + 120,
-        90,
+        -120,
+        dimensions.canvasHeight / 2,
+        20 + 180,
+        dimensions.canvasHeight + 10,
         {
           isStatic: true,
           render: {
-            fillStyle: "#FFDA91",
-            strokeStyle: "#FFDA91",
+            fillStyle: "#ffda91",
+            strokeStyle: "#ffda91",
             lineWidth: 3,
           },
         }
       ),
-      Bodies.rectangle(canvasWidth + 80, canvasHeight / 2, 120, canvasHeight, {
-        isStatic: true,
-      }),
+      Bodies.rectangle(
+        dimensions.canvasWidth / 2,
+        dimensions.canvasHeight + 40,
+        dimensions.canvasWidth + 120,
+        90,
+        {
+          isStatic: true,
+          render: {
+            fillStyle: "#ffda91",
+            strokeStyle: "#ffda91",
+            lineWidth: 3,
+          },
+        }
+      ),
+      Bodies.rectangle(
+        dimensions.canvasWidth + 80,
+        dimensions.canvasHeight / 2,
+        120,
+        dimensions.canvasHeight,
+        {
+          isStatic: true,
+          render: {
+            fillStyle: "#ffda91",
+            strokeStyle: "#ffda91",
+            lineWidth: 3,
+          },
+        }
+      ),
     ]);
 
     data
       .sort(() => 0.5 - Math.random())
-      .slice(0, canvasWidth / 90)
+      .slice(0, dimensions.canvasWidth / 90)
       .forEach((App, index) => {
         Composite.add(engine.current.world, [
-          Bodies.circle(canvasWidth / 2, -100 * index, 60, {
+          Bodies.circle(dimensions.canvasWidth / 2, -100 * index, 60, {
             density: 0.001,
             frictionAir: 0.02,
             frictionStatic: 0.5,
@@ -126,12 +159,12 @@ export const Landing = () => {
 
     return () => {
       Render.stop(render);
-      Composite.clear(engine.current.world, true);
+      Composite.clear(engine.current.world, false);
       Engine.clear(engine.current);
       render.canvas.remove();
       render.textures = {};
     };
-  }, []);
+  });
 
   return (
     <>

@@ -79,16 +79,13 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [highScore, setHighScore] = useState(initialHighScore);
 
-  const [remainingLives, setRemainingLives] = useState(3);
+  const [remainingLives, setRemainingLives] = useState(1);
 
   const handleNext = (currentScore: number) => () => {
     let index = activeQuizIndex;
 
     if (index === "RESULT") index = "QUESTION";
     else index = "RESULT";
-
-    setActiveQuestionIndex((prev) => prev + 1);
-    setActiveQuizIndex(index);
 
     if (currentScore > highScore) {
       setHighScore(currentScore);
@@ -97,13 +94,14 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     if (remainingLives === 0) {
       setActiveScreen(CurrentScreen.GAME_OVER);
     } else {
+      setActiveQuestionIndex((prev) => prev + 1);
       setActiveQuizIndex(index);
     }
   };
 
   const handlePlayAgain = () => {
     setActiveScreen(CurrentScreen.QUIZ);
-    setRemainingLives(3);
+    setRemainingLives(1);
     setCurrentScore(0);
     setActiveQuestionIndex(0);
     setActiveQuizIndex("QUESTION");
