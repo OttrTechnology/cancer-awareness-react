@@ -80,7 +80,6 @@ export const GameOver = () => {
               />
 
               <Button
-                color=""
                 size="fixed-width"
                 onClick={handlePlayAgain}
                 label="Try Again"

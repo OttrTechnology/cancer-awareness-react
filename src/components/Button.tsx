@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import styles from "./Button.module.scss";
 import { clsx } from "clsx";
+import styles from "./Button.module.scss";
 
 interface Props {
   label?: string;

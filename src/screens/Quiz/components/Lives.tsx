@@ -1,5 +1,5 @@
-import styles from "./Lives.module.scss";
 import { useGameContext } from "hooks";
+import styles from "./Lives.module.scss";
 
 const { life, lifeLost } = styles;
 

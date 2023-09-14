@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useOnClickOutside } from "usehooks-ts";
-import { useClipboard } from "hooks";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -13,6 +11,8 @@ import {
   BiLogoLinkedin,
   BiLogoTwitter,
 } from "react-icons/bi";
+import { useOnClickOutside } from "usehooks-ts";
+import { useClipboard } from "hooks";
 import styles from "./Share.module.scss";
 
 const shareData = {

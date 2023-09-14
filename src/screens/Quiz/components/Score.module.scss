@@ -9,10 +9,6 @@
   font-size: main.em(22);
   font-weight: 600;
 
-  @include main.breakpoint-up(xlarge) {
-    font-size: main.em(28);
-  }
-
   @include main.breakpoint-down(small) {
     font-size: 18px;
   }
@@ -21,11 +17,6 @@
 .awardImg {
   width: main.em(40);
   height: main.em(40);
-
-  @include main.breakpoint-up(xlarge) {
-    width: main.em(60);
-    height: main.em(60);
-  }
 
   @include main.breakpoint-down(small) {
     width: main.em(24);
