@@ -20,12 +20,16 @@ const shareData = {
   url: import.meta.env.VITE_BASE_URL,
 };
 
-export const Share = (props: { toggleShare: () => void }) => {
+interface Props {
+  toggleShare: () => void;
+}
+
+export const Share = ({ toggleShare }: Props) => {
   const { clipboardSupported, copy, copied } = useClipboard();
   const [showShare, setShowShare] = useState(false);
   const ref = useRef(null);
 
-  useOnClickOutside(ref, props.toggleShare);
+  useOnClickOutside(ref, toggleShare);
 
   useEffect(() => {
     if ("canShare" in navigator && navigator.canShare(shareData)) {
@@ -52,7 +56,7 @@ export const Share = (props: { toggleShare: () => void }) => {
           <div className="flex justify-between">
             <div className={styles.shareText}>Share with</div>
 
-            <button onClick={props.toggleShare}>
+            <button onClick={toggleShare}>
               <BiX className={styles.closebtn} />
             </button>
           </div>
