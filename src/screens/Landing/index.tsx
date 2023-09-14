@@ -149,7 +149,6 @@ export const Landing = () => {
           },
         },
       });
-
     Composite.add(engine.current.world, mouseConstraint);
 
     render.mouse = mouse;
@@ -180,11 +179,12 @@ export const Landing = () => {
           <canvas ref={canvasRef} />
         </div>
       )}
+
       <div className={styles.wrapper}>
-        <div className="flex justify-center items-center h-screen lg:block relative mx-auto ca-pt--home lg:pointer-events-none">
-          <div className="grid lg:grid-cols-10 ca-gap--24">
-            <div className="col-span-10 lg:col-span-6 relative">
-              <div className="flex items-end ca-gap--12 ca-mb--32 select-none">
+        <div className="flex justify-center items-center h-screen lg:block relative mx-auto lg:ca-pt--120  pointer-events-none">
+          <div className="lg:grid lg:grid-cols-10 ca-gap--24">
+            <div className="lg:col-span-6 relative">
+              <div className="flex items-end lg:ca-gap--8 ca-gap--4 ca-mb--24 lg:ca-mb--32 select-none">
                 <img
                   src={LandingLogo}
                   alt="Ottr Logo"
@@ -196,21 +196,21 @@ export const Landing = () => {
                 </span>
               </div>
 
-              <div className="ca-mb--24 select-none">
+              <div className="ca-mb--16 select-none lg:ca-mb--24">
                 <h1 className="ca-heading--one">Cancer Insights Challenge</h1>
               </div>
 
-              <div className="ca-mb--48 select-none max-w-[27.625em]">
+              <div className="ca-mb--48 lg:ca-mb--64 select-none max-w-[27.625em]">
                 <p className="ca-body--md ca-text--black-80">
                   Test your cancer knowledge and elevate your understanding of
                   the disease
                 </p>
               </div>
 
-              <div className="flex align-center ca-gap--16 pointer-events-auto select-none">
+              <div className="flex items-center ca-gap--24 lg:ca-gap--16 pointer-events-auto select-none">
                 <span className="ca-body--sm">Share</span>
 
-                <div className="flex ca-gap--12">
+                <div className="flex ca-gap--24 lg:ca-gap--12">
                   <a className="cursor-pointer" href="https://www.google.com">
                     <BiLink className={styles.social} />
                   </a>
@@ -237,7 +237,7 @@ export const Landing = () => {
               </div>
             </div>
 
-            <div className="col-start-8 col-span-3 mt-14 lg:mt-auto pointer-events-auto">
+            <div className="flex justify-end md:mr-32 lg:mr-0 col-start-7 mr-2 lg:col-start-8 col-span-3 mt-14 lg:mt-auto  pointer-events-auto">
               <button className={styles.primaryButton} onClick={startQuiz}>
                 Take the quiz
               </button>

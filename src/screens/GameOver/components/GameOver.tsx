@@ -10,7 +10,6 @@ export const GameOverAnimation = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // if (remainingLives === 0) {
       gsap.fromTo(
         gameOverRef.current,
         {
@@ -22,12 +21,10 @@ export const GameOverAnimation = () => {
           delay: 2,
         }
       );
-      // }
     });
 
     return () => ctx.revert(); // cleanup
   }, [remainingLives]);
-  // ...
   return (
     <>
       <div className={styles.gameOver} ref={gameOverRef}>

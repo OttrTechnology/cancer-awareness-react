@@ -66,7 +66,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [highScore, setHighScore] = useState(initialHighScore);
 
-  const [remainingLives, setRemainingLives] = useState(1);
+  const [remainingLives, setRemainingLives] = useState(3);
 
   const shuffle = (array: IQuiz[]) => {
     return array
@@ -100,7 +100,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const handlePlayAgain = () => {
     setActiveScreen(CurrentScreen.QUIZ);
-    setRemainingLives(1);
+    setRemainingLives(3);
     setCurrentScore(0);
     setActiveQuestionIndex(0);
     setActiveQuizIndex("QUESTION");

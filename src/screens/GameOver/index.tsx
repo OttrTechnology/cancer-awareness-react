@@ -1,19 +1,11 @@
-import { useGameContext } from "hooks";
-import styles from "./index.module.scss";
-import trophy from "assets/trophy.svg";
-import gsap from "gsap";
-
-// import gameover from "assets/resultEmoji/gameover.svg";
-import { Button } from "components";
 import { useEffect, useLayoutEffect, useRef } from "react";
-import { GameOverAnimation } from "./components/gameOver";
-import { useLayoutEffect } from "react";
+import gsap from "gsap";
 import { useBoolean } from "usehooks-ts";
 import { useGameContext } from "hooks";
 import { Button } from "components";
 import trophy from "assets/trophy.svg";
-import { Share } from "./components";
-import styles from "./GameOver.module.scss";
+import { Share, GameOverAnimation } from "./components";
+import styles from "./index.module.scss";
 
 export const GameOver = () => {
   const { currentScore, highScore, handlePlayAgain, remainingLives } =
@@ -30,10 +22,9 @@ export const GameOver = () => {
     };
   }, []);
 
-<<<<<<< HEAD
-const { value: share, toggle } = useBoolean(false);  
+  const { value: share, toggle } = useBoolean(false);
 
-const gameOverRef = useRef(null);
+  const gameOverRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -49,19 +40,10 @@ const gameOverRef = useRef(null);
 
   return (
     <>
-    {share && <Share toggleShare={toggle} />}
-      <div className="h-screen flex flex-col justify-center overflow-hidden">
+      {share && <Share toggleShare={toggle} />}
+      <div className="relative ca-min-h-screen flex flex-col justify-center overflow-hidden">
         <GameOverAnimation />
         <div className="flex justify-center" ref={gameOverRef}>
-=======
-  const { value: share, toggle } = useBoolean(false);
-
-  return (
-    <div>
-      {share && <Share toggleShare={toggle} />}
-      <div className="relative ca-min-h-screen flex flex-col justify-center ">
-        <div className="flex justify-center">
->>>>>>> main
           <div className={styles.container}>
             <div className={styles.innerContainer}>
               <img className={styles.image} src={trophy} alt={trophy} />

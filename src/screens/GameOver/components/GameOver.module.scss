@@ -9,4 +9,8 @@
 
 .gameOverImg {
   height: main.rem(200px);
+
+  @include main.breakpoint-down(small) {
+    height: main.rem(120px);
+  }
 }
