@@ -1,19 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-
-import LandingpageArrow from "assets/homepageArrow.svg";
-import LandingLogo from "assets/homeLogo.svg";
-
-import styles from "./index.module.scss";
-
+import { useEffect, useRef } from "react";
 import {
   BiLogoDiscordAlt,
   BiLogoFacebook,
   BiLink,
   BiLogoLinkedin,
 } from "react-icons/bi";
-
-import data from "../Quiz/cancer-findings-data.json";
-
 import {
   Bodies,
   Composite,
@@ -23,51 +14,34 @@ import {
   Render,
   Runner,
 } from "matter-js";
+import clsx from "clsx";
+import { useWindowSize } from "usehooks-ts";
+
+import LandingpageArrow from "assets/homepageArrow.svg";
+import LandingLogo from "assets/homeLogo.svg";
 
 import { useGameContext } from "hooks";
-import clsx from "clsx";
+
+import data from "../Quiz/cancer-findings-data.json";
+import styles from "./index.module.scss";
 
 export const Landing = () => {
   const { setActiveScreen } = useGameContext();
 
-  const [dimensions, setDimensions] = useState({
-    canvasHeight: window.innerHeight,
-    canvasWidth: window.innerWidth,
-  });
+  const { width, height } = useWindowSize();
 
   const canvasRef = useRef(null);
   const engine = useRef(Engine.create());
   const scene = useRef(null);
 
-  const startQuiz = () => {
-    setActiveScreen("QUIZ");
-  };
-
-  const handleResize = () => {
-    setDimensions({
-      canvasHeight: window.innerHeight,
-      canvasWidth: window.innerWidth,
-    });
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const startQuiz = () => setActiveScreen("QUIZ");
 
   useEffect(() => {
     const render = Render.create({
       element: scene.current || undefined,
       engine: engine.current,
       canvas: canvasRef.current || undefined,
-      options: {
-        width: dimensions.canvasWidth,
-        height: dimensions.canvasHeight,
-        wireframes: false,
-        background: "transparent",
-      },
+      options: { width, height, wireframes: false, background: "transparent" },
     });
 
     Render.lookAt(render, {
@@ -76,56 +50,38 @@ export const Landing = () => {
     });
 
     Composite.add(engine.current.world, [
-      Bodies.rectangle(
-        -120,
-        dimensions.canvasHeight / 2,
-        20 + 180,
-        dimensions.canvasHeight + 10,
-        {
-          isStatic: true,
-          render: {
-            fillStyle: "#ffda91",
-            strokeStyle: "#ffda91",
-            lineWidth: 3,
-          },
-        }
-      ),
-      Bodies.rectangle(
-        dimensions.canvasWidth / 2,
-        dimensions.canvasHeight + 40,
-        dimensions.canvasWidth + 120,
-        90,
-        {
-          isStatic: true,
-          render: {
-            fillStyle: "#ffda91",
-            strokeStyle: "#ffda91",
-            lineWidth: 3,
-          },
-        }
-      ),
-      Bodies.rectangle(
-        dimensions.canvasWidth + 80,
-        dimensions.canvasHeight / 2,
-        120,
-        dimensions.canvasHeight,
-        {
-          isStatic: true,
-          render: {
-            fillStyle: "#ffda91",
-            strokeStyle: "#ffda91",
-            lineWidth: 3,
-          },
-        }
-      ),
+      Bodies.rectangle(-120, height / 2, 20 + 180, height + 10, {
+        isStatic: true,
+        render: {
+          fillStyle: "#ffda91",
+          strokeStyle: "#ffda91",
+          lineWidth: 3,
+        },
+      }),
+      Bodies.rectangle(width / 2, height + 40, width + 120, 90, {
+        isStatic: true,
+        render: {
+          fillStyle: "#ffda91",
+          strokeStyle: "#ffda91",
+          lineWidth: 3,
+        },
+      }),
+      Bodies.rectangle(width + 80, height / 2, 120, height, {
+        isStatic: true,
+        render: {
+          fillStyle: "#ffda91",
+          strokeStyle: "#ffda91",
+          lineWidth: 3,
+        },
+      }),
     ]);
 
     data
       .sort(() => 0.5 - Math.random())
-      .slice(0, dimensions.canvasWidth / 90)
+      .slice(0, width / 90)
       .forEach((App, index) => {
         Composite.add(engine.current.world, [
-          Bodies.circle(dimensions.canvasWidth / 2, -100 * index, 60, {
+          Bodies.circle(width / 2, -100 * index, 60, {
             density: 0.001,
             frictionAir: 0.02,
             frictionStatic: 0.5,
@@ -145,15 +101,9 @@ export const Landing = () => {
     const mouse = Mouse.create(render.canvas),
       mouseConstraint = MouseConstraint.create(engine.current, {
         mouse: mouse,
-        constraint: {
-          stiffness: 0.2,
-          render: {
-            visible: false,
-          },
-        },
+        constraint: { stiffness: 0.2, render: { visible: false } },
       });
     Composite.add(engine.current.world, mouseConstraint);
-
     render.mouse = mouse;
 
     Runner.run(engine.current);
@@ -163,6 +113,7 @@ export const Landing = () => {
       Render.stop(render);
       Composite.clear(engine.current.world, false);
       Engine.clear(engine.current);
+
       render.canvas.remove();
       render.textures = {};
     };
@@ -171,20 +122,13 @@ export const Landing = () => {
   return (
     <>
       {window.innerWidth > 640 && (
-        <div
-          ref={scene}
-          style={{
-            position: "fixed",
-            width: "100%",
-            height: "100%",
-          }}
-        >
+        <div ref={scene} className="fixed w-full h-full">
           <canvas ref={canvasRef} />
         </div>
       )}
 
       <div className={styles.wrapper}>
-        <div className="flex justify-center items-center h-screen lg:block relative mx-auto lg:ca-pt--120  pointer-events-none">
+        <div className="flex justify-center items-center h-screen lg:block relative mx-auto lg:ca-pt--120 pointer-events-none">
           <div className="lg:grid lg:grid-cols-10 ca-gap--24">
             <div className="lg:col-span-6 relative">
               <div className="flex items-end lg:ca-gap--8 ca-gap--4 ca-mb--24 lg:ca-mb--32 select-none">
@@ -231,6 +175,7 @@ export const Landing = () => {
                   </a>
                 </div>
               </div>
+
               <div className={styles.arrow}>
                 <img
                   src={LandingpageArrow}
