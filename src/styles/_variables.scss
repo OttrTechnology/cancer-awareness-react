@@ -10,4 +10,25 @@ $yellow: #ffda91;
 
 $ease: cubic-bezier(0.5, 0, 0, 1);
 
-$breakpoint-mobile: 600px;
+$breakpoints-up: (
+  "medium": "40em",
+  "large": "64em",
+);
+
+$breakpoints-down: (
+  "small": "39.9375em",
+  "medium": "63.9375em",
+  "large": "81.51em",
+);
+
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoints-up,$size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints-down,$size)) {
+    @content;
+  }
+}

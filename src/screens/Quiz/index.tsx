@@ -7,7 +7,7 @@ export const Quiz = () => {
   const { activeQuizIndex } = useGameContext();
 
   return (
-    <div className="h-screen flex flex-col justify-between ca-gap--16">
+    <div className="ca-min-h-screen flex flex-col justify-between content-center flex-wrap ca-gap--16">
       <Header />
       {activeQuizIndex === "QUESTION" ? <Question /> : <Result />}
       <GameActions />

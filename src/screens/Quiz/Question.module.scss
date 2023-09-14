@@ -1,19 +1,47 @@
 @use "main";
 
 .wrapper {
-  padding-top: main.em(104px);
+  padding-top: main.em(120px);
   position: relative;
   width: main.em(912px);
+
+  @include main.breakpoint-down(medium) {
+    padding-top: main.em(90);
+    width: main.em(650);
+  }
+
+  @include main.breakpoint-down(small) {
+    padding-top: main.em(72);
+    width: main.em(343);
+  }
 }
 
 .innerContainer {
   @apply flex justify-center text-center;
-  padding: main.em(152px) main.em(96px) main.em(80px) main.em(96px);
+  padding: main.em(152) main.em(96) main.em(80);
   background-color: main.$light-yellow;
+
+  @include main.breakpoint-down(medium) {
+    padding: main.em(125) main.em(32) main.em(64);
+  }
+
+  @include main.breakpoint-down(small) {
+    padding: main.em(96) main.em(16) main.em(48);
+  }
 }
 
 .image {
   @apply flex justify-center absolute top-0;
-  height: main.em(208);
-  width: main.em(208);
+  height: main.em(240);
+  width: main.em(240);
+
+  @include main.breakpoint-down(medium) {
+    height: main.em(180);
+    width: main.em(180);
+  }
+
+  @include main.breakpoint-down(small) {
+    height: main.em(144);
+    width: main.em(144);
+  }
 }

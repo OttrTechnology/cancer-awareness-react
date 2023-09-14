@@ -7,6 +7,11 @@
   position: relative;
   width: main.em(728px);
   padding-top: main.em(80);
+
+  @include main.breakpoint-down(small) {
+    width: main.em(335px);
+    padding-top: main.em(56);
+  }
 }
 
 .innerContainer {
@@ -14,12 +19,22 @@
   padding-top: main.em(104px);
   padding-bottom: main.em(40px);
   background-color: main.$yellow;
+
+  @include main.breakpoint-down(small) {
+    padding-top: main.em(88px);
+    padding-bottom: main.em(32px);
+  }
 }
 
 .image {
   @apply flex justify-center absolute top-0;
   height: main.em(160);
   width: main.em(160);
+
+  @include main.breakpoint-down(small) {
+    height: main.em(112);
+    width: main.em(112);
+  }
 }
 
 .score {

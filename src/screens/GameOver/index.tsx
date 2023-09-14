@@ -7,6 +7,13 @@ import gsap from "gsap";
 import { Button } from "components";
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { GameOverAnimation } from "./components/gameOver";
+import { useLayoutEffect } from "react";
+import { useBoolean } from "usehooks-ts";
+import { useGameContext } from "hooks";
+import { Button } from "components";
+import trophy from "assets/trophy.svg";
+import { Share } from "./components";
+import styles from "./GameOver.module.scss";
 
 export const GameOver = () => {
   const { currentScore, highScore, handlePlayAgain, remainingLives } =
@@ -23,7 +30,10 @@ export const GameOver = () => {
     };
   }, []);
 
-  const gameOverRef = useRef(null);
+<<<<<<< HEAD
+const { value: share, toggle } = useBoolean(false);  
+
+const gameOverRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -39,17 +49,27 @@ export const GameOver = () => {
 
   return (
     <>
+    {share && <Share toggleShare={toggle} />}
       <div className="h-screen flex flex-col justify-center overflow-hidden">
         <GameOverAnimation />
         <div className="flex justify-center" ref={gameOverRef}>
+=======
+  const { value: share, toggle } = useBoolean(false);
+
+  return (
+    <div>
+      {share && <Share toggleShare={toggle} />}
+      <div className="relative ca-min-h-screen flex flex-col justify-center ">
+        <div className="flex justify-center">
+>>>>>>> main
           <div className={styles.container}>
             <div className={styles.innerContainer}>
               <img className={styles.image} src={trophy} alt={trophy} />
 
-              <div className="flex flex-col ca-gap--40">
+              <div className="flex flex-col ca-gap--32 lg:ca-gap--40">
                 <div className="flex flex-col">
                   <div className="ca-mb--8">
-                    <div className="ca-heading--three">
+                    <div className="ca-heading--three ">
                       Appreciate your effort
                     </div>
                   </div>
@@ -58,15 +78,15 @@ export const GameOver = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-center ca-gap--80">
-                  <div className="flex flex-col ca-gap--4">
+                <div className="flex justify-center ca-gap--48 lg:ca-gap--80">
+                  <div className="flex flex-col ca-gap--6 lg:ca-gap--4">
                     <div className={styles.score}>{currentScore}</div>
                     <div className="ca-body--md ca-text--black-80">
                       Your Score
                     </div>
                   </div>
 
-                  <div className="flex flex-col ca-gap--4">
+                  <div className="flex flex-col ca-gap--6 lg:ca-gap--4">
                     <div className={styles.score}>{highScore}</div>
                     <div className="ca-body--md ca-text--black-80">
                       High Score
@@ -76,16 +96,15 @@ export const GameOver = () => {
               </div>
             </div>
 
-            <div className="flex justify-center ca-gap--32">
+            <div className="flex flex-col md:flex-row items-center justify-center ca-gap--16 md:ca-gap--32">
               <Button
-                onClick={handlePlayAgain}
+                onClick={toggle}
                 label="Share Your Score"
                 color="primary"
                 size="fixed-width"
               />
 
               <Button
-                color=""
                 size="fixed-width"
                 onClick={handlePlayAgain}
                 label="Try Again"

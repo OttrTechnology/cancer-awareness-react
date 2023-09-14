@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import mockData from "screens/Quiz/cancer-findings-data.json";
+import data from "screens/Quiz/cancer-findings-data.json";
 
 interface IQuiz {
   fact: boolean;
@@ -36,7 +36,7 @@ interface GameContextProps {
   >;
   answer: boolean;
 
-  handleNext: (currentScore: number) => () => void;
+  handleNext: (currentScore: number) => void;
   handlePlayAgain: () => void;
   handleAnswer: (newAnswer: boolean) => () => void;
 }
@@ -47,19 +47,6 @@ export const GameContext = createContext<GameContextProps | undefined>(
 
 export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const [shuffledData, setShuffledData] = useState<IQuiz[]>([]);
-
-  const shuffle = (array: IQuiz[]) => {
-    return array
-      .map((a) => ({ sort: Math.random(), value: a }))
-      .sort((a, b) => a.sort - b.sort)
-      .map((a) => a.value);
-  };
-
-  useEffect(() => {
-    const data = mockData;
-    const shuffledArray = shuffle(data);
-    setShuffledData(shuffledArray);
-  }, []);
 
   const [activeScreen, setActiveScreen] =
     useState<CurrentScreenType>("LANDING");
@@ -81,7 +68,19 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [remainingLives, setRemainingLives] = useState(1);
 
-  const handleNext = (currentScore: number) => () => {
+  const shuffle = (array: IQuiz[]) => {
+    return array
+      .map((a) => ({ sort: Math.random(), value: a }))
+      .sort((a, b) => a.sort - b.sort)
+      .map((a) => a.value);
+  };
+
+  useEffect(() => {
+    const shuffledArray = shuffle(data);
+    setShuffledData(shuffledArray);
+  }, []);
+
+  const handleNext = (currentScore: number) => {
     let index = activeQuizIndex;
 
     if (index === "RESULT") index = "QUESTION";
@@ -105,6 +104,8 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     setCurrentScore(0);
     setActiveQuestionIndex(0);
     setActiveQuizIndex("QUESTION");
+    const shuffledArray = shuffle(data);
+    setShuffledData(shuffledArray);
   };
 
   const handleAnswer = (newAnswer: boolean) => () => {
