@@ -1,5 +1,5 @@
-import styles from "./Question.module.scss";
 import { useGameContext } from "hooks";
+import styles from "./Question.module.scss";
 
 export const Question = () => {
   const { currentQuestion } = useGameContext();

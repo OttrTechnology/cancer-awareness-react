@@ -1,8 +1,8 @@
+import { clsx } from "clsx";
+import { useGameContext } from "hooks";
 import Correct from "assets/resultEmoji/right.png";
 import Wrong from "assets/resultEmoji/wrong.png";
 import styles from "./Result.module.scss";
-import { useGameContext } from "hooks";
-import { clsx } from "clsx";
 
 export const Result = () => {
   const { currentQuestion, answer } = useGameContext();
