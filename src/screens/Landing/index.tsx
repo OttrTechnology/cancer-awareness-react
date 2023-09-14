@@ -52,7 +52,10 @@ export const Landing = () => {
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
-  });
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const render = Render.create({

@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import styles from "./GameOver.module.scss";
 import gameover from "assets/resultEmoji/gameover.svg";
+import gsap from "gsap";
 import { useGameContext } from "hooks";
+import { useEffect, useRef } from "react";
+import styles from "./GameOver.module.scss";
 
 export const GameOverAnimation = () => {
   const gameOverRef = useRef(null);
@@ -23,7 +23,7 @@ export const GameOverAnimation = () => {
       );
     });
 
-    return () => ctx.revert(); // cleanup
+    return () => ctx.revert();
   }, [remainingLives]);
   return (
     <>

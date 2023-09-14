@@ -10,18 +10,8 @@ const App = () => {
   const quizRef = useRef<HTMLDivElement>(null);
   const gameOverRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     gsap.set(quizRef.current, { display: "none", duration: 0 });
-  //     gsap.set(gameOverRef.current, { display: "none", duration: 0 });
-  //   });
-
-  //   return () => ctx.revert();
-  // }, []);
-
   useEffect(() => {
     const ctx = gsap.context(() => {
-      console.log(activeScreen);
       switch (activeScreen) {
         case "LANDING": {
           const tl = gsap.timeline({
@@ -55,11 +45,6 @@ const App = () => {
               "transitToGameOver"
             )
             .to(quizRef.current, { display: "none", duration: 0 }, ">")
-            // .to(
-            //   quizRef.current,
-            //   { display: "none", duration: 0 },
-            //   ">transitToGameOver"
-            // )
             .to(gameOverRef.current, { display: "block", duration: 0 }, ">")
             .to(gameOverRef.current, { autoAlpha: 1 }, ">");
           break;

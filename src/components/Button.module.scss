@@ -68,8 +68,8 @@
     height: main.em(80, $btn-font);
 
     @include main.breakpoint-down(small) {
-      width: main.em(180px);
-      height: main.em(56px);
+      width: 180px;
+      height: 56px;
     }
   }
 
