@@ -30,6 +30,7 @@ interface GameContextProps {
   highScore: number;
   activeQuizIndex: QuizScreenType;
   activeScreen: CurrentScreenType;
+  totalLives: number;
   remainingLives: number;
   setActiveScreen: React.Dispatch<
     React.SetStateAction<"LANDING" | "QUIZ" | "GAME_OVER">
@@ -66,7 +67,9 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [highScore, setHighScore] = useState(initialHighScore);
 
-  const [remainingLives, setRemainingLives] = useState(3);
+  const totalLives = 3;
+
+  const [remainingLives, setRemainingLives] = useState(totalLives);
 
   const shuffle = (array: IQuiz[]) => {
     return array
@@ -102,7 +105,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const handlePlayAgain = () => {
     setActiveScreen(CurrentScreen.QUIZ);
-    setRemainingLives(3);
+    setRemainingLives(totalLives);
     setCurrentScore(0);
     setActiveQuestionIndex(0);
     setActiveQuizIndex("QUESTION");
@@ -130,6 +133,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     currentScore,
     highScore,
     activeQuizIndex,
+    totalLives,
     remainingLives,
     handleNext,
     handlePlayAgain,
