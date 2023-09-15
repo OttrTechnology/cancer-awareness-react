@@ -24,7 +24,7 @@ export const GameOverAnimation = () => {
 
   return (
     <>
-      <div className={styles.container} ref={gameOverRef}>
+      <div className={styles.wrapper} ref={gameOverRef}>
         <img className={styles.img} src={gameOver} />
         <div className={clsx("ca-heading--one", styles.gameOverText)}>
           Game Over!
