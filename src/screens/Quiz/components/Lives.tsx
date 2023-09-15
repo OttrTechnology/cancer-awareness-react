@@ -16,9 +16,6 @@ export const Lives = () => {
         if (index > remainingLives) {
           gsap.to(el, { fill: "red", duration: 4 });
         }
-        // if (index === remainingLives) {
-        //   gsap.to(el, { fill: "#edcda6", duration: 1 });
-        // }
       }, livesConatinerRef);
     });
 
