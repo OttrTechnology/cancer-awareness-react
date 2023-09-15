@@ -3,6 +3,7 @@ import { useLocalStorage } from "usehooks-ts";
 import data from "screens/Quiz/cancer-findings-data.json";
 
 const TOTAL_LIVES = 3;
+
 interface IQuiz {
   fact: boolean;
   claim: string;
@@ -27,21 +28,23 @@ export type CurrentScreenType = keyof typeof CurrentScreen;
 export type QuizScreenType = keyof typeof QuizScreen;
 
 interface GameContextProps {
-  currentQuestion: IQuiz;
-  currentScore: number;
-  highScore: number;
-  activeQuizIndex: QuizScreenType;
   activeScreen: CurrentScreenType;
-  totalLives: number;
-  remainingLives: number;
   setActiveScreen: React.Dispatch<
     React.SetStateAction<"LANDING" | "QUIZ" | "GAME_OVER">
   >;
-  answer: boolean;
 
+  activeQuizIndex: QuizScreenType;
+  currentQuestion: IQuiz;
+
+  totalLives: number;
+  remainingLives: number;
+  currentScore: number;
+  highScore: number;
+  userAnswer: boolean;
+
+  handleAnswer: (newAnswer: boolean) => () => void;
   handleNext: () => void;
   handlePlayAgain: () => void;
-  handleAnswer: (newAnswer: boolean) => () => void;
 }
 
 export const GameContext = createContext<GameContextProps | undefined>(
@@ -55,13 +58,12 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     useState<CurrentScreenType>("LANDING");
 
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
-
   const currentQuestion = shuffledData[activeQuestionIndex];
-
-  const [answer, setAnswer] = useState(true);
 
   const [activeQuizIndex, setActiveQuizIndex] =
     useState<QuizScreenType>("QUESTION");
+
+  const [userAnswer, setUserAnswer] = useState(true);
 
   const [currentScore, setCurrentScore] = useState(0);
 
@@ -81,6 +83,22 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     setShuffledData(shuffledArray);
   }, []);
 
+  const handleAnswer = (newAnswer: boolean) => () => {
+    let index = activeQuizIndex;
+
+    if (index === "RESULT") index = "QUESTION";
+    else index = "RESULT";
+
+    if (newAnswer !== currentQuestion.fact) {
+      setRemainingLives((prevLife) => prevLife - 1);
+    } else {
+      setCurrentScore((prevScore) => prevScore + 1);
+    }
+
+    setActiveQuizIndex(index);
+    setUserAnswer(newAnswer);
+  };
+
   const handleNext = () => {
     let index = activeQuizIndex;
 
@@ -98,8 +116,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   const handlePlayAgain = () => {
-    const shuffledArray = shuffle(data);
-    setShuffledData(shuffledArray);
+    setShuffledData(shuffle(data));
 
     setRemainingLives(TOTAL_LIVES);
     setCurrentScore(0);
@@ -110,35 +127,22 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     setActiveScreen(CurrentScreen.QUIZ);
   };
 
-  const handleAnswer = (newAnswer: boolean) => () => {
-    let index = activeQuizIndex;
-
-    if (index === "RESULT") index = "QUESTION";
-    else index = "RESULT";
-
-    if (newAnswer !== currentQuestion.fact) {
-      setRemainingLives((prevLive) => prevLive - 1);
-    } else {
-      setCurrentScore((prevScore) => prevScore + 1);
-    }
-
-    setActiveQuizIndex(index);
-    setAnswer(newAnswer);
-  };
-
   const value: GameContextProps = {
-    currentScore,
-    highScore,
+    activeScreen,
+    setActiveScreen,
+
     activeQuizIndex,
+    currentQuestion,
+
     totalLives: TOTAL_LIVES,
     remainingLives,
+    currentScore,
+    highScore,
+    userAnswer,
+
+    handleAnswer,
     handleNext,
     handlePlayAgain,
-    handleAnswer,
-    activeScreen,
-    currentQuestion,
-    setActiveScreen,
-    answer,
   };
 
   return (
