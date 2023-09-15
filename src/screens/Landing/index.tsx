@@ -117,6 +117,10 @@ export const Landing = () => {
     Runner.run(engine.current);
     Render.run(render);
 
+    if (activeScreen === "TRANSITIONING_FROM_LANDING") {
+      Composite.clear(engine.current.world, false);
+    }
+
     return () => {
       Render.stop(render);
       Composite.clear(engine.current.world, false);
