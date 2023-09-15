@@ -9,8 +9,8 @@ const App = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      if (activeScreen !== "LANDING") {
-        gsap.to("body", { backgroundColor: "#F7EEC1" });
+      if (activeScreen == "QUIZ") {
+        gsap.to("body", { backgroundColor: "#F7EEC1", duration: 2 });
       }
     });
 

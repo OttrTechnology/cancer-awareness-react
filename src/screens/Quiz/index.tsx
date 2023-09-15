@@ -12,9 +12,9 @@ export const Quiz = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (activeScreen === "TRANSITIONING_FROM_QUIZ") {
-        gsap.to(quizRef.current, { autoAlpha: 0, duration: 1 });
+        gsap.to(quizRef.current, { autoAlpha: 0, duration: 0.7 });
       } else if (activeScreen === "QUIZ") {
-        gsap.to(quizRef.current, { autoAlpha: 1, duration: 1 });
+        gsap.to(quizRef.current, { autoAlpha: 1, duration: 0.7 });
       }
     });
 

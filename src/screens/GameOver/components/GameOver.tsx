@@ -15,7 +15,7 @@ export const GameOverAnimation = () => {
       gsap.fromTo(
         gameOverRef.current,
         { autoAlpha: 1 },
-        { autoAlpha: 0, duration: 2 }
+        { autoAlpha: 0, duration: 2.5 }
       );
     });
 
