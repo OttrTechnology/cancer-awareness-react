@@ -26,7 +26,6 @@ body {
   &-heading {
     @apply font-semibold;
     letter-spacing: -0.01em;
-    color: variables.$black;
 
     &--one {
       @extend .ca-heading;

@@ -39,7 +39,7 @@ interface GameContextProps {
   >;
   answer: boolean;
 
-  handleNext: (currentScore: number) => void;
+  handleNext: () => void;
   handlePlayAgain: () => void;
   handleAnswer: (newAnswer: boolean) => () => void;
 }
@@ -81,7 +81,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     setShuffledData(shuffledArray);
   }, []);
 
-  const handleNext = (currentScore: number) => {
+  const handleNext = () => {
     let index = activeQuizIndex;
 
     if (index === "RESULT") index = "QUESTION";
@@ -89,7 +89,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
     if (currentScore > highScore) setHighScore(currentScore);
 
-    if (remainingLives === 0) {
+    if (remainingLives === 0 || activeQuestionIndex === data.length - 1) {
       setActiveScreen(CurrentScreen.GAME_OVER);
     } else {
       setActiveQuestionIndex((prev) => prev + 1);

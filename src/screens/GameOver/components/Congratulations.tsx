@@ -1,13 +1,10 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import gameOver from "assets/resultEmoji/gameover.svg";
-import { useGameContext } from "hooks";
+import congratulations from "assets/resultEmoji/happy.svg";
 import styles from "./index.module.scss";
 import clsx from "clsx";
 
-export const GameOverAnimation = () => {
-  const { remainingLives } = useGameContext();
-
+export const CongratulationsAnimation = () => {
   const gameOverRef = useRef(null);
 
   useEffect(() => {
@@ -20,14 +17,14 @@ export const GameOverAnimation = () => {
     });
 
     return () => ctx.revert();
-  }, [remainingLives]);
+  }, []);
 
   return (
     <>
       <div className={styles.container} ref={gameOverRef}>
-        <img className={styles.img} src={gameOver} />
-        <div className={clsx("ca-heading--one", styles.gameOverText)}>
-          Game Over!
+        <img className={styles.img} src={congratulations} />
+        <div className={clsx("ca-heading--one", styles.congratulationsText)}>
+          Congratulations
         </div>
       </div>
     </>
