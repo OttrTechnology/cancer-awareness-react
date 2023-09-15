@@ -35,7 +35,7 @@ export const GameOver = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(gameOverRef.current, { autoAlpha: 0, delay: 3, duration: 1 });
+      gsap.from(gameOverRef.current, { autoAlpha: 0, delay: 2, duration: 1 });
     });
 
     return () => ctx.revert();

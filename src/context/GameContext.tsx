@@ -153,6 +153,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
       setActiveScreen({
         location: "GAME_OVER",
         transition: "TRANSITION_FROM_QUIZ",
+        duration: 1,
       });
     } else {
       setActiveQuestionIndex((prev) => prev + 1);

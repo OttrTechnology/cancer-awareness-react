@@ -41,7 +41,7 @@ export const Landing = () => {
     setActiveScreen({
       location: "QUIZ",
       transition: "TRANSITION_FROM_LANDING",
-      duration: 3,
+      duration: 1,
     });
 
   useEffect(() => {
@@ -130,9 +130,9 @@ export const Landing = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (activeScreen === "TRANSITIONING_FROM_LANDING") {
-        gsap.to(mainRef.current, { autoAlpha: 0, duration: 3 });
+        gsap.to(mainRef.current, { autoAlpha: 0, duration: 1 });
       } else if (activeScreen === "LANDING") {
-        gsap.to(mainRef.current, { autoAlpha: 1, duration: 2 });
+        gsap.to(mainRef.current, { autoAlpha: 1, duration: 1 });
       }
     });
 
