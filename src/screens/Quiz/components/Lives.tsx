@@ -21,6 +21,7 @@ export const Lives = () => {
         // }
       }, livesConatinerRef);
     });
+
     return () => ctx.revert();
   }, [remainingLives]);
 
