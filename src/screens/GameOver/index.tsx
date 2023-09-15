@@ -5,7 +5,11 @@ import trophy from "assets/trophy.svg";
 import Confetti from "react-confetti";
 import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
-import { Share, GameOverAnimation } from "./components";
+import {
+  Share,
+  GameOverAnimation,
+  CongratulationsAnimation,
+} from "./components";
 import styles from "./index.module.scss";
 
 export const GameOver = () => {
@@ -46,7 +50,11 @@ export const GameOver = () => {
       />
 
       <div className="relative ca-min-h-screen flex flex-col justify-center overflow-hidden">
-        <GameOverAnimation />
+        {remainingLives === 0 ? (
+          <GameOverAnimation />
+        ) : (
+          <CongratulationsAnimation />
+        )}
 
         <div className="flex justify-center" ref={gameOverRef}>
           <div className={styles.container}>

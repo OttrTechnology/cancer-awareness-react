@@ -35,16 +35,16 @@ interface GameContextProps {
 
   activeQuizIndex: QuizScreenType;
   currentQuestion: IQuiz;
-  
+
   totalLives: number;
   remainingLives: number;
   currentScore: number;
   highScore: number;
   userAnswer: boolean;
 
-  handleNext: (currentScore: number) => void;
-  handlePlayAgain: () => void;
   handleAnswer: (newAnswer: boolean) => () => void;
+  handleNext: () => void;
+  handlePlayAgain: () => void;
 }
 
 export const GameContext = createContext<GameContextProps | undefined>(
@@ -60,10 +60,10 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
   const currentQuestion = shuffledData[activeQuestionIndex];
 
-  const [userAnswer, setUserAnswer] = useState(true);
-
   const [activeQuizIndex, setActiveQuizIndex] =
     useState<QuizScreenType>("QUESTION");
+
+  const [userAnswer, setUserAnswer] = useState(true);
 
   const [currentScore, setCurrentScore] = useState(0);
 
@@ -99,7 +99,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     setUserAnswer(newAnswer);
   };
 
-  const handleNext = (currentScore: number) => {
+  const handleNext = () => {
     let index = activeQuizIndex;
 
     if (index === "RESULT") index = "QUESTION";
@@ -107,7 +107,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
     if (currentScore > highScore) setHighScore(currentScore);
 
-    if (remainingLives === 0) {
+    if (remainingLives === 0 || activeQuestionIndex === data.length - 1) {
       setActiveScreen(CurrentScreen.GAME_OVER);
     } else {
       setActiveQuestionIndex((prev) => prev + 1);
@@ -128,18 +128,21 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   const value: GameContextProps = {
-    currentScore,
-    highScore,
+    activeScreen,
+    setActiveScreen,
+
     activeQuizIndex,
+    currentQuestion,
+
     totalLives: TOTAL_LIVES,
     remainingLives,
+    currentScore,
+    highScore,
+    userAnswer,
+
     handleAnswer,
     handleNext,
     handlePlayAgain,
-    activeScreen,
-    currentQuestion,
-    setActiveScreen,
-    userAnswer,
   };
 
   return (

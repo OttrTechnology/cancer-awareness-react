@@ -5,8 +5,7 @@ import { BiRightArrowAlt } from "react-icons/bi";
 import { BiX } from "react-icons/bi";
 
 export const GameActions = () => {
-  const { activeQuizIndex, handleAnswer, handleNext, currentScore } =
-    useGameContext();
+  const { activeQuizIndex, handleAnswer, handleNext } = useGameContext();
 
   return (
     <div>
@@ -19,7 +18,7 @@ export const GameActions = () => {
         <div className="flex justify-center ca-mb--64 md:ca-mb--96 ca-gap--32">
           <Button
             size="medium"
-            onClick={() => handleNext(currentScore)}
+            onClick={handleNext}
             label="Next"
             icon={<BiRightArrowAlt />}
           />
