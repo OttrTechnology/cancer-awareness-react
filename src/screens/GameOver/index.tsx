@@ -1,15 +1,22 @@
-import { useEffect, useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
-import { useBoolean } from "usehooks-ts";
+import { useBoolean, useWindowSize } from "usehooks-ts";
 import { useGameContext } from "hooks";
 import { Button } from "components";
 import trophy from "assets/trophy.svg";
-import { Share, GameOverAnimation } from "./components";
+import Confetti from "react-confetti";
+import { useEffect, useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
+import {
+  Share,
+  GameOverAnimation,
+  CongratulationsAnimation,
+} from "./components";
 import styles from "./index.module.scss";
 
 export const GameOver = () => {
   const { currentScore, highScore, handlePlayAgain, remainingLives } =
     useGameContext();
+
+  const { width, height } = useWindowSize();
 
   useLayoutEffect(() => {
     document.documentElement.style.setProperty("--background-color", "#ffda91");
@@ -28,16 +35,26 @@ export const GameOver = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(gameOverRef.current, { autoAlpha: 0, delay: 3, duration: 1 });
+      gsap.from(gameOverRef.current, { autoAlpha: 0, delay: 2, duration: 1 });
     });
 
     return () => ctx.revert();
   }, [remainingLives]);
 
   return (
-    <>
+    <div>
+      <Confetti
+        width={width}
+        height={height}
+        numberOfPieces={currentScore * 3}
+      />
+
       <div className="relative ca-min-h-screen flex flex-col justify-center overflow-hidden">
-        <GameOverAnimation />
+        {remainingLives === 0 ? (
+          <GameOverAnimation />
+        ) : (
+          <CongratulationsAnimation />
+        )}
 
         <div className="flex justify-center" ref={gameOverRef}>
           <div className={styles.container}>
@@ -90,9 +107,8 @@ export const GameOver = () => {
             </div>
           </div>
         </div>
+        {share && <Share toggleShare={toggle} />}
       </div>
-
-      {share && <Share toggleShare={toggle} />}
-    </>
+    </div>
   );
 };

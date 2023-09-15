@@ -14,8 +14,9 @@ import {
   Render,
   Runner,
 } from "matter-js";
-import clsx from "clsx";
 import { useWindowSize } from "usehooks-ts";
+import { gsap } from "gsap";
+import clsx from "clsx";
 
 import LandingpageArrow from "assets/homepageArrow.svg";
 import LandingLogo from "assets/homeLogo.svg";
@@ -26,15 +27,22 @@ import data from "../Quiz/cancer-findings-data.json";
 import styles from "./index.module.scss";
 
 export const Landing = () => {
-  const { setActiveScreen } = useGameContext();
+  const { activeScreen, setActiveScreen } = useGameContext();
 
   const { width, height } = useWindowSize();
+
+  const mainRef = useRef<HTMLDivElement>(null);
 
   const canvasRef = useRef(null);
   const engine = useRef(Engine.create());
   const scene = useRef(null);
 
-  const startQuiz = () => setActiveScreen("QUIZ");
+  const startQuiz = () =>
+    setActiveScreen({
+      location: "QUIZ",
+      transition: "TRANSITION_FROM_LANDING",
+      duration: 1,
+    });
 
   useEffect(() => {
     const render = Render.create({
@@ -119,8 +127,20 @@ export const Landing = () => {
     };
   });
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (activeScreen === "TRANSITIONING_FROM_LANDING") {
+        gsap.to(mainRef.current, { autoAlpha: 0, duration: 1 });
+      } else if (activeScreen === "LANDING") {
+        gsap.to(mainRef.current, { autoAlpha: 1, duration: 1 });
+      }
+    });
+
+    return () => ctx.revert();
+  }, [activeScreen]);
+
   return (
-    <>
+    <div ref={mainRef}>
       {window.innerWidth > 640 && (
         <div ref={scene} className="fixed w-full h-full">
           <canvas ref={canvasRef} />
@@ -192,6 +212,6 @@ export const Landing = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

@@ -1,16 +1,24 @@
 @use "main";
 
-.gameOver {
-  @apply flex flex-col justify-center h-screen w-full text-center absolute top-0 left-0 z-10;
+.wrapper {
+  @apply flex flex-col justify-center opacity-0 invisible h-screen w-full text-center absolute z-10;
   gap: main.rem(48px);
   background-color: main.$yellow;
   background-image: url("../../../assets/backgroundPattern.svg");
 }
 
-.gameOverImg {
+.img {
   height: main.rem(200px);
 
   @include main.breakpoint-down(small) {
     height: main.rem(120px);
   }
+}
+
+.gameOverText {
+  color: main.$red;
+}
+
+.congratulationsText {
+  color: main.$green;
 }

@@ -6,10 +6,8 @@ import styles from "./Lives.module.scss";
 const { life, lifeLost } = styles;
 
 export const Lives = () => {
-  const { remainingLives } = useGameContext();
+  const { remainingLives, totalLives } = useGameContext();
   const livesConatinerRef = useRef(null);
-
-  const TOTAL_LIVES = 3;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -25,9 +23,10 @@ export const Lives = () => {
     });
     return () => ctx.revert();
   }, [remainingLives]);
+
   return (
     <div className="flex items-start" ref={livesConatinerRef}>
-      {Array(TOTAL_LIVES)
+      {Array(totalLives)
         .fill(0)
         .map((_, index) => (
           <svg
