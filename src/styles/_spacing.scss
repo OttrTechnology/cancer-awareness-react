@@ -183,7 +183,7 @@
     }
   }
 }
-@include variables.breakpoint-up(medium) {
+@include variables.breakpoint-up(small) {
   .md\:ca-mt {
     &--56 {
       margin-top: functions.em(56);

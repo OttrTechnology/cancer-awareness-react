@@ -175,7 +175,12 @@ export const Landing = () => {
                   </a>
                 </div>
               </div>
+            </div>
 
+            <div className="relative flex justify-end md:mr-32 lg:mr-0 col-start-7 mr-2 lg:col-start-8 col-span-3 mt-14 lg:mt-auto  pointer-events-auto">
+              <button className={styles.primaryButton} onClick={startQuiz}>
+                Take the quiz
+              </button>
               <div className={styles.arrow}>
                 <img
                   src={LandingpageArrow}
@@ -183,12 +188,6 @@ export const Landing = () => {
                   alt="arrow"
                 />
               </div>
-            </div>
-
-            <div className="flex justify-end md:mr-32 lg:mr-0 col-start-7 mr-2 lg:col-start-8 col-span-3 mt-14 lg:mt-auto  pointer-events-auto">
-              <button className={styles.primaryButton} onClick={startQuiz}>
-                Take the quiz
-              </button>
             </div>
           </div>
         </div>

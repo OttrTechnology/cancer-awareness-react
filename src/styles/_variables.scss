@@ -11,13 +11,14 @@ $yellow: #ffda91;
 $ease: cubic-bezier(0.5, 0, 0, 1);
 
 $breakpoints-up: (
-  "medium": "40em",
-  "large": "64em",
+  "small": "40em", // 640px
+  "medium": "48em", // 768
+  "large": "64em", // 1024px
 );
 
 $breakpoints-down: (
   "small": "39.9375em",
-  "medium": "63.9375em",
+  "medium": "63.9375",
   "large": "81.51em",
 );
 

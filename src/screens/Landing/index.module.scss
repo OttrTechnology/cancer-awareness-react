@@ -30,28 +30,30 @@
 .arrow {
   @apply select-none;
   position: absolute;
-  right: main.em(-72);
-  bottom: 0;
+  left: 9%;
+  top: 1em;
+  width: 6.5959375rem;
+  height: 1.8565625rem;
+  transform: rotate(40deg);
 
   &__img {
     width: main.em(200);
     height: main.em(100);
-  }
+  } 
 
   
-  @include main.breakpoint-down(medium) {
+  @include main.breakpoint-up(medium) {
     width: 10.5959375em;
-    left: 10%;
+    left: 6em;
+    top: 2em;
     transform: rotate(40deg);
-    bottom: -59%;
   }
 
-  @include main.breakpoint-down(small) {
-    width: 6.5959375rem;
-    height: 1.8565625rem;
-    left: 9%;
-    transform: rotate(40deg);
-    bottom: -29%;
+  @include main.breakpoint-up(large) {
+    width: 12.5em;
+    left: -14em;
+    top: 11em;
+    transform: rotate(0deg);
   }
 }
 
