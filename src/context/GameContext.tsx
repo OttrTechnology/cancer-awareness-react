@@ -28,16 +28,18 @@ export type CurrentScreenType = keyof typeof CurrentScreen;
 export type QuizScreenType = keyof typeof QuizScreen;
 
 interface GameContextProps {
-  currentQuestion: IQuiz;
-  currentScore: number;
-  highScore: number;
-  activeQuizIndex: QuizScreenType;
   activeScreen: CurrentScreenType;
-  totalLives: number;
-  remainingLives: number;
   setActiveScreen: React.Dispatch<
     React.SetStateAction<"LANDING" | "QUIZ" | "GAME_OVER">
   >;
+
+  activeQuizIndex: QuizScreenType;
+  currentQuestion: IQuiz;
+  
+  totalLives: number;
+  remainingLives: number;
+  currentScore: number;
+  highScore: number;
   userAnswer: boolean;
 
   handleNext: (currentScore: number) => void;
@@ -88,7 +90,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     else index = "RESULT";
 
     if (newAnswer !== currentQuestion.fact) {
-      setRemainingLives((prevLive) => prevLive - 1);
+      setRemainingLives((prevLife) => prevLife - 1);
     } else {
       setCurrentScore((prevScore) => prevScore + 1);
     }
