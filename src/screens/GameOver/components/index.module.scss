@@ -1,7 +1,7 @@
 @use "main";
 
 .wrapper {
-  @apply flex flex-col justify-center opacity-0 invisible h-screen w-full text-center absolute z-10;
+  @apply flex flex-col justify-center h-screen w-full text-center absolute z-10;
   gap: main.rem(48px);
   background-color: main.$yellow;
   background-image: url("../../../assets/backgroundPattern.svg");

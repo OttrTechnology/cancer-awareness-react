@@ -9,13 +9,21 @@ export const GameOverAnimation = () => {
   const { remainingLives } = useGameContext();
 
   const gameOverRef = useRef(null);
+  const gameOverEmojiRef = useRef(null);
+  const gameOverTextRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      gsap.to(gameOverRef.current, { autoAlpha: 0, duration: 2.5 });
       gsap.fromTo(
-        gameOverRef.current,
-        { autoAlpha: 1 },
-        { autoAlpha: 0, duration: 2.5 }
+        gameOverEmojiRef.current,
+        { y: -150 },
+        { y: 0, duration: 0.3, ease: "bounce.out" }
+      );
+      gsap.fromTo(
+        gameOverTextRef.current,
+        { y: 150 },
+        { y: 0, duration: 0.3, ease: "bounce.out" }
       );
     });
 
@@ -25,8 +33,11 @@ export const GameOverAnimation = () => {
   return (
     <>
       <div className={styles.wrapper} ref={gameOverRef}>
-        <img className={styles.img} src={gameOver} />
-        <div className={clsx("ca-heading--one", styles.gameOverText)}>
+        <img className={styles.img} src={gameOver} ref={gameOverEmojiRef} />
+        <div
+          className={clsx("ca-heading--one", styles.gameOverText)}
+          ref={gameOverTextRef}
+        >
           Game Over!
         </div>
       </div>
