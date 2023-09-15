@@ -21,7 +21,7 @@ export const CongratulationsAnimation = () => {
 
   return (
     <>
-      <div className={styles.container} ref={gameOverRef}>
+      <div className={styles.wrapper} ref={gameOverRef}>
         <img className={styles.img} src={congratulations} />
         <div className={clsx("ca-heading--one", styles.congratulationsText)}>
           Congratulations
