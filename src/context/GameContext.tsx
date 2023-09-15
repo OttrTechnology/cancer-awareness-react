@@ -3,6 +3,7 @@ import { useLocalStorage } from "usehooks-ts";
 import data from "screens/Quiz/cancer-findings-data.json";
 
 const TOTAL_LIVES = 3;
+
 interface IQuiz {
   fact: boolean;
   claim: string;
