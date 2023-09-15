@@ -1,5 +1,8 @@
 import { createContext, useEffect, useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
 import data from "screens/Quiz/cancer-findings-data.json";
+
+const TOTAL_LIVES = 3;
 
 interface IQuiz {
   fact: boolean;
@@ -30,6 +33,7 @@ interface GameContextProps {
   highScore: number;
   activeQuizIndex: QuizScreenType;
   activeScreen: CurrentScreenType;
+  totalLives: number;
   remainingLives: number;
   setActiveScreen: React.Dispatch<
     React.SetStateAction<"LANDING" | "QUIZ" | "GAME_OVER">
@@ -62,11 +66,9 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [currentScore, setCurrentScore] = useState(0);
 
-  const initialHighScore = parseInt(localStorage.getItem("highScore") ?? "0");
+  const [highScore, setHighScore] = useLocalStorage("highScore", 0);
 
-  const [highScore, setHighScore] = useState(initialHighScore);
-
-  const [remainingLives, setRemainingLives] = useState(3);
+  const [remainingLives, setRemainingLives] = useState(TOTAL_LIVES);
 
   const shuffle = (array: IQuiz[]) => {
     return array
@@ -86,10 +88,8 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     if (index === "RESULT") index = "QUESTION";
     else index = "RESULT";
 
-    if (currentScore > highScore) {
-      setHighScore(currentScore);
-      localStorage.setItem("highScore", currentScore.toString());
-    }
+    if (currentScore > highScore) setHighScore(currentScore);
+
     if (remainingLives === 0) {
       setActiveScreen(CurrentScreen.GAME_OVER);
     } else {
@@ -99,13 +99,16 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   const handlePlayAgain = () => {
-    setActiveScreen(CurrentScreen.QUIZ);
-    setRemainingLives(3);
-    setCurrentScore(0);
-    setActiveQuestionIndex(0);
-    setActiveQuizIndex("QUESTION");
     const shuffledArray = shuffle(data);
     setShuffledData(shuffledArray);
+
+    setRemainingLives(TOTAL_LIVES);
+    setCurrentScore(0);
+
+    setActiveQuestionIndex(0);
+
+    setActiveQuizIndex("QUESTION");
+    setActiveScreen(CurrentScreen.QUIZ);
   };
 
   const handleAnswer = (newAnswer: boolean) => () => {
@@ -128,6 +131,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     currentScore,
     highScore,
     activeQuizIndex,
+    totalLives: TOTAL_LIVES,
     remainingLives,
     handleNext,
     handlePlayAgain,

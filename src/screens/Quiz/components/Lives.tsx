@@ -4,12 +4,11 @@ import styles from "./Lives.module.scss";
 const { life, lifeLost } = styles;
 
 export const Lives = () => {
-  const { remainingLives } = useGameContext();
+  const { remainingLives, totalLives } = useGameContext();
 
-  const TOTAL_LIVES = 3;
   return (
     <div className="flex items-start">
-      {Array(TOTAL_LIVES)
+      {Array(totalLives)
         .fill(0)
         .map((_, index) => (
           <svg
