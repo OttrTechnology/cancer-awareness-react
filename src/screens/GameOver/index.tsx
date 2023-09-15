@@ -1,4 +1,4 @@
-import { useBoolean, useElementSize } from "usehooks-ts";
+import { useBoolean, useWindowSize } from "usehooks-ts";
 import { useGameContext } from "hooks";
 import { Button } from "components";
 import trophy from "assets/trophy.svg";
@@ -12,7 +12,7 @@ export const GameOver = () => {
   const { currentScore, highScore, handlePlayAgain, remainingLives } =
     useGameContext();
 
-  const [squareRef, { width, height }] = useElementSize();
+  const { width, height } = useWindowSize();
 
   useLayoutEffect(() => {
     document.documentElement.style.setProperty("--background-color", "#ffda91");
@@ -38,7 +38,7 @@ export const GameOver = () => {
   }, [remainingLives]);
 
   return (
-    <div ref={squareRef}>
+    <div>
       <Confetti
         width={width}
         height={height}
@@ -99,9 +99,8 @@ export const GameOver = () => {
             </div>
           </div>
         </div>
+        {share && <Share toggleShare={toggle} />}
       </div>
-
-      {share && <Share toggleShare={toggle} />}
     </div>
   );
 };

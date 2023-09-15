@@ -4,9 +4,6 @@
   @apply h-screen w-screen absolute flex items-center justify-center;
   background-color: rgba(main.$black, 0.7);
   z-index: 3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .wrapper {
