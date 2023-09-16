@@ -58,6 +58,7 @@ interface GameContextProps {
 
   activeQuizIndex: QuizScreenType;
   currentQuestion: IQuiz;
+  nextQuestion?: IQuiz;
 
   totalLives: number;
   remainingLives: number;
@@ -182,6 +183,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
     activeQuizIndex,
     currentQuestion,
+    nextQuestion: shuffledData[activeQuestionIndex + 1],
 
     totalLives: TOTAL_LIVES,
     remainingLives,

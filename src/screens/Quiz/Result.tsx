@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { clsx } from "clsx";
 import { useGameContext } from "hooks";
 import Correct from "assets/resultEmoji/right.png";
@@ -5,7 +6,18 @@ import Wrong from "assets/resultEmoji/wrong.png";
 import styles from "./Result.module.scss";
 
 export const Result = () => {
-  const { currentQuestion, userAnswer } = useGameContext();
+  const { currentQuestion, userAnswer, nextQuestion, remainingLives } =
+    useGameContext();
+
+  /* Preload next image if lives are remaining and next question exists */
+  useEffect(() => {
+    if (remainingLives > 0 && nextQuestion) {
+      const nextImg = new Image();
+
+      nextImg.src = `questionImg/${nextQuestion.imgSrc}`;
+    }
+  }, [nextQuestion, remainingLives]);
+
   return (
     <div className="flex justify-center">
       <div className={styles.wrapper}>
