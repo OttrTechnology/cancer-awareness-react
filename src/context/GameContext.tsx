@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
-import data from "screens/Quiz/cancer-findings-data.json";
+import data from "./cancer-findings-data.json";
 
 const TOTAL_LIVES = 3;
 

@@ -20,10 +20,12 @@ import clsx from "clsx";
 
 import LandingpageArrow from "assets/homepageArrow.svg";
 import LandingLogo from "assets/homeLogo.svg";
+import wrongEmoji from "assets/resultEmoji/wrong.png";
+import rightEmoji from "assets/resultEmoji/right.png";
 
 import { useGameContext } from "hooks";
 
-import data from "../Quiz/cancer-findings-data.json";
+import data from "context/cancer-findings-data.json";
 import styles from "./index.module.scss";
 
 const { circleBackgroundColor } = styles;
@@ -39,12 +41,20 @@ export const Landing = () => {
   const engine = useRef(Engine.create());
   const scene = useRef(null);
 
-  const startQuiz = () =>
+  const startQuiz = () => {
+    // preloading emoji for result
+    const resultEmojiRight = new Image();
+    resultEmojiRight.src = rightEmoji;
+
+    const resultEmojiWrong = new Image();
+    resultEmojiWrong.src = wrongEmoji;
+
     setActiveScreen({
       location: "QUIZ",
       transition: "TRANSITION_FROM_LANDING",
       duration: 1,
     });
+  };
 
   useEffect(() => {
     const render = Render.create({

@@ -3,6 +3,8 @@ import { clsx } from "clsx";
 import { useGameContext } from "hooks";
 import Correct from "assets/resultEmoji/right.png";
 import Wrong from "assets/resultEmoji/wrong.png";
+import GameOverEmoji from "assets/resultEmoji/gameover.svg";
+import CongratulationEmoji from "assets/resultEmoji/congratulations.svg";
 import styles from "./Result.module.scss";
 
 export const Result = () => {
@@ -15,6 +17,18 @@ export const Result = () => {
       const nextImg = new Image();
 
       nextImg.src = `questionImg/${nextQuestion.imgSrc}`;
+    }
+  }, [nextQuestion, remainingLives]);
+
+  useEffect(() => {
+    if (remainingLives === 0) {
+      const gameOverEmoji = new Image();
+      gameOverEmoji.src = GameOverEmoji;
+    }
+    // Preloading congratulation when win condition has been determined
+    if (nextQuestion === undefined && remainingLives > 0) {
+      const congratulationEmoji = new Image();
+      congratulationEmoji.src = CongratulationEmoji;
     }
   }, [nextQuestion, remainingLives]);
 

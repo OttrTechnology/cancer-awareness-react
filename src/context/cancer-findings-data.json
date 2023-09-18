@@ -1,0 +1,70 @@
+[{
+  "claim": "Antiperspirants and deodorants contain cancer causing substances that are absorbed, particularly after shaving.",
+  "explanation": "Deodorants and antiperspirants sometimes contain ingredients linked to cancer. Some studies of antiperspirants have provided conflicting results, though, so more research is needed.",
+  "source": "https:\/\/cancerfactfinder.org\/consumer-products\/antiperspirants\/",
+  "fact": false,
+  "imgSrc": "deodorant.svg"
+},
+{
+  "claim": "Wearing bras can cause breast cancer.",
+  "explanation": "There is no epidemiological evidence that supports an association between bra use and breast cancer.\n",
+  "source": "https:\/\/cancerfactfinder.org\/consumer-products\/bras\/",
+  "fact": false,
+  "imgSrc": "bra.svg"
+},
+{
+  "claim": "Keeping your phone close to your body or head can increase your risk of cancer.\n",
+  "explanation": "RF waves used in cell phones do not have enough energy to damage DNA, so this mechanism is not likely to cause cancer. However, there is insufficient evidence to conclude a link between cancer risk and cell phone use.\n",
+  "source": "https:\/\/cancerfactfinder.org\/consumer-products\/cell-phone-use\/",
+  "fact": false,
+  "imgSrc": "phone.svg"
+},
+{
+  "claim": "Commercially manufactured disposable chopsticks contain cancer-causing chemicals.\n",
+  "explanation": "There is no evidence that disposable chopsticks are linked to an increase in cancer risk.\n",
+  "source": "https:\/\/cancerfactfinder.org\/consumer-products\/disposable-chopsticks\/",
+  "fact": false,
+  "imgSrc": "chopsticks.svg"
+},
+{
+  "claim": "The use of bug spray with DEET (diethyltoluamide - commonly found active ingredient) can cause cancer.\n",
+  "explanation": "Insect repellents containing DEET do not have a cancer-causing effect in humans, but alternatives are available that do not contain DEET.\n",
+  "source": "https:\/\/cancerfactfinder.org\/consumer-products\/bug-spray-with-deet\/",
+  "fact": false,
+  "imgSrc": "bug-spray.svg"
+},
+{
+  "claim": "Standing too close to the microwave can increase your risk of developing cancer.\n",
+  "explanation": "Using a microwave is not risky, as long as the microwave is in good condition.\n",
+  "source": "https:\/\/cancerfactfinder.org\/consumer-products\/microwaves\/",
+  "fact": false,
+  "imgSrc": "microwave.svg"
+},
+{
+  "claim": "Commercially manufactured disposable chopsticks contain cancer-causing chemicals.\n",
+  "explanation": "There is no evidence that disposable chopsticks are linked to an increase in cancer risk.\n",
+  "source": "https:\/\/cancerfactfinder.org\/consumer-products\/disposable-chopsticks\/",
+  "fact": false,
+  "imgSrc": "chopsticks.svg"
+},
+{
+  "claim": "The use of bug spray with DEET (diethyltoluamide - commonly found active ingredient) can cause cancer.\n",
+  "explanation": "Insect repellents containing DEET do not have a cancer-causing effect in humans, but alternatives are available that do not contain DEET.\n",
+  "source": "https:\/\/cancerfactfinder.org\/consumer-products\/bug-spray-with-deet\/",
+  "fact": false,
+  "imgSrc": "bug-spray.svg"
+},
+{
+  "claim": "Standing too close to the microwave can increase your risk of developing cancer.\n",
+  "explanation": "Using a microwave is not risky, as long as the microwave is in good condition.\n",
+  "source": "https:\/\/cancerfactfinder.org\/consumer-products\/microwaves\/",
+  "fact": false,
+  "imgSrc": "microwave.svg"
+},
+{
+  "claim": "Heating plastic in the microwave or freezing plastic releases various harmful chemicals that may cause cancer.\n",
+  "explanation": "Levels of DEHA found in plastics have not been conclusively shown to be carcinogenic (cancer causing). However, plastic utensils and containers vary in their chemical makeup, and ongoing research may find links with specific chemicals and cancer.\n",
+  "source": "https:\/\/cancerfactfinder.org\/consumer-products\/microwaving-or-freezing-plastic\/",
+  "fact": false,
+  "imgSrc": "heat-and-freeze-plastic.svg"
+}]

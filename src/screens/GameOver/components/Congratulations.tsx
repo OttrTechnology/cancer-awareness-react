@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Cubic, gsap } from "gsap";
-import congratulations from "assets/resultEmoji/happy.svg";
+import congratulations from "assets/resultEmoji/congratulations.svg";
 import styles from "./index.module.scss";
 import clsx from "clsx";
 
