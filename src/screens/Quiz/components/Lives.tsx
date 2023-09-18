@@ -3,32 +3,32 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import styles from "./Lives.module.scss";
 
-const { life } = styles;
+const { life, lifeLost } = styles;
 
 export const Lives = () => {
   const { remainingLives, totalLives } = useGameContext();
-  const livesConatinerRef = useRef(null);
+  const livesContainerRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (remainingLives === 2) {
-        gsap.to(`[data-effect=life-2]`, { fill: "#edcda6", duration: 0.3 });
+        gsap.to(`[data-effect=life-2]`, { fill: lifeLost, duration: 0.3 });
       } else if (remainingLives === 1) {
-        gsap.set(`[data-effect=life-2]`, { fill: "#edcda6" });
-        gsap.to(`[data-effect=life-1]`, { fill: "#edcda6", duration: 0.3 });
+        gsap.set(`[data-effect=life-2]`, { fill: lifeLost });
+        gsap.to(`[data-effect=life-1]`, { fill: lifeLost, duration: 0.3 });
       } else if (remainingLives === 0) {
         gsap.set(`[data-effect=life-2], [data-effect=life-1]`, {
-          fill: "#edcda6",
+          fill: lifeLost,
         });
-        gsap.to(`[data-effect=life-0]`, { fill: "#edcda6", duration: 0.3 });
+        gsap.to(`[data-effect=life-0]`, { fill: lifeLost, duration: 0.3 });
       }
-    });
+    }, livesContainerRef);
 
     return () => ctx.revert();
   }, [remainingLives]);
 
   return (
-    <div className="flex items-start" ref={livesConatinerRef}>
+    <div className="flex items-start" ref={livesContainerRef}>
       {Array(totalLives)
         .fill(0)
         .map((_, index) => (

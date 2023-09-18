@@ -4,7 +4,7 @@ import { Button } from "components";
 import trophy from "assets/trophy.svg";
 import Confetti from "react-confetti";
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import { gsap, Cubic } from "gsap";
 import {
   Share,
   GameOverAnimation,
@@ -21,10 +21,20 @@ export const GameOver = () => {
   const { value: share, toggle } = useBoolean(false);
 
   const gameOverRef = useRef(null);
+  const trophyRef = useRef(null);
+  const buttonRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(gameOverRef.current, { autoAlpha: 0, delay: 2, duration: 1 });
+      const tl = gsap.timeline();
+      tl.from(gameOverRef.current, {
+        autoAlpha: 0,
+        delay: 1.2,
+        duration: 0.6,
+        ease: Cubic.easeOut,
+      })
+        .fromTo(trophyRef.current, { y: 30 }, { y: 0 }, "<")
+        .fromTo(buttonRef.current, { y: 30 }, { y: 0 }, "<");
     });
 
     return () => ctx.revert();
@@ -48,7 +58,12 @@ export const GameOver = () => {
         <div className="flex justify-center" ref={gameOverRef}>
           <div className={styles.container}>
             <div className={styles.innerContainer}>
-              <img className={styles.image} src={trophy} alt={trophy} />
+              <img
+                className={styles.image}
+                src={trophy}
+                alt={trophy}
+                ref={trophyRef}
+              />
 
               <div className="flex flex-col ca-gap--32 lg:ca-gap--40">
                 <div className="flex flex-col">
@@ -80,7 +95,10 @@ export const GameOver = () => {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row items-center justify-center ca-gap--16 md:ca-gap--32">
+            <div
+              className="flex flex-col md:flex-row items-center justify-center ca-gap--16 md:ca-gap--32"
+              ref={buttonRef}
+            >
               <Button
                 onClick={toggle}
                 label="Share Your Score"

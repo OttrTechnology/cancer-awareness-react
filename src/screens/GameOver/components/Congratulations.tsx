@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import { Cubic, gsap } from "gsap";
 import congratulations from "assets/resultEmoji/happy.svg";
 import styles from "./index.module.scss";
 import clsx from "clsx";
@@ -11,17 +11,24 @@ export const CongratulationsAnimation = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.to(gameOverRef.current, { autoAlpha: 0, duration: 2.5 });
-      gsap.fromTo(
+      const tl = gsap.timeline();
+      tl.fromTo(
         gameOverEmojiRef.current,
-        { y: 150 },
-        { y: 0, duration: 0.3, ease: "easeOut" }
-      );
-      gsap.fromTo(
-        gameOverTextRef.current,
-        { y: 150 },
-        { y: 0, duration: 0.3, ease: "easeOut" }
-      );
+        { y: 60 },
+        { y: 0, duration: 0.6, ease: Cubic.easeOut }
+      )
+        .fromTo(
+          gameOverTextRef.current,
+          { y: 30 },
+          { y: 0, duration: 0.6, ease: Cubic.easeOut },
+          "<"
+        )
+        .to(gameOverRef.current, {
+          autoAlpha: 0,
+          ease: Cubic.easeOut,
+          delay: 0.2,
+          duration: 0.3,
+        });
     });
 
     return () => ctx.revert();

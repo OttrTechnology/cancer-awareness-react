@@ -97,7 +97,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
     setTimeout(() => {
       activeScreenSetter(navigateData.location);
-    }, (navigateData.duration || 0) * 1000);
+    }, (navigateData.duration ?? 0) * 1000);
   };
 
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
