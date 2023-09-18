@@ -26,6 +26,8 @@ import { useGameContext } from "hooks";
 import data from "../Quiz/cancer-findings-data.json";
 import styles from "./index.module.scss";
 
+const { circleBackgroundColor } = styles;
+
 export const Landing = () => {
   const { activeScreen, setActiveScreen } = useGameContext();
 
@@ -61,24 +63,24 @@ export const Landing = () => {
       Bodies.rectangle(-120, height / 2, 20 + 180, height + 10, {
         isStatic: true,
         render: {
-          fillStyle: "#ffda91",
-          strokeStyle: "#ffda91",
+          fillStyle: circleBackgroundColor,
+          strokeStyle: circleBackgroundColor,
           lineWidth: 3,
         },
       }),
       Bodies.rectangle(width / 2, height + 40, width + 120, 90, {
         isStatic: true,
         render: {
-          fillStyle: "#ffda91",
-          strokeStyle: "#ffda91",
+          fillStyle: circleBackgroundColor,
+          strokeStyle: circleBackgroundColor,
           lineWidth: 3,
         },
       }),
       Bodies.rectangle(width + 80, height / 2, 120, height, {
         isStatic: true,
         render: {
-          fillStyle: "#ffda91",
-          strokeStyle: "#ffda91",
+          fillStyle: circleBackgroundColor,
+          strokeStyle: circleBackgroundColor,
           lineWidth: 3,
         },
       }),

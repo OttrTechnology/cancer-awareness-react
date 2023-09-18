@@ -1,5 +1,9 @@
 @use "main";
 
+:export {
+  circleBackgroundColor: main.$yellow;
+}
+
 .wrapper {
   @apply w-full px-5;
   max-width: main.em(1000);
