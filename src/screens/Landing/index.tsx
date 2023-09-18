@@ -20,11 +20,15 @@ import clsx from "clsx";
 
 import LandingpageArrow from "assets/homepageArrow.svg";
 import LandingLogo from "assets/homeLogo.svg";
+import wrongEmoji from "assets/resultEmoji/wrong.png";
+import rightEmoji from "assets/resultEmoji/right.png";
 
 import { useGameContext } from "hooks";
 
-import data from "../Quiz/cancer-findings-data.json";
+import data from "context/cancer-findings-data.json";
 import styles from "./index.module.scss";
+
+const { circleBackgroundColor } = styles;
 
 export const Landing = () => {
   const { activeScreen, setActiveScreen } = useGameContext();
@@ -37,12 +41,20 @@ export const Landing = () => {
   const engine = useRef(Engine.create());
   const scene = useRef(null);
 
-  const startQuiz = () =>
+  const startQuiz = () => {
+    // preloading emoji for result
+    const resultEmojiRight = new Image();
+    resultEmojiRight.src = rightEmoji;
+
+    const resultEmojiWrong = new Image();
+    resultEmojiWrong.src = wrongEmoji;
+
     setActiveScreen({
       location: "QUIZ",
       transition: "TRANSITION_FROM_LANDING",
       duration: 1,
     });
+  };
 
   useEffect(() => {
     const render = Render.create({
@@ -61,24 +73,24 @@ export const Landing = () => {
       Bodies.rectangle(-120, height / 2, 20 + 180, height + 10, {
         isStatic: true,
         render: {
-          fillStyle: "#ffda91",
-          strokeStyle: "#ffda91",
+          fillStyle: circleBackgroundColor,
+          strokeStyle: circleBackgroundColor,
           lineWidth: 3,
         },
       }),
       Bodies.rectangle(width / 2, height + 40, width + 120, 90, {
         isStatic: true,
         render: {
-          fillStyle: "#ffda91",
-          strokeStyle: "#ffda91",
+          fillStyle: circleBackgroundColor,
+          strokeStyle: circleBackgroundColor,
           lineWidth: 3,
         },
       }),
       Bodies.rectangle(width + 80, height / 2, 120, height, {
         isStatic: true,
         render: {
-          fillStyle: "#ffda91",
-          strokeStyle: "#ffda91",
+          fillStyle: circleBackgroundColor,
+          strokeStyle: circleBackgroundColor,
           lineWidth: 3,
         },
       }),
@@ -116,6 +128,10 @@ export const Landing = () => {
 
     Runner.run(engine.current);
     Render.run(render);
+
+    if (activeScreen === "TRANSITIONING_FROM_LANDING") {
+      Composite.clear(engine.current.world, false);
+    }
 
     return () => {
       Render.stop(render);
@@ -195,7 +211,12 @@ export const Landing = () => {
                   </a>
                 </div>
               </div>
+            </div>
 
+            <div className="relative flex justify-end md:mr-32 lg:mr-0 col-start-7 mr-2 lg:col-start-8 col-span-3 mt-14 md:mt-4 lg:mt-auto  pointer-events-auto">
+              <button className={styles.primaryButton} onClick={startQuiz}>
+                Take the quiz
+              </button>
               <div className={styles.arrow}>
                 <img
                   src={LandingpageArrow}
@@ -203,12 +224,6 @@ export const Landing = () => {
                   alt="arrow"
                 />
               </div>
-            </div>
-
-            <div className="flex justify-end md:mr-32 lg:mr-0 col-start-7 mr-2 lg:col-start-8 col-span-3 mt-14 lg:mt-auto  pointer-events-auto">
-              <button className={styles.primaryButton} onClick={startQuiz}>
-                Take the quiz
-              </button>
             </div>
           </div>
         </div>

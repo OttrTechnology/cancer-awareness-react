@@ -1,11 +1,37 @@
+import { useEffect } from "react";
 import { clsx } from "clsx";
 import { useGameContext } from "hooks";
 import Correct from "assets/resultEmoji/right.png";
 import Wrong from "assets/resultEmoji/wrong.png";
+import GameOverEmoji from "assets/resultEmoji/gameover.svg";
+import CongratulationEmoji from "assets/resultEmoji/congratulations.svg";
 import styles from "./Result.module.scss";
 
 export const Result = () => {
-  const { currentQuestion, userAnswer } = useGameContext();
+  const { currentQuestion, userAnswer, nextQuestion, remainingLives } =
+    useGameContext();
+
+  /* Preload next image if lives are remaining and next question exists */
+  useEffect(() => {
+    if (remainingLives > 0 && nextQuestion) {
+      const nextImg = new Image();
+
+      nextImg.src = `questionImg/${nextQuestion.imgSrc}`;
+    }
+  }, [nextQuestion, remainingLives]);
+
+  useEffect(() => {
+    if (remainingLives === 0) {
+      const gameOverEmoji = new Image();
+      gameOverEmoji.src = GameOverEmoji;
+    }
+    // Preloading congratulation when win condition has been determined
+    if (nextQuestion === undefined && remainingLives > 0) {
+      const congratulationEmoji = new Image();
+      congratulationEmoji.src = CongratulationEmoji;
+    }
+  }, [nextQuestion, remainingLives]);
+
   return (
     <div className="flex justify-center">
       <div className={styles.wrapper}>

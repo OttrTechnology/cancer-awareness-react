@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
-import data from "screens/Quiz/cancer-findings-data.json";
+import data from "./cancer-findings-data.json";
 
 const TOTAL_LIVES = 3;
 
@@ -58,6 +58,7 @@ interface GameContextProps {
 
   activeQuizIndex: QuizScreenType;
   currentQuestion: IQuiz;
+  nextQuestion?: IQuiz;
 
   totalLives: number;
   remainingLives: number;
@@ -96,7 +97,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
     setTimeout(() => {
       activeScreenSetter(navigateData.location);
-    }, (navigateData.duration || 0) * 1000);
+    }, (navigateData.duration ?? 0) * 1000);
   };
 
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
@@ -182,6 +183,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
     activeQuizIndex,
     currentQuestion,
+    nextQuestion: shuffledData[activeQuestionIndex + 1],
 
     totalLives: TOTAL_LIVES,
     remainingLives,

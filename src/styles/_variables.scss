@@ -11,8 +11,9 @@ $yellow: #ffda91;
 $ease: cubic-bezier(0.5, 0, 0, 1);
 
 $breakpoints-up: (
-  "medium": "40em",
-  "large": "64em",
+  "small": "40em", // 640px
+  "medium": "48em", // 768px
+  "large": "64em", // 1024px
 );
 
 $breakpoints-down: (
@@ -45,6 +46,7 @@ $spacing: (
   ),
 
   mt: (
+    4: 4,
     56: 56,
     40: 40,
   ),
@@ -55,6 +57,7 @@ $spacing: (
     48: 48,
     120: 120,
   ),
+
   gap: (
     4: 4,
     6: 6,
