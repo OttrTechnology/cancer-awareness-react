@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { useLocalStorage } from "usehooks-ts";
+import { useStorage } from "hooks";
 import data from "./cancer-findings-data.json";
 
 const TOTAL_LIVES = 3;
@@ -110,7 +110,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [currentScore, setCurrentScore] = useState(0);
 
-  const [highScore, setHighScore] = useLocalStorage("highScore", 0);
+  const [highScore, setHighScore] = useStorage("highScore", 0);
 
   const [remainingLives, setRemainingLives] = useState(TOTAL_LIVES);
 
