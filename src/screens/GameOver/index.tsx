@@ -61,7 +61,7 @@ export const GameOver = () => {
               <img
                 className={styles.image}
                 src={trophy}
-                alt={trophy}
+                alt="Trophy"
                 ref={trophyRef}
               />
 
