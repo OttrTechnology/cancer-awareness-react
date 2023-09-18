@@ -26,7 +26,20 @@ const decryptData = (data: string | null) =>
     ? CryptoJS.AES.decrypt(data, SECRET_KEY).toString(CryptoJS.enc.Utf8)
     : null;
 
+const checkLocalStorageAvailability = () => {
+  const test = "test";
+  try {
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 export function useStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
+  const localStorageAvailable = checkLocalStorageAvailability();
+
   // Get from local storage then
   // parse stored json or return initialValue
   const readValue = useCallback((): T => {
@@ -35,7 +48,7 @@ export function useStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
 
     try {
       const item = decryptData(
-        window.localStorage
+        localStorageAvailable
           ? window.localStorage.getItem(key)
           : window.sessionStorage.getItem(key)
       );
@@ -43,7 +56,7 @@ export function useStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
     } catch (error) {
       console.warn(
         `Error reading ${
-          window.localStorage ? "localStorage" : "sessionStorage"
+          localStorageAvailable ? "localStorage" : "sessionStorage"
         } key “${key}”:`,
         error
       );
@@ -70,7 +83,7 @@ export function useStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
       const newValue = value instanceof Function ? value(storedValue) : value;
 
       // Save to local storage
-      window.localStorage
+      localStorageAvailable
         ? window.localStorage.setItem(
             key,
             encryptData(JSON.stringify(newValue))
@@ -88,7 +101,7 @@ export function useStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
     } catch (error) {
       console.warn(
         `Error setting ${
-          window.localStorage ? "localStorage" : "sessionStorage"
+          localStorageAvailable ? "localStorage" : "sessionStorage"
         } key “${key}”:`,
         error
       );
