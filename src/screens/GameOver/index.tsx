@@ -3,7 +3,7 @@ import { useGameContext } from "hooks";
 import { Button } from "components";
 import trophy from "assets/trophy.svg";
 import Confetti from "react-confetti";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import {
   Share,
@@ -17,17 +17,6 @@ export const GameOver = () => {
     useGameContext();
 
   const { width, height } = useWindowSize();
-
-  useLayoutEffect(() => {
-    document.documentElement.style.setProperty("--background-color", "#ffda91");
-
-    return () => {
-      document.documentElement.style.setProperty(
-        "--background-color",
-        "#f7e9c1"
-      );
-    };
-  }, []);
 
   const { value: share, toggle } = useBoolean(false);
 
