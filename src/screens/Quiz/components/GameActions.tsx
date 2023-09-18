@@ -1,8 +1,6 @@
+import { BiCheck, BiRightArrowAlt, BiX } from "react-icons/bi";
 import { Button, IconButton } from "components";
 import { useGameContext } from "hooks";
-import { BiCheck } from "react-icons/bi";
-import { BiRightArrowAlt } from "react-icons/bi";
-import { BiX } from "react-icons/bi";
 
 export const GameActions = () => {
   const { activeQuizScreen, handleAnswer, handleNext } = useGameContext();

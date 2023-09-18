@@ -1,5 +1,6 @@
 export interface LandingScss {
-  circleBackgroundColor: string;
+  fillStyle: string;
+  strokeStyle: string;
 }
 
 export const styles: LandingScss;

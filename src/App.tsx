@@ -1,8 +1,8 @@
-import { clsx } from "clsx";
-import { Landing, Quiz, GameOver } from "screens";
-import { useGameContext } from "hooks";
 import { useEffect } from "react";
 import { gsap } from "gsap";
+import { clsx } from "clsx";
+import { useGameContext } from "hooks";
+import { Landing, Quiz, GameOver } from "screens";
 
 const App = () => {
   const { activeScreen } = useGameContext();

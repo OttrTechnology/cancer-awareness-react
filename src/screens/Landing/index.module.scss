@@ -1,7 +1,8 @@
 @use "main";
 
 :export {
-  circleBackgroundColor: main.$yellow;
+  fillStyle: main.$yellow;
+  strokeStyle: main.$yellow;
 }
 
 .wrapper {

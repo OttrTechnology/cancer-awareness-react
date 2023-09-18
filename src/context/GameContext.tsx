@@ -79,6 +79,10 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const [shuffledData, setShuffledData] = useState<IQuiz[]>([]);
 
   const [activeScreen, activeScreenSetter] = useState<LocationType>("LANDING");
+
+  /**
+   * Sets transition state before making the actual navigation according to a given duration
+   */
   const setActiveScreen = (navigateData: CustomNavigationSetter) => {
     switch (navigateData.transition) {
       case "TRANSITION_FROM_LANDING":
@@ -89,9 +93,6 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
         break;
       case "TRANSITION_FROM_GAME_OVER":
         activeScreenSetter("TRANSITIONING_FROM_GAME_OVER");
-        break;
-      default:
-        activeScreenSetter(navigateData.location);
         break;
     }
 
@@ -106,13 +107,13 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const [activeQuizScreen, setActiveQuizScreen] =
     useState<QuizScreenType>("QUESTION");
 
-  const [userAnswer, setUserAnswer] = useState(true);
-
-  const [currentScore, setCurrentScore] = useState(0);
+  const [remainingLives, setRemainingLives] = useState(TOTAL_LIVES);
 
   const [highScore, setHighScore] = useStorage("highScore", 0);
 
-  const [remainingLives, setRemainingLives] = useState(TOTAL_LIVES);
+  const [currentScore, setCurrentScore] = useState(0);
+
+  const [userAnswer, setUserAnswer] = useState(true);
 
   const shuffle = (array: IQuiz[]) => {
     return array

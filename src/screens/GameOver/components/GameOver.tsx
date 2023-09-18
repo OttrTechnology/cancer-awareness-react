@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
 import { gsap, Cubic } from "gsap";
-import gameOver from "assets/resultEmoji/gameover.svg";
-import { useGameContext } from "hooks";
-import styles from "./index.module.scss";
 import clsx from "clsx";
+import { useGameContext } from "hooks";
+
+import GameOverEmoji from "assets/resultEmoji/game-over.svg";
+
+import styles from "./index.module.scss";
 
 export const GameOverAnimation = () => {
   const { remainingLives } = useGameContext();
@@ -15,6 +17,7 @@ export const GameOverAnimation = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
+
       tl.fromTo(
         gameOverEmojiRef.current,
         { y: "-50px" },
@@ -38,16 +41,15 @@ export const GameOverAnimation = () => {
   }, [remainingLives]);
 
   return (
-    <>
-      <div className={styles.wrapper} ref={gameOverRef}>
-        <img className={styles.img} src={gameOver} ref={gameOverEmojiRef} />
-        <div
-          className={clsx("ca-heading--one", styles.gameOverText)}
-          ref={gameOverTextRef}
-        >
-          Game Over!
-        </div>
+    <div className={styles.wrapper} ref={gameOverRef}>
+      <img className={styles.img} src={GameOverEmoji} ref={gameOverEmojiRef} />
+
+      <div
+        className={clsx("ca-heading--one", styles.gameOverText)}
+        ref={gameOverTextRef}
+      >
+        Game Over!
       </div>
-    </>
+    </div>
   );
 };

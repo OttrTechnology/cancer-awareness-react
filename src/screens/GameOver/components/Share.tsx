@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -25,22 +25,18 @@ interface Props {
 }
 
 export const Share = ({ toggleShare }: Props) => {
+  const shareSupported = Boolean(
+    "canShare" in navigator && navigator.canShare(shareData)
+  );
+
   const { clipboardSupported, copy, copied } = useClipboard();
-  const [showShare, setShowShare] = useState(false);
-  const ref = useRef(null);
 
-  useOnClickOutside(ref, toggleShare);
+  const wrapperRef = useRef(null);
 
-  useEffect(() => {
-    if ("canShare" in navigator && navigator.canShare(shareData)) {
-      setShowShare(true);
-    } else {
-      setShowShare(false);
-    }
-  }, []);
+  useOnClickOutside(wrapperRef, toggleShare);
 
   const handleButtonClick = () => {
-    if (showShare) {
+    if (shareSupported) {
       navigator.share(shareData).catch((error) => {
         console.error("Error sharing:", error);
       });
@@ -51,13 +47,13 @@ export const Share = ({ toggleShare }: Props) => {
 
   return (
     <div className={styles.mainWrapper}>
-      <div ref={ref} className={styles.wrapper}>
+      <div ref={wrapperRef} className={styles.wrapper}>
         <div className="flex flex-col gap-6 lg:gap-8 ">
           <div className="flex justify-between">
             <div className={styles.shareText}>Share with</div>
 
             <button onClick={toggleShare}>
-              <BiX className={styles.closebtn} />
+              <BiX className={styles.closeBtn} />
             </button>
           </div>
 
@@ -69,8 +65,9 @@ export const Share = ({ toggleShare }: Props) => {
                     <BiLink className={styles.shareIcon} />
                   </div>
                 </button>
+
                 <div className="ca-body--sm whitespace-nowrap">
-                  {showShare ? "Share" : copied ? "Copied" : "Copy Link"}
+                  {shareSupported ? "Share" : copied ? "Copied" : "Copy Link"}
                 </div>
               </div>
             )}
@@ -81,6 +78,7 @@ export const Share = ({ toggleShare }: Props) => {
                   <BiLogoFacebook className={styles.shareIcon} />
                 </div>
               </FacebookShareButton>
+
               <div className="ca-body--sm">Facebook</div>
             </div>
 
@@ -90,6 +88,7 @@ export const Share = ({ toggleShare }: Props) => {
                   <BiLogoLinkedin className={styles.shareIcon} />
                 </div>
               </LinkedinShareButton>
+
               <div className="ca-body--sm">LinkedIn</div>
             </div>
 
@@ -99,6 +98,7 @@ export const Share = ({ toggleShare }: Props) => {
                   <BiLogoTwitter className={styles.shareIcon} />
                 </div>
               </TwitterShareButton>
+
               <div className="ca-body--sm">Twitter</div>
             </div>
           </div>

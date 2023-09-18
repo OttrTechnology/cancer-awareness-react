@@ -1,12 +1,15 @@
-import { Header, GameActions } from "./components";
-import { useGameContext } from "hooks";
 import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { useGameContext } from "hooks";
+
 import { Question } from "screens/Quiz/Question";
 import { Result } from "screens/Quiz/Result";
-import gsap from "gsap";
+
+import { Header, GameActions } from "./components";
 
 export const Quiz = () => {
   const { activeQuizScreen, activeScreen } = useGameContext();
+
   const quizRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,11 +26,13 @@ export const Quiz = () => {
 
   return (
     <div
-      className="ca-min-h-screen flex flex-col justify-between content-center flex-wrap ca-gap--16"
       ref={quizRef}
+      className="ca-min-h-screen flex flex-col justify-between content-center flex-wrap ca-gap--16"
     >
       <Header />
+
       {activeQuizScreen === "QUESTION" ? <Question /> : <Result />}
+
       <GameActions />
     </div>
   );

@@ -1,8 +1,10 @@
 import { useEffect, useRef } from "react";
 import { Cubic, gsap } from "gsap";
-import congratulations from "assets/resultEmoji/congratulations.svg";
-import styles from "./index.module.scss";
 import clsx from "clsx";
+
+import congratulations from "assets/resultEmoji/congratulations.svg";
+
+import styles from "./index.module.scss";
 
 export const CongratulationsAnimation = () => {
   const gameOverRef = useRef(null);
@@ -12,6 +14,7 @@ export const CongratulationsAnimation = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
+
       tl.fromTo(
         gameOverEmojiRef.current,
         { y: 60 },
@@ -35,20 +38,19 @@ export const CongratulationsAnimation = () => {
   }, []);
 
   return (
-    <>
-      <div className={styles.wrapper} ref={gameOverRef}>
-        <img
-          className={styles.img}
-          src={congratulations}
-          ref={gameOverEmojiRef}
-        />
-        <div
-          className={clsx("ca-heading--one", styles.congratulationsText)}
-          ref={gameOverTextRef}
-        >
-          Congratulations
-        </div>
+    <div className={styles.wrapper} ref={gameOverRef}>
+      <img
+        ref={gameOverEmojiRef}
+        src={congratulations}
+        className={styles.img}
+      />
+
+      <div
+        className={clsx("ca-heading--one", styles.congratulationsText)}
+        ref={gameOverTextRef}
+      >
+        Congratulations
       </div>
-    </>
+    </div>
   );
 };

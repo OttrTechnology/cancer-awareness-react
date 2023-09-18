@@ -1,10 +1,12 @@
+import { useEffect, useRef } from "react";
+import Confetti from "react-confetti";
+import { gsap, Cubic } from "gsap";
 import { useBoolean, useWindowSize } from "usehooks-ts";
 import { useGameContext } from "hooks";
 import { Button } from "components";
-import trophy from "assets/trophy.svg";
-import Confetti from "react-confetti";
-import { useEffect, useRef } from "react";
-import { gsap, Cubic } from "gsap";
+
+import TrophyImg from "assets/trophy.svg";
+
 import {
   Share,
   GameOverAnimation,
@@ -59,10 +61,10 @@ export const GameOver = () => {
           <div className={styles.container}>
             <div className={styles.innerContainer}>
               <img
-                className={styles.image}
-                src={trophy}
-                alt="Trophy"
                 ref={trophyRef}
+                src={TrophyImg}
+                alt="Trophy"
+                className={styles.image}
               />
 
               <div className="flex flex-col ca-gap--32 lg:ca-gap--40">
@@ -100,16 +102,16 @@ export const GameOver = () => {
               ref={buttonRef}
             >
               <Button
-                onClick={toggle}
                 label="Share Your Score"
                 color="primary"
                 size="fixed-width"
+                onClick={toggle}
               />
 
               <Button
+                label="Try Again"
                 size="fixed-width"
                 onClick={handlePlayAgain}
-                label="Try Again"
               />
             </div>
           </div>

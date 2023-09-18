@@ -18,17 +18,17 @@ import { useWindowSize } from "usehooks-ts";
 import { gsap } from "gsap";
 import clsx from "clsx";
 
-import LandingpageArrow from "assets/homepageArrow.svg";
-import LandingLogo from "assets/homeLogo.svg";
-import wrongEmoji from "assets/resultEmoji/wrong.png";
-import rightEmoji from "assets/resultEmoji/right.png";
-
 import { useGameContext } from "hooks";
+
+import LandingPageArrow from "assets/homepageArrow.svg";
+import LandingLogo from "assets/homeLogo.svg";
+import RightEmoji from "assets/resultEmoji/right.png";
+import WrongEmoji from "assets/resultEmoji/wrong.png";
 
 import data from "context/cancer-findings-data.json";
 import styles from "./index.module.scss";
 
-const { circleBackgroundColor } = styles;
+const { fillStyle, strokeStyle } = styles;
 
 export const Landing = () => {
   const { activeScreen, setActiveScreen } = useGameContext();
@@ -38,16 +38,16 @@ export const Landing = () => {
   const mainRef = useRef<HTMLDivElement>(null);
 
   const canvasRef = useRef(null);
-  const engine = useRef(Engine.create());
-  const scene = useRef(null);
+  const engineRef = useRef(Engine.create());
+  const sceneRef = useRef(null);
 
   const startQuiz = () => {
     // preloading emoji for result
     const resultEmojiRight = new Image();
-    resultEmojiRight.src = rightEmoji;
+    resultEmojiRight.src = RightEmoji;
 
     const resultEmojiWrong = new Image();
-    resultEmojiWrong.src = wrongEmoji;
+    resultEmojiWrong.src = WrongEmoji;
 
     setActiveScreen({
       location: "QUIZ",
@@ -58,8 +58,8 @@ export const Landing = () => {
 
   useEffect(() => {
     const render = Render.create({
-      element: scene.current || undefined,
-      engine: engine.current,
+      element: sceneRef.current || undefined,
+      engine: engineRef.current,
       canvas: canvasRef.current || undefined,
       options: { width, height, wireframes: false, background: "transparent" },
     });
@@ -69,30 +69,18 @@ export const Landing = () => {
       max: { x: document.body.offsetWidth, y: document.body.offsetHeight },
     });
 
-    Composite.add(engine.current.world, [
+    Composite.add(engineRef.current.world, [
       Bodies.rectangle(-120, height / 2, 20 + 180, height + 10, {
         isStatic: true,
-        render: {
-          fillStyle: circleBackgroundColor,
-          strokeStyle: circleBackgroundColor,
-          lineWidth: 3,
-        },
+        render: { fillStyle, strokeStyle, lineWidth: 3 },
       }),
       Bodies.rectangle(width / 2, height + 40, width + 120, 90, {
         isStatic: true,
-        render: {
-          fillStyle: circleBackgroundColor,
-          strokeStyle: circleBackgroundColor,
-          lineWidth: 3,
-        },
+        render: { fillStyle, strokeStyle, lineWidth: 3 },
       }),
       Bodies.rectangle(width + 80, height / 2, 120, height, {
         isStatic: true,
-        render: {
-          fillStyle: circleBackgroundColor,
-          strokeStyle: circleBackgroundColor,
-          lineWidth: 3,
-        },
+        render: { fillStyle, strokeStyle, lineWidth: 3 },
       }),
     ]);
 
@@ -100,7 +88,7 @@ export const Landing = () => {
       .sort(() => 0.5 - Math.random())
       .slice(0, width / 90)
       .forEach((App, index) => {
-        Composite.add(engine.current.world, [
+        Composite.add(engineRef.current.world, [
           Bodies.circle(width / 2, -100 * index, 60, {
             density: 0.001,
             frictionAir: 0.02,
@@ -119,24 +107,24 @@ export const Landing = () => {
       });
 
     const mouse = Mouse.create(render.canvas),
-      mouseConstraint = MouseConstraint.create(engine.current, {
-        mouse: mouse,
+      mouseConstraint = MouseConstraint.create(engineRef.current, {
+        mouse,
         constraint: { stiffness: 0.2, render: { visible: false } },
       });
-    Composite.add(engine.current.world, mouseConstraint);
+    Composite.add(engineRef.current.world, mouseConstraint);
     render.mouse = mouse;
 
-    Runner.run(engine.current);
+    Runner.run(engineRef.current);
     Render.run(render);
 
     if (activeScreen === "TRANSITIONING_FROM_LANDING") {
-      Composite.clear(engine.current.world, false);
+      Composite.clear(engineRef.current.world, false);
     }
 
     return () => {
       Render.stop(render);
-      Composite.clear(engine.current.world, false);
-      Engine.clear(engine.current);
+      Composite.clear(engineRef.current.world, false);
+      Engine.clear(engineRef.current);
 
       render.canvas.remove();
       render.textures = {};
@@ -158,7 +146,7 @@ export const Landing = () => {
   return (
     <div ref={mainRef}>
       {window.innerWidth > 640 && (
-        <div ref={scene} className="fixed w-full h-full">
+        <div ref={sceneRef} className="fixed w-full h-full">
           <canvas ref={canvasRef} />
         </div>
       )}
@@ -213,13 +201,14 @@ export const Landing = () => {
               </div>
             </div>
 
-            <div className="relative flex justify-end md:mr-32 lg:mr-0 col-start-7 mr-2 lg:col-start-8 col-span-3 mt-14 md:mt-4 lg:mt-auto  pointer-events-auto">
+            <div className="relative flex justify-end md:mr-32 lg:mr-0 col-start-7 mr-2 lg:col-start-8 col-span-3 mt-14 md:mt-4 lg:mt-auto pointer-events-auto">
               <button className={styles.primaryButton} onClick={startQuiz}>
                 Take the quiz
               </button>
+
               <div className={styles.arrow}>
                 <img
-                  src={LandingpageArrow}
+                  src={LandingPageArrow}
                   className={styles.arrow__img}
                   alt="arrow"
                 />
