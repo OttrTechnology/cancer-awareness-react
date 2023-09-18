@@ -6,7 +6,7 @@ import { Result } from "screens/Quiz/Result";
 import gsap from "gsap";
 
 export const Quiz = () => {
-  const { activeQuizIndex, activeScreen } = useGameContext();
+  const { activeQuizScreen, activeScreen } = useGameContext();
   const quizRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export const Quiz = () => {
       ref={quizRef}
     >
       <Header />
-      {activeQuizIndex === "QUESTION" ? <Question /> : <Result />}
+      {activeQuizScreen === "QUESTION" ? <Question /> : <Result />}
       <GameActions />
     </div>
   );

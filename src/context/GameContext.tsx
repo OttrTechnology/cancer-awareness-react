@@ -55,8 +55,8 @@ interface CustomNavigationSetter extends CustomNavigation {
 interface GameContextProps {
   activeScreen: LocationType;
   setActiveScreen: (navigateData: CustomNavigationSetter) => void;
+  activeQuizScreen: QuizScreenType;
 
-  activeQuizIndex: QuizScreenType;
   currentQuestion: IQuiz;
   nextQuestion?: IQuiz;
 
@@ -103,7 +103,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
   const currentQuestion = shuffledData[activeQuestionIndex];
 
-  const [activeQuizIndex, setActiveQuizIndex] =
+  const [activeQuizScreen, setActiveQuizScreen] =
     useState<QuizScreenType>("QUESTION");
 
   const [userAnswer, setUserAnswer] = useState(true);
@@ -127,10 +127,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   }, []);
 
   const handleAnswer = (newAnswer: boolean) => () => {
-    let index = activeQuizIndex;
-
-    if (index === "RESULT") index = "QUESTION";
-    else index = "RESULT";
+    setUserAnswer(newAnswer);
 
     if (newAnswer !== currentQuestion.fact) {
       setRemainingLives((prevLife) => prevLife - 1);
@@ -138,16 +135,10 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
       setCurrentScore((prevScore) => prevScore + 1);
     }
 
-    setActiveQuizIndex(index);
-    setUserAnswer(newAnswer);
+    setActiveQuizScreen("RESULT");
   };
 
   const handleNext = () => {
-    let index = activeQuizIndex;
-
-    if (index === "RESULT") index = "QUESTION";
-    else index = "RESULT";
-
     if (currentScore > highScore) setHighScore(currentScore);
 
     if (remainingLives === 0 || activeQuestionIndex === data.length - 1) {
@@ -157,20 +148,20 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
         duration: 0.3,
       });
     } else {
-      setActiveQuestionIndex((prev) => prev + 1);
-      setActiveQuizIndex(index);
+      setActiveQuestionIndex((questionNum) => questionNum + 1);
+      setActiveQuizScreen("QUESTION");
     }
   };
 
   const handlePlayAgain = () => {
     setShuffledData(shuffle(data));
 
-    setRemainingLives(TOTAL_LIVES);
     setCurrentScore(0);
+    setRemainingLives(TOTAL_LIVES);
 
     setActiveQuestionIndex(0);
 
-    setActiveQuizIndex("QUESTION");
+    setActiveQuizScreen("QUESTION");
     setActiveScreen({
       location: "QUIZ",
       transition: "TRANSITION_FROM_GAME_OVER",
@@ -180,8 +171,8 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const value: GameContextProps = {
     activeScreen,
     setActiveScreen,
+    activeQuizScreen,
 
-    activeQuizIndex,
     currentQuestion,
     nextQuestion: shuffledData[activeQuestionIndex + 1],
 

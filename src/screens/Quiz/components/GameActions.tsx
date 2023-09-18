@@ -5,11 +5,11 @@ import { BiRightArrowAlt } from "react-icons/bi";
 import { BiX } from "react-icons/bi";
 
 export const GameActions = () => {
-  const { activeQuizIndex, handleAnswer, handleNext } = useGameContext();
+  const { activeQuizScreen, handleAnswer, handleNext } = useGameContext();
 
   return (
     <div>
-      {activeQuizIndex === "QUESTION" ? (
+      {activeQuizScreen === "QUESTION" ? (
         <div className="flex justify-center ca-mb--64 lg:ca-mb--96 ca-gap--64">
           <IconButton icon={<BiX />} onClick={handleAnswer(false)} />
           <IconButton icon={<BiCheck />} onClick={handleAnswer(true)} />
