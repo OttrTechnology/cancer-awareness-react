@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { GameContextProvider } from "context";
 import App from "./App.tsx";
 import "./styles/_main.scss";
-import { GameContextProvider } from "context";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

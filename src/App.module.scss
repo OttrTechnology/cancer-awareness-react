@@ -1,0 +1,5 @@
+@use "main";
+
+:export {
+  lightYellow: main.$light-yellow;
+}
