@@ -55,7 +55,6 @@ export const GameOverAnimation = () => {
           gameOverRef.current,
           {
             autoAlpha: 0,
-
             duration: 0,
           },
           ">"

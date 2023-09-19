@@ -52,7 +52,6 @@ export const CongratulationsAnimation = () => {
           gameOverRef.current,
           {
             autoAlpha: 0,
-
             duration: 0,
           },
           ">"
