@@ -21,17 +21,42 @@ export const CongratulationsAnimation = () => {
         { y: 0, duration: 0.6, ease: Cubic.easeOut }
       )
         .fromTo(
+          gameOverEmojiRef.current,
+          { autoAlpha: 0 },
+          { autoAlpha: 1 },
+          "<"
+        )
+        .fromTo(
           gameOverTextRef.current,
           { y: 30 },
           { y: 0, duration: 0.6, ease: Cubic.easeOut },
           "<"
         )
-        .to(gameOverRef.current, {
-          autoAlpha: 0,
-          ease: Cubic.easeOut,
-          delay: 0.2,
-          duration: 0.3,
-        });
+        .fromTo(
+          gameOverTextRef.current,
+          { autoAlpha: 0 },
+          { autoAlpha: 1, ease: Cubic.easeOut },
+          "<"
+        )
+        .to(
+          gameOverEmojiRef.current,
+          { y: 30, delay: 0.8, autoAlpha: 0, ease: Cubic.easeOut },
+          ">"
+        )
+        .to(
+          gameOverTextRef.current,
+          { y: 30, autoAlpha: 0, ease: Cubic.easeOut },
+          "<"
+        )
+        .to(
+          gameOverRef.current,
+          {
+            autoAlpha: 0,
+
+            duration: 0,
+          },
+          ">"
+        );
     });
 
     return () => ctx.revert();
