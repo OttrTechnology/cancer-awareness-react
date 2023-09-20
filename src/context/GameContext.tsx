@@ -11,6 +11,7 @@ interface IQuiz {
   explanation: string;
   imgSrc: string;
   source: string;
+  scoreValue: number;
 }
 
 enum Screens {
@@ -158,7 +159,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
         .sort((a, b) => a.sort - b.sort)
         .map((item) => item.value);
     },
-    [weightedArray]
+    []
   );
 
   useEffect(() => {
@@ -174,7 +175,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     if (newAnswer !== currentQuestion.fact) {
       setRemainingLives((prevLife) => prevLife - 1);
     } else {
-      setCurrentScore((prevScore) => prevScore + 1);
+      setCurrentScore((prevScore) => prevScore + currentQuestion.scoreValue);
     }
 
     setActiveQuizScreen("RESULT");
