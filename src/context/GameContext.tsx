@@ -85,7 +85,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [questionWeights, setQuestionWeights] = useStorage<number[]>(
     "q-weights",
-    Array(data.length).fill(1)
+    Array(data.length).fill(1) as number[]
   );
 
   const [shuffledData, setShuffledData] = useState<IQuiz[]>([]);
@@ -156,6 +156,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
       }))
       .sort((a, b) => a.sort - b.sort)
       .map((item) => item.value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
