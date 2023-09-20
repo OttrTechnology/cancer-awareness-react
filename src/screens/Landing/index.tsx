@@ -93,7 +93,7 @@ export const Landing = () => {
     data
       .sort(() => 0.5 - Math.random())
       .slice(0, width / 90)
-      .forEach((App, index) => {
+      .forEach((quizItem, index) => {
         Composite.add(engineRef.current.world, [
           Bodies.circle(width / 2, -100 * index, 60, {
             density: 0.001,
@@ -103,7 +103,9 @@ export const Landing = () => {
             friction: 0.1,
             render: {
               sprite: {
-                texture: `/questionImg/${App.imgSrc}`,
+                texture: `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
+                  quizItem.imgSrc
+                }`,
                 xScale: 0.5,
                 yScale: 0.5,
               },

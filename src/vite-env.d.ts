@@ -3,6 +3,7 @@
 interface ImportMetaEnv {
   readonly VITE_BASE_URL: string;
   readonly VITE_AES: string;
+  readonly VITE_ILLUSTRATIONS_BASE_URL: string;
   // more env variables...
 }
 
