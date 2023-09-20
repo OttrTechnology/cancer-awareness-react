@@ -1,6 +1,11 @@
 import { useEffect, useRef } from "react";
 import {
-  BiLogoDiscordAlt,
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+} from "react-share";
+import {
+  BiLogoTwitter,
   BiLogoFacebook,
   BiLink,
   BiLogoLinkedin,
@@ -31,7 +36,8 @@ import styles from "./index.module.scss";
 const { fillStyle, strokeStyle } = styles;
 
 export const Landing = () => {
-  const { activeScreen, setActiveScreen } = useGameContext();
+  const { activeScreen, setActiveScreen, handleCopyLink, copied } =
+    useGameContext();
 
   const { width, height } = useWindowSize();
 
@@ -182,21 +188,27 @@ export const Landing = () => {
                 <span className="ca-body--sm">Share</span>
 
                 <div className="flex ca-gap--24 lg:ca-gap--12">
-                  <a className="cursor-pointer" href="https://www.google.com">
+                  <button onClick={handleCopyLink} className="relative">
+                    {copied && (
+                      <div className={styles.copiedText}>Link copied</div>
+                    )}
+
+                    {/* <div className={styles.copiedText}>Link copied</div> */}
+
                     <BiLink className={styles.social} />
-                  </a>
+                  </button>
 
-                  <a className="cursor-pointer" href="https://www.linkedin.com">
+                  <LinkedinShareButton url={import.meta.env.VITE_BASE_URL}>
                     <BiLogoLinkedin className={styles.social} />
-                  </a>
+                  </LinkedinShareButton>
 
-                  <a className="cursor-pointer" href="https://www.facebook.com">
+                  <FacebookShareButton url={import.meta.env.VITE_BASE_URL}>
                     <BiLogoFacebook className={styles.social} />
-                  </a>
+                  </FacebookShareButton>
 
-                  <a className="cursor-pointer" href="https://www.discord.com">
-                    <BiLogoDiscordAlt className={styles.social} />
-                  </a>
+                  <TwitterShareButton url={import.meta.env.VITE_BASE_URL}>
+                    <BiLogoTwitter className={styles.social} />
+                  </TwitterShareButton>
                 </div>
               </div>
             </div>

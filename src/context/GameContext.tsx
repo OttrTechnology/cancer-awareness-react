@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { useStorage } from "hooks";
+import { useClipboard, useStorage } from "hooks";
 import data from "./cancer-findings-data.json";
 
 const TOTAL_LIVES = 3;
@@ -65,10 +65,14 @@ interface GameContextProps {
   currentScore: number;
   highScore: number;
   userAnswer: boolean;
+  shareSupported: boolean;
+  clipboardSupported: boolean;
+  copied: boolean;
 
   handleAnswer: (newAnswer: boolean) => () => void;
   handleNext: () => void;
   handlePlayAgain: () => void;
+  handleCopyLink: () => void;
 }
 
 export const GameContext = createContext<GameContextProps | undefined>(
@@ -169,6 +173,27 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     });
   };
 
+  const shareData = {
+    title: "Cancer Awareness",
+    url: import.meta.env.VITE_BASE_URL,
+  };
+
+  const shareSupported = Boolean(
+    "canShare" in navigator && !navigator.canShare(shareData)
+  );
+
+  const { clipboardSupported, copy, copied } = useClipboard();
+
+  const handleCopyLink = () => {
+    if (shareSupported) {
+      navigator.share(shareData).catch((error) => {
+        console.error("Error sharing:", error);
+      });
+    } else {
+      copy(import.meta.env.VITE_BASE_URL);
+    }
+  };
+
   const value: GameContextProps = {
     activeScreen,
     setActiveScreen,
@@ -182,10 +207,14 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     currentScore,
     highScore,
     userAnswer,
+    shareSupported,
 
     handleAnswer,
     handleNext,
     handlePlayAgain,
+    handleCopyLink,
+    clipboardSupported,
+    copied,
   };
 
   return (

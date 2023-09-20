@@ -12,38 +12,20 @@ import {
   BiLogoTwitter,
 } from "react-icons/bi";
 import { useOnClickOutside } from "usehooks-ts";
-import { useClipboard } from "hooks";
+import { useGameContext } from "hooks";
 import styles from "./Share.module.scss";
-
-const shareData = {
-  title: "Cancer Awareness",
-  url: import.meta.env.VITE_BASE_URL,
-};
 
 interface Props {
   toggleShare: () => void;
 }
 
 export const Share = ({ toggleShare }: Props) => {
-  const shareSupported = Boolean(
-    "canShare" in navigator && navigator.canShare(shareData)
-  );
-
-  const { clipboardSupported, copy, copied } = useClipboard();
+  const { shareSupported, handleCopyLink, clipboardSupported, copied } =
+    useGameContext();
 
   const wrapperRef = useRef(null);
 
   useOnClickOutside(wrapperRef, toggleShare);
-
-  const handleButtonClick = () => {
-    if (shareSupported) {
-      navigator.share(shareData).catch((error) => {
-        console.error("Error sharing:", error);
-      });
-    } else {
-      copy(import.meta.env.VITE_BASE_URL);
-    }
-  };
 
   return (
     <div className={styles.mainWrapper}>
@@ -60,7 +42,7 @@ export const Share = ({ toggleShare }: Props) => {
           <div className="flex justify-between">
             {clipboardSupported && (
               <div className={styles.shareContainer}>
-                <button onClick={handleButtonClick}>
+                <button onClick={handleCopyLink}>
                   <div className={styles.shareButton}>
                     <BiLink className={styles.shareIcon} />
                   </div>

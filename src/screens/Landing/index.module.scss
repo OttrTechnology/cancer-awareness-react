@@ -44,9 +44,8 @@
   &__img {
     width: main.em(200);
     height: main.em(100);
-  } 
+  }
 
-  
   @include main.breakpoint-up(medium) {
     width: 8.5959375em;
     left: 25%;
@@ -122,4 +121,32 @@
   &:hover {
     color: main.$dark-blue;
   }
+}
+
+.copiedText {
+  position: absolute;
+  color: main.$white;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.01em;
+  padding: 8px 20px;
+  background-color: main.$black;
+  border-radius: 200px;
+  white-space: nowrap;
+  top: -50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
+.copiedText::before {
+  content: "";
+  position: absolute;
+  border-top: 17px solid main.$black;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  position: absolute;
+  left: 46px;
+  top: 29.25px;
 }
