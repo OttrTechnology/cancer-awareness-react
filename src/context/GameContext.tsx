@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
-import { useStorage } from "hooks";
+import { createContext, useCallback, useEffect, useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
+import { useLocalStorageAvailable, useStorage } from "hooks";
 import data from "./cancer-findings-data.json";
 
 const TOTAL_LIVES = 3;
@@ -10,6 +11,7 @@ interface IQuiz {
   explanation: string;
   imgSrc: string;
   source: string;
+  scoreValue: number;
 }
 
 enum Screens {
@@ -76,6 +78,13 @@ export const GameContext = createContext<GameContextProps | undefined>(
 );
 
 export const GameContextProvider = (props: { children: React.ReactNode }) => {
+  const localStorageAvailable = useLocalStorageAvailable();
+
+  const [questionWeights, setQuestionWeights] = useLocalStorage<number[]>(
+    "q-weights",
+    Array(data.length).fill(1)
+  );
+
   const [shuffledData, setShuffledData] = useState<IQuiz[]>([]);
 
   const [activeScreen, activeScreenSetter] = useState<LocationType>("LANDING");
@@ -102,6 +111,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
+
   const currentQuestion = shuffledData[activeQuestionIndex];
 
   const [activeQuizScreen, setActiveQuizScreen] =
@@ -115,25 +125,48 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [userAnswer, setUserAnswer] = useState(true);
 
-  const shuffle = (array: IQuiz[]) => {
-    return array
-      .map((a) => ({ sort: Math.random(), value: a }))
-      .sort((a, b) => a.sort - b.sort)
-      .map((a) => a.value);
+  /**
+   * Increments the weight of a specific question by 1.
+   * @description Higher the weight, lower the probability of the question to re-appear
+   */
+  const incrementQuestionWeight = (): void => {
+    if (localStorageAvailable && currentQuestion) {
+      const questionIndex = data.findIndex(
+        (current) => currentQuestion.imgSrc === current.imgSrc
+      );
+
+      setQuestionWeights((prev) => [
+        ...prev.slice(0, questionIndex),
+        prev[questionIndex] + 1,
+        ...prev.slice(questionIndex + 1),
+      ]);
+    }
   };
+
+  const shuffle = useCallback((array: IQuiz[]) => {
+    return array
+      .map((value, index) => ({
+        sort: Math.random() + questionWeights[index],
+        value,
+      }))
+      .sort((a, b) => a.sort - b.sort)
+      .map((item) => item.value);
+  }, []);
 
   useEffect(() => {
     const shuffledArray = shuffle(data);
     setShuffledData(shuffledArray);
-  }, []);
+  }, [shuffle]);
 
   const handleAnswer = (newAnswer: boolean) => () => {
     setUserAnswer(newAnswer);
 
+    incrementQuestionWeight();
+
     if (newAnswer !== currentQuestion.fact) {
       setRemainingLives((prevLife) => prevLife - 1);
     } else {
-      setCurrentScore((prevScore) => prevScore + 1);
+      setCurrentScore((prevScore) => prevScore + currentQuestion.scoreValue);
     }
 
     setActiveQuizScreen("RESULT");

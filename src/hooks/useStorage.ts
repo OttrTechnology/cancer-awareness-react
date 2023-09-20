@@ -7,6 +7,7 @@ import {
 } from "react";
 import { useEventCallback, useEventListener } from "usehooks-ts";
 import CryptoJS from "crypto-js";
+import { useLocalStorageAvailable } from "./useLocalStorageAvailable";
 
 declare global {
   interface WindowEventMap {
@@ -26,19 +27,8 @@ const decryptData = (data: string | null) =>
     ? CryptoJS.AES.decrypt(data, SECRET_KEY).toString(CryptoJS.enc.Utf8)
     : null;
 
-const checkLocalStorageAvailability = () => {
-  const test = "test";
-  try {
-    localStorage.setItem(test, test);
-    localStorage.removeItem(test);
-    return true;
-  } catch (e) {
-    return false;
-  }
-};
-
 export function useStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
-  const localStorageAvailable = checkLocalStorageAvailability();
+  const localStorageAvailable = useLocalStorageAvailable();
 
   // Get from local storage then
   // parse stored json or return initialValue
@@ -62,7 +52,7 @@ export function useStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
       );
       return initialValue;
     }
-  }, [initialValue, key]);
+  }, [initialValue, key, localStorageAvailable]);
 
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
