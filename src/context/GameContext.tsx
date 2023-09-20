@@ -214,7 +214,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   const shareSupported = Boolean(
-    "canShare" in navigator && !navigator.canShare(shareData)
+    "canShare" in navigator && navigator.canShare(shareData)
   );
 
   const { clipboardSupported, copy, copied } = useClipboard();

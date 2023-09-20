@@ -193,8 +193,6 @@ export const Landing = () => {
                       <div className={styles.copiedText}>Link copied</div>
                     )}
 
-                    {/* <div className={styles.copiedText}>Link copied</div> */}
-
                     <BiLink className={styles.social} />
                   </button>
 
