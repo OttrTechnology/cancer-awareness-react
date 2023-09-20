@@ -27,8 +27,20 @@ const decryptData = (data: string | null) =>
     ? CryptoJS.AES.decrypt(data, SECRET_KEY).toString(CryptoJS.enc.Utf8)
     : null;
 
-export function useStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
+interface Options {
+  secure: boolean;
+}
+
+export function useStorage<T>(
+  key: string,
+  initialValue: T,
+  { secure }: Options = { secure: false }
+): [T, SetValue<T>] {
   const localStorageAvailable = useLocalStorageAvailable();
+
+  const storage = localStorageAvailable
+    ? window.localStorage
+    : window.sessionStorage;
 
   // Get from local storage then
   // parse stored json or return initialValue
@@ -37,11 +49,10 @@ export function useStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
     if (typeof window === "undefined") return initialValue;
 
     try {
-      const item = decryptData(
-        localStorageAvailable
-          ? window.localStorage.getItem(key)
-          : window.sessionStorage.getItem(key)
-      );
+      const item = secure
+        ? decryptData(storage.getItem(key))
+        : storage.getItem(key);
+
       return item ? (parseJSON(item) as T) : initialValue;
     } catch (error) {
       console.warn(
@@ -73,15 +84,12 @@ export function useStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
       const newValue = value instanceof Function ? value(storedValue) : value;
 
       // Save to local storage
-      localStorageAvailable
-        ? window.localStorage.setItem(
-            key,
-            encryptData(JSON.stringify(newValue))
-          )
-        : window.sessionStorage.setItem(
-            key,
-            encryptData(JSON.stringify(newValue))
-          );
+      storage.setItem(
+        key,
+        secure
+          ? encryptData(JSON.stringify(newValue))
+          : JSON.stringify(newValue)
+      );
 
       // Save state
       setStoredValue(newValue);
