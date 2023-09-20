@@ -80,7 +80,7 @@ export const GameContext = createContext<GameContextProps | undefined>(
 export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const localStorageAvailable = useLocalStorageAvailable();
 
-  const [weightedArray, setWeightedArray] = useLocalStorage<number[]>(
+  const [questionWeights, setQuestionWeights] = useLocalStorage<number[]>(
     "q-weights",
     Array(data.length).fill(1)
   );
@@ -135,7 +135,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
         (current) => currentQuestion.imgSrc === current.imgSrc
       );
 
-      setWeightedArray((prev) => [
+      setQuestionWeights((prev) => [
         ...prev.slice(0, questionIndex),
         prev[questionIndex] + 1,
         ...prev.slice(questionIndex + 1),
@@ -146,7 +146,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const shuffle = useCallback((array: IQuiz[]) => {
     return array
       .map((value, index) => ({
-        sort: Math.random() + weightedArray[index],
+        sort: Math.random() + questionWeights[index],
         value,
       }))
       .sort((a, b) => a.sort - b.sort)
