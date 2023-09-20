@@ -54,10 +54,6 @@ interface CustomNavigationSetter extends CustomNavigation {
   duration?: number;
 }
 
-interface QuestionWeight {
-  weight: number;
-}
-
 interface GameContextProps {
   activeScreen: LocationType;
   setActiveScreen: (navigateData: CustomNavigationSetter) => void;
@@ -84,11 +80,9 @@ export const GameContext = createContext<GameContextProps | undefined>(
 export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const localStorageAvailable = useLocalStorageAvailable();
 
-  const [weightedArray, setWeightedArray] = useLocalStorage<QuestionWeight[]>(
+  const [weightedArray, setWeightedArray] = useLocalStorage<number[]>(
     "q-weights",
-    Array(data.length).fill({
-      weight: 1,
-    }) as QuestionWeight[]
+    Array(data.length).fill(1)
   );
 
   const [shuffledData, setShuffledData] = useState<IQuiz[]>([]);
@@ -143,24 +137,21 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
       setWeightedArray((prev) => [
         ...prev.slice(0, questionIndex),
-        { weight: prev[questionIndex].weight + 1 },
+        prev[questionIndex] + 1,
         ...prev.slice(questionIndex + 1),
       ]);
     }
   };
 
-  const shuffle = useCallback(
-    (array: IQuiz[]) => {
-      return array
-        .map((value, index) => ({
-          sort: Math.random() + weightedArray[index].weight,
-          value,
-        }))
-        .sort((a, b) => a.sort - b.sort)
-        .map((item) => item.value);
-    },
-    []
-  );
+  const shuffle = useCallback((array: IQuiz[]) => {
+    return array
+      .map((value, index) => ({
+        sort: Math.random() + weightedArray[index],
+        value,
+      }))
+      .sort((a, b) => a.sort - b.sort)
+      .map((item) => item.value);
+  }, []);
 
   useEffect(() => {
     const shuffledArray = shuffle(data);
