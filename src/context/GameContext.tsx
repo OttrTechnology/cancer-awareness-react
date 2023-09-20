@@ -1,5 +1,4 @@
 import { createContext, useCallback, useEffect, useState } from "react";
-import { useLocalStorage } from "usehooks-ts";
 import { useLocalStorageAvailable, useStorage } from "hooks";
 import data from "./cancer-findings-data.json";
 
@@ -80,7 +79,7 @@ export const GameContext = createContext<GameContextProps | undefined>(
 export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const localStorageAvailable = useLocalStorageAvailable();
 
-  const [questionWeights, setQuestionWeights] = useLocalStorage<number[]>(
+  const [questionWeights, setQuestionWeights] = useStorage<number[]>(
     "q-weights",
     Array(data.length).fill(1)
   );
@@ -119,7 +118,9 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [remainingLives, setRemainingLives] = useState(TOTAL_LIVES);
 
-  const [highScore, setHighScore] = useStorage("highScore", 0);
+  const [highScore, setHighScore] = useStorage("highScore", 0, {
+    secure: true,
+  });
 
   const [currentScore, setCurrentScore] = useState(0);
 
