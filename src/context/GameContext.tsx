@@ -1,5 +1,5 @@
 import { createContext, useCallback, useEffect, useState } from "react";
-import { useLocalStorageAvailable, useStorage } from "hooks";
+import { useClipboard, useLocalStorageAvailable, useStorage } from "hooks";
 import data from "./cancer-findings-data.json";
 
 const TOTAL_LIVES = 3;
@@ -67,9 +67,14 @@ interface GameContextProps {
   highScore: number;
   userAnswer: boolean;
 
+  shareSupported: boolean;
+  clipboardSupported: boolean;
+  copied: boolean;
+
   handleAnswer: (newAnswer: boolean) => () => void;
   handleNext: () => void;
   handlePlayAgain: () => void;
+  handleCopyLink: () => void;
 }
 
 export const GameContext = createContext<GameContextProps | undefined>(
@@ -81,7 +86,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [questionWeights, setQuestionWeights] = useStorage<number[]>(
     "q-weights",
-    Array(data.length).fill(1)
+    Array(data.length).fill(1) as number[]
   );
 
   const [shuffledData, setShuffledData] = useState<IQuiz[]>([]);
@@ -152,6 +157,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
       }))
       .sort((a, b) => a.sort - b.sort)
       .map((item) => item.value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -203,6 +209,27 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     });
   };
 
+  const shareData = {
+    title: "Cancer Awareness",
+    url: import.meta.env.VITE_BASE_URL,
+  };
+
+  const shareSupported = Boolean(
+    "canShare" in navigator && navigator.canShare(shareData)
+  );
+
+  const { clipboardSupported, copy, copied } = useClipboard();
+
+  const handleCopyLink = () => {
+    if (shareSupported) {
+      navigator.share(shareData).catch((error) => {
+        console.error("Error sharing:", error);
+      });
+    } else {
+      copy(import.meta.env.VITE_BASE_URL);
+    }
+  };
+
   const value: GameContextProps = {
     activeScreen,
     setActiveScreen,
@@ -216,10 +243,15 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     currentScore,
     highScore,
     userAnswer,
-
+    
     handleAnswer,
     handleNext,
     handlePlayAgain,
+    
+    shareSupported,
+    clipboardSupported,
+    copied,
+    handleCopyLink,
   };
 
   return (
