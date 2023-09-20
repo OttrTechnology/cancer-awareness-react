@@ -131,7 +131,7 @@
   font-weight: 400;
   line-height: 140%;
   letter-spacing: -0.01em;
-  padding: 8px 20px;
+  padding: main.em(8px) main.em(20px);
   background-color: main.$black;
   border-radius: 200px;
   white-space: nowrap;
@@ -146,7 +146,6 @@
   border-top: 17px solid main.$black;
   border-left: 16px solid transparent;
   border-right: 16px solid transparent;
-  position: absolute;
   left: 46px;
   top: 29.25px;
 }
