@@ -1,5 +1,6 @@
 export const useLocalStorageAvailable = () => {
-  const test = "test";
+  const test = "t";
+
   try {
     localStorage.setItem(test, test);
     localStorage.removeItem(test);

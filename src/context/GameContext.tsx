@@ -53,7 +53,7 @@ interface CustomNavigationSetter extends CustomNavigation {
   duration?: number;
 }
 
-interface DataWeight {
+interface QuestionWeight {
   weight: number;
 }
 
@@ -83,11 +83,11 @@ export const GameContext = createContext<GameContextProps | undefined>(
 export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const localStorageAvailable = useLocalStorageAvailable();
 
-  const [weightedArray, setWeightedArray] = useLocalStorage<DataWeight[]>(
-    "weights",
+  const [weightedArray, setWeightedArray] = useLocalStorage<QuestionWeight[]>(
+    "q-weights",
     Array(data.length).fill({
       weight: 1,
-    }) as DataWeight[]
+    }) as QuestionWeight[]
   );
 
   const [shuffledData, setShuffledData] = useState<IQuiz[]>([]);
@@ -131,10 +131,10 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const [userAnswer, setUserAnswer] = useState(true);
 
   /**
-   * Updates the weight of a specific question.
-   * @function
+   * Increments the weight of a specific question by 1.
+   * @description Higher the weight, lower the probability of the question to re-appear
    */
-  const updateRandomizedWeight = (): void => {
+  const incrementQuestionWeight = (): void => {
     if (localStorageAvailable && currentQuestion) {
       const questionIndex = data.findIndex(
         (current) => currentQuestion.imgSrc === current.imgSrc
@@ -151,12 +151,12 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const shuffle = useCallback(
     (array: IQuiz[]) => {
       return array
-        .map((a, index) => ({
+        .map((value, index) => ({
           sort: Math.random() + weightedArray[index].weight,
-          value: a,
+          value,
         }))
         .sort((a, b) => a.sort - b.sort)
-        .map((a) => a.value);
+        .map((item) => item.value);
     },
     [weightedArray]
   );
@@ -169,7 +169,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const handleAnswer = (newAnswer: boolean) => () => {
     setUserAnswer(newAnswer);
 
-    updateRandomizedWeight();
+    incrementQuestionWeight();
 
     if (newAnswer !== currentQuestion.fact) {
       setRemainingLives((prevLife) => prevLife - 1);
