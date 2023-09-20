@@ -31,7 +31,7 @@ export const GameOver = () => {
       const tl = gsap.timeline();
       tl.from(gameOverRef.current, {
         autoAlpha: 0,
-        delay: 1.2,
+        delay: 1.7,
         duration: 0.6,
         ease: Cubic.easeOut,
       })
