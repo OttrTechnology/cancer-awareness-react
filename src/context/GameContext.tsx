@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
-import { useStorage } from "hooks";
+import { createContext, useCallback, useEffect, useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
+import { useLocalStorageAvailable, useStorage } from "hooks";
 import data from "./cancer-findings-data.json";
 
 const TOTAL_LIVES = 3;
@@ -52,6 +53,10 @@ interface CustomNavigationSetter extends CustomNavigation {
   duration?: number;
 }
 
+interface DataWeight {
+  weight: number;
+}
+
 interface GameContextProps {
   activeScreen: LocationType;
   setActiveScreen: (navigateData: CustomNavigationSetter) => void;
@@ -76,6 +81,15 @@ export const GameContext = createContext<GameContextProps | undefined>(
 );
 
 export const GameContextProvider = (props: { children: React.ReactNode }) => {
+  const localStorageAvailable = useLocalStorageAvailable();
+
+  const [weightedArray, setWeightedArray] = useLocalStorage<DataWeight[]>(
+    "weights",
+    Array(data.length).fill({
+      weight: 1,
+    }) as DataWeight[]
+  );
+
   const [shuffledData, setShuffledData] = useState<IQuiz[]>([]);
 
   const [activeScreen, activeScreenSetter] = useState<LocationType>("LANDING");
@@ -102,6 +116,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
+
   const currentQuestion = shuffledData[activeQuestionIndex];
 
   const [activeQuizScreen, setActiveQuizScreen] =
@@ -115,20 +130,46 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [userAnswer, setUserAnswer] = useState(true);
 
-  const shuffle = (array: IQuiz[]) => {
-    return array
-      .map((a) => ({ sort: Math.random(), value: a }))
-      .sort((a, b) => a.sort - b.sort)
-      .map((a) => a.value);
+  /**
+   * Updates the weight of a specific question.
+   * @function
+   */
+  const updateRandomizedWeight = (): void => {
+    if (localStorageAvailable && currentQuestion) {
+      const questionIndex = data.findIndex(
+        (current) => currentQuestion.imgSrc === current.imgSrc
+      );
+
+      setWeightedArray((prev) => [
+        ...prev.slice(0, questionIndex),
+        { weight: prev[questionIndex].weight + 1 },
+        ...prev.slice(questionIndex + 1),
+      ]);
+    }
   };
+
+  const shuffle = useCallback(
+    (array: IQuiz[]) => {
+      return array
+        .map((a, index) => ({
+          sort: Math.random() + weightedArray[index].weight,
+          value: a,
+        }))
+        .sort((a, b) => a.sort - b.sort)
+        .map((a) => a.value);
+    },
+    [weightedArray]
+  );
 
   useEffect(() => {
     const shuffledArray = shuffle(data);
     setShuffledData(shuffledArray);
-  }, []);
+  }, [shuffle]);
 
   const handleAnswer = (newAnswer: boolean) => () => {
     setUserAnswer(newAnswer);
+
+    updateRandomizedWeight();
 
     if (newAnswer !== currentQuestion.fact) {
       setRemainingLives((prevLife) => prevLife - 1);
