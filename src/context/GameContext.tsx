@@ -66,6 +66,7 @@ interface GameContextProps {
   currentScore: number;
   highScore: number;
   userAnswer: boolean;
+
   shareSupported: boolean;
   clipboardSupported: boolean;
   copied: boolean;
@@ -242,14 +243,15 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     currentScore,
     highScore,
     userAnswer,
-    shareSupported,
-
+    
     handleAnswer,
     handleNext,
     handlePlayAgain,
-    handleCopyLink,
+    
+    shareSupported,
     clipboardSupported,
     copied,
+    handleCopyLink,
   };
 
   return (
