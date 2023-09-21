@@ -306,7 +306,7 @@ export const Landing = () => {
                   <LinkedinShareButton
                     title="Cancer Insights Challenge"
                     summary="Check out this fun cancer quiz game and test your cancer knowledge. You can play for free here:"
-                    source="Cancer Insights Challenge"
+                    source={import.meta.env.VITE_BASE_URL}
                     url={import.meta.env.VITE_BASE_URL}
                   >
                     <BiLogoLinkedin className={styles.social} />
@@ -314,7 +314,7 @@ export const Landing = () => {
 
                   <FacebookShareButton
                     quote="How much do you know about cancer? Put your cancer knowledge to the test in this short and fun quiz game!"
-                    hashtag="#CancerAwareness #Ottr"
+                    hashtag="#CancerAwareness"
                     url={import.meta.env.VITE_BASE_URL}
                   >
                     <BiLogoFacebook className={styles.social} />
