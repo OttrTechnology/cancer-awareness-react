@@ -303,24 +303,19 @@ export const Landing = () => {
                     <BiLink className={styles.social} />
                   </button>
 
-                  <LinkedinShareButton
-                    title="Cancer Insights Challenge"
-                    summary="Check out this fun cancer quiz game and test your cancer knowledge. You can play for free here:"
-                    source={import.meta.env.VITE_BASE_URL}
-                    url={import.meta.env.VITE_BASE_URL}
-                  >
+                  <LinkedinShareButton url={import.meta.env.VITE_BASE_URL}>
                     <BiLogoLinkedin className={styles.social} />
                   </LinkedinShareButton>
 
                   <FacebookShareButton
-                    quote="How much do you know about cancer? Put your cancer knowledge to the test in this short and fun quiz game!"
-                    hashtag="#CancerAwareness"
                     url={import.meta.env.VITE_BASE_URL}
+                    hashtag="#CancerAwareness"
                   >
                     <BiLogoFacebook className={styles.social} />
                   </FacebookShareButton>
 
                   <TwitterShareButton
+                    url={import.meta.env.VITE_BASE_URL}
                     title="Check out this fun cancer quiz game and test your cancer knowledge. You can play for free here:"
                     hashtags={[
                       "CancerAwareness",
@@ -329,7 +324,6 @@ export const Landing = () => {
                       "Ottr",
                     ]}
                     related={["@CR_UK", "@YLvsCancer", "@BreastCancerNDX"]}
-                    url={import.meta.env.VITE_BASE_URL}
                   >
                     <BiLogoTwitter className={styles.social} />
                   </TwitterShareButton>
