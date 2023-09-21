@@ -307,11 +307,24 @@ export const Landing = () => {
                     <BiLogoLinkedin className={styles.social} />
                   </LinkedinShareButton>
 
-                  <FacebookShareButton url={import.meta.env.VITE_BASE_URL}>
+                  <FacebookShareButton
+                    url={import.meta.env.VITE_BASE_URL}
+                    hashtag="#CancerAwareness"
+                  >
                     <BiLogoFacebook className={styles.social} />
                   </FacebookShareButton>
 
-                  <TwitterShareButton url={import.meta.env.VITE_BASE_URL}>
+                  <TwitterShareButton
+                    url={import.meta.env.VITE_BASE_URL}
+                    title="Check out this fun cancer quiz game and test your cancer knowledge. You can play for free here:"
+                    hashtags={[
+                      "CancerAwareness",
+                      "CancerResearch",
+                      "CancerAwarenessQuiz",
+                      "Ottr",
+                    ]}
+                    related={["@CR_UK", "@YLvsCancer", "@BreastCancerNDX"]}
+                  >
                     <BiLogoTwitter className={styles.social} />
                   </TwitterShareButton>
                 </div>

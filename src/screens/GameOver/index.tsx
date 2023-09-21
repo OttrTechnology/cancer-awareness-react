@@ -47,7 +47,7 @@ export const GameOver = () => {
       <Confetti
         width={width}
         height={height}
-        numberOfPieces={currentScore * 3}
+        numberOfPieces={currentScore / 2}  
       />
 
       <div className="relative ca-min-h-screen flex flex-col justify-center overflow-hidden">

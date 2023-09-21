@@ -4,6 +4,11 @@ import data from "./cancer-findings-data.json";
 
 const TOTAL_LIVES = 3;
 
+const SHARE_DATA = {
+  title: "Cancer Insights Challenge",
+  url: import.meta.env.VITE_BASE_URL,
+};
+
 interface IQuiz {
   fact: boolean;
   claim: string;
@@ -218,20 +223,15 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     });
   };
 
-  const shareData = {
-    title: "Cancer Awareness",
-    url: import.meta.env.VITE_BASE_URL,
-  };
-
   const shareSupported = Boolean(
-    "canShare" in navigator && navigator.canShare(shareData)
+    "canShare" in navigator && navigator.canShare(SHARE_DATA)
   );
 
   const { clipboardSupported, copy, copied } = useClipboard();
 
   const handleCopyLink = () => {
     if (shareSupported) {
-      navigator.share(shareData).catch((error) => {
+      navigator.share(SHARE_DATA).catch((error) => {
         console.error("Error sharing:", error);
       });
     } else {
