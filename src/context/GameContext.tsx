@@ -173,7 +173,16 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     if (newAnswer !== currentQuestion.fact) {
       setRemainingLives((prevLife) => prevLife - 1);
     } else {
-      setCurrentScore((prevScore) => prevScore + currentQuestion.scoreValue);
+      // ? animate score
+      setTimeout(() => {
+        let scoreValue = currentQuestion.scoreValue;
+        while (scoreValue) {
+          setTimeout(() => {
+            setCurrentScore((prevScore) => prevScore + 1);
+          }, scoreValue * 50);
+          scoreValue--;
+        }
+      }, 300); // ? delay animation
     }
 
     setActiveQuizScreen("RESULT");
@@ -243,11 +252,11 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     currentScore,
     highScore,
     userAnswer,
-    
+
     handleAnswer,
     handleNext,
     handlePlayAgain,
-    
+
     shareSupported,
     clipboardSupported,
     copied,
