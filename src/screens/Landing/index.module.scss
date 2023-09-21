@@ -16,22 +16,6 @@
   width: auto;
 }
 
-.logoTitle {
-  @apply text-center font-medium;
-  color: main.$black;
-  font-size: main.em(22);
-  line-height: 150%;
-  letter-spacing: -0.01em;
-  text-align: center;
-
-  @include main.breakpoint-down(small) {
-    @apply text-center font-medium;
-    font-size: main.em(18);
-    font-style: normal;
-    line-height: 150%; /* 27px */
-  }
-}
-
 .arrow {
   @apply select-none;
   position: absolute;
@@ -103,11 +87,17 @@
     z-index: -1;
   }
 
-  &:hover {
-    color: main.$dark-blue;
-    &::before {
-      border-radius: 10rem;
-      transform: scaleY(1) translateZ(0);
+  @include main.breakpoint-up(large) {
+    &:hover {
+      color: black;
+
+      &::before {
+        border-radius: 10em;
+        transform: scaleY(1) translateZ(0);
+        svg path {
+          fill: white;
+        }
+      }
     }
   }
 }
@@ -118,8 +108,10 @@
   color: main.$primary;
   transition: color 0.3s ease;
 
-  &:hover {
-    color: main.$dark-blue;
+  @include main.breakpoint-up(large) {
+    &:hover {
+      color: main.$dark-blue;
+    }
   }
 }
 

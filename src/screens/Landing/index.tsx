@@ -21,7 +21,6 @@ import {
 } from "matter-js";
 import { useWindowSize } from "usehooks-ts";
 import { gsap } from "gsap";
-import clsx from "clsx";
 
 import { useGameContext } from "hooks";
 
@@ -167,10 +166,6 @@ export const Landing = () => {
                   alt="Ottr Logo"
                   className={styles.logo}
                 />
-
-                <span className={clsx(styles.logoTitle, "ca-text--black-80")}>
-                  Presents
-                </span>
               </div>
 
               <div className="ca-mb--16 select-none lg:ca-mb--24">
