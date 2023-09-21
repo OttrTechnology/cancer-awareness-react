@@ -314,7 +314,7 @@ export const Landing = () => {
 
                   <FacebookShareButton
                     quote="How much do you know about cancer? Put your cancer knowledge to the test in this short and fun quiz game!"
-                    hashtag="#CancerAwareness"
+                    hashtag="#CancerAwareness #Ottr"
                     url={import.meta.env.VITE_BASE_URL}
                   >
                     <BiLogoFacebook className={styles.social} />
