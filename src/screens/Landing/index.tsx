@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -12,6 +12,7 @@ import {
 } from "react-icons/bi";
 import {
   Bodies,
+  Body,
   Composite,
   Engine,
   Mouse,
@@ -43,9 +44,202 @@ export const Landing = () => {
 
   const mainRef = useRef<HTMLDivElement>(null);
 
-  const canvasRef = useRef(null);
+  const boxRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef(Engine.create());
-  const sceneRef = useRef(null);
+  const [scene, setScene] = useState<Render>();
+
+  useEffect(() => {
+    const render = Render.create({
+      element: boxRef.current || undefined,
+      engine: engineRef.current,
+      canvas: canvasRef.current || undefined,
+      options: { wireframes: false, background: "transparent" },
+    });
+
+    // ? see https://youtu.be/dbPixrR9mSw?si=zrOWfbUiN1xRQtHD&t=101
+    const wallThickness = 60,
+      wallOffset = wallThickness / 2;
+    Composite.add(engineRef.current.world, [
+      Bodies.rectangle(
+        -wallOffset, // ? position wall offscreen
+        window.innerHeight / 2,
+        wallThickness,
+        window.innerHeight,
+        {
+          label: "leftWall",
+          isStatic: true,
+          render: { fillStyle, strokeStyle, lineWidth: 1 },
+        }
+      ),
+      Bodies.rectangle(
+        window.innerWidth / 2,
+        window.innerHeight + wallOffset,
+        window.innerWidth,
+        wallThickness,
+        {
+          label: "floor",
+          isStatic: true,
+          render: { fillStyle, strokeStyle, lineWidth: 1 },
+        }
+      ),
+      Bodies.rectangle(
+        window.innerWidth + wallOffset,
+        window.innerHeight / 2,
+        wallThickness,
+        window.innerHeight,
+        {
+          label: "rightWall",
+          isStatic: true,
+          render: { fillStyle, strokeStyle, lineWidth: 1 },
+        }
+      ),
+    ]);
+
+    // add mouse interaction
+    const mouse = Mouse.create(render.canvas),
+      mouseConstraint = MouseConstraint.create(engineRef.current, {
+        mouse,
+        constraint: { stiffness: 0.2, render: { visible: false } },
+      });
+    Composite.add(engineRef.current.world, mouseConstraint);
+    render.mouse = mouse;
+
+    Runner.run(engineRef.current); // run physics engine
+    Render.run(render); // run renderer
+
+    setScene(render);
+
+    return () => {
+      Render.stop(render);
+      Composite.clear(engineRef.current.world, false);
+      Engine.clear(engineRef.current);
+    };
+  }, []);
+
+  // add random quiz illustration circles
+  useEffect(() => {
+    data
+      .sort(() => 0.5 - Math.random())
+      .slice(0, window.innerWidth / 90)
+      .forEach((quizItem, index) => {
+        Composite.add(
+          engineRef.current.world,
+          Bodies.circle(window.innerWidth / 2, -100 * index, 60, {
+            label: "quiz-item",
+            density: 0.001,
+            frictionAir: 0.02,
+            frictionStatic: 0.5,
+            restitution: 0.6,
+            friction: 0.1,
+            render: {
+              sprite: {
+                texture: `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
+                  quizItem.imgSrc
+                }`,
+                xScale: 0.5,
+                yScale: 0.5,
+              },
+            },
+          })
+        );
+      });
+
+    return () => {
+      Composite.clear(engineRef.current.world, true);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (scene) {
+      const prevWallHeight = scene.canvas.height;
+      const prevFloorLength = scene.canvas.width;
+
+      scene.bounds.max.x = width;
+      scene.bounds.max.y = height;
+      scene.options.width = width;
+      scene.options.height = height;
+      scene.canvas.width = width;
+      scene.canvas.height = height;
+
+      const leftWallIndex = engineRef.current.detector.bodies.findIndex(
+        (body) => body.label === "leftWall"
+      );
+      const floorIndex = engineRef.current.detector.bodies.findIndex(
+        (body) => body.label === "floor"
+      );
+      const rightWallIndex = engineRef.current.detector.bodies.findIndex(
+        (body) => body.label === "rightWall"
+      );
+
+      // resize and reposition leftWall
+      if (leftWallIndex !== -1) {
+        Body.setPosition(engineRef.current.detector.bodies[leftWallIndex], {
+          x: -30,
+          y: height / 2,
+        });
+        Body.scale(
+          engineRef.current.detector.bodies[leftWallIndex],
+          1,
+          height / prevWallHeight
+        );
+      }
+
+      // resize and reposition floor
+      if (floorIndex !== -1) {
+        Body.setPosition(engineRef.current.detector.bodies[floorIndex], {
+          x: width / 2,
+          y: height + 30,
+        });
+        Body.scale(
+          engineRef.current.detector.bodies[floorIndex],
+          width / prevFloorLength,
+          1
+        );
+      }
+
+      // resize and reposition rightWall
+      if (rightWallIndex !== -1) {
+        Body.setPosition(engineRef.current.detector.bodies[rightWallIndex], {
+          x: width + 30,
+          y: height / 2,
+        });
+        Body.scale(
+          engineRef.current.detector.bodies[rightWallIndex],
+          1,
+          height / prevWallHeight
+        );
+      }
+    }
+  }, [scene, width, height]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (activeScreen === "TRANSITIONING_FROM_LANDING") {
+        gsap.to(mainRef.current, { autoAlpha: 0, duration: 0.3 });
+      } else if (activeScreen === "LANDING") {
+        gsap.to(mainRef.current, { autoAlpha: 1, duration: 0.3 });
+      }
+    });
+
+    return () => ctx.revert();
+  }, [activeScreen]);
+
+  /**
+   * Reload window to conditionally render canvas for mobile
+   */
+  useEffect(() => {
+    const handleResize = (event: UIEvent) => {
+      const { innerWidth } = event.target as Window;
+      if (innerWidth <= 640) window.location.reload();
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const startQuiz = () => {
     // preloading emoji for result
@@ -62,97 +256,10 @@ export const Landing = () => {
     });
   };
 
-  useEffect(() => {
-    const render = Render.create({
-      element: sceneRef.current || undefined,
-      engine: engineRef.current,
-      canvas: canvasRef.current || undefined,
-      options: { width, height, wireframes: false, background: "transparent" },
-    });
-
-    Render.lookAt(render, {
-      min: { x: 0, y: 0 },
-      max: { x: document.body.offsetWidth, y: document.body.offsetHeight },
-    });
-
-    Composite.add(engineRef.current.world, [
-      Bodies.rectangle(-120, height / 2, 20 + 180, height + 10, {
-        isStatic: true,
-        render: { fillStyle, strokeStyle, lineWidth: 3 },
-      }),
-      Bodies.rectangle(width / 2, height + 40, width + 120, 90, {
-        isStatic: true,
-        render: { fillStyle, strokeStyle, lineWidth: 3 },
-      }),
-      Bodies.rectangle(width + 80, height / 2, 120, height, {
-        isStatic: true,
-        render: { fillStyle, strokeStyle, lineWidth: 3 },
-      }),
-    ]);
-
-    data
-      .sort(() => 0.5 - Math.random())
-      .slice(0, width / 90)
-      .forEach((App, index) => {
-        Composite.add(engineRef.current.world, [
-          Bodies.circle(width / 2, -100 * index, 60, {
-            density: 0.001,
-            frictionAir: 0.02,
-            frictionStatic: 0.5,
-            restitution: 0.6,
-            friction: 0.1,
-            render: {
-              sprite: {
-                texture: `/questionImg/${App.imgSrc}`,
-                xScale: 0.5,
-                yScale: 0.5,
-              },
-            },
-          }),
-        ]);
-      });
-
-    const mouse = Mouse.create(render.canvas),
-      mouseConstraint = MouseConstraint.create(engineRef.current, {
-        mouse,
-        constraint: { stiffness: 0.2, render: { visible: false } },
-      });
-    Composite.add(engineRef.current.world, mouseConstraint);
-    render.mouse = mouse;
-
-    Runner.run(engineRef.current);
-    Render.run(render);
-
-    if (activeScreen === "TRANSITIONING_FROM_LANDING") {
-      Composite.clear(engineRef.current.world, false);
-    }
-
-    return () => {
-      Render.stop(render);
-      Composite.clear(engineRef.current.world, false);
-      Engine.clear(engineRef.current);
-
-      render.canvas.remove();
-      render.textures = {};
-    };
-  });
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (activeScreen === "TRANSITIONING_FROM_LANDING") {
-        gsap.to(mainRef.current, { autoAlpha: 0, duration: 0.3 });
-      } else if (activeScreen === "LANDING") {
-        gsap.to(mainRef.current, { autoAlpha: 1, duration: 0.3 });
-      }
-    });
-
-    return () => ctx.revert();
-  }, [activeScreen]);
-
   return (
     <div ref={mainRef}>
       {window.innerWidth > 640 && (
-        <div ref={sceneRef} className="fixed w-full h-full">
+        <div ref={boxRef} className="fixed w-full h-full">
           <canvas ref={canvasRef} />
         </div>
       )}
