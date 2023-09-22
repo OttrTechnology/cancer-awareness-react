@@ -6,7 +6,7 @@
   height: calc(100% - 6rem - 13rem);
 
   @include main.breakpoint-down(large) {
-    height: calc(100% - 5rem - 14rem)
+    height: calc(100% - 5rem - 9rem)
   }
 }
 

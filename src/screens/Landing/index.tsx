@@ -267,8 +267,8 @@ export const Landing = () => {
       )}
 
       <div className={styles.wrapper}>
-        <div className="flex justify-center items-center h-screen lg:block relative mx-auto lg:ca-pt--120 pointer-events-none">
-          <div className="lg:grid lg:grid-cols-10 ca-gap--24">
+        <div className="flex justify-center items-center h-screen relative mx-auto pointer-events-none">
+          <div className="lg:grid lg:ca-pb--180 lg:grid-cols-10 ca-gap--24">
             <div className="lg:col-span-6 relative">
               <div className="flex items-end lg:ca-gap--8 ca-gap--4 ca-mb--24 lg:ca-mb--32 select-none">
                 <img
