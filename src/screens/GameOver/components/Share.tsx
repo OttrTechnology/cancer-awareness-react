@@ -55,7 +55,7 @@ export const Share = ({ toggleShare }: Props) => {
             )}
 
             <div className={styles.shareContainer}>
-              <FacebookShareButton url={import.meta.env.VITE_BASE_URL}>
+              <FacebookShareButton hashtag="#CancerAwareness" url={import.meta.env.VITE_BASE_URL}>
                 <div className={styles.shareButton}>
                   <BiLogoFacebook className={styles.shareIcon} />
                 </div>
@@ -75,7 +75,17 @@ export const Share = ({ toggleShare }: Props) => {
             </div>
 
             <div className={styles.shareContainer}>
-              <TwitterShareButton url={import.meta.env.VITE_BASE_URL}>
+              <TwitterShareButton
+                url={import.meta.env.VITE_BASE_URL}
+                title="Check out this fun cancer quiz game and test your cancer knowledge. You can play for free here:"
+                hashtags={[
+                  "CancerAwareness",
+                  "CancerResearch",
+                  "CancerAwarenessQuiz",
+                  "Ottr",
+                ]}
+                related={["@CR_UK", "@YLvsCancer", "@BreastCancerNDX"]}
+              >
                 <div className={styles.shareButton}>
                   <BiLogoTwitter className={styles.shareIcon} />
                 </div>

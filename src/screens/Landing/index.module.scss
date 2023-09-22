@@ -17,8 +17,7 @@
 }
 
 .arrow {
-  @apply select-none;
-  position: absolute;
+  @apply select-none absolute pointer-events-none;
   left: 9%;
   top: 1em;
   width: 6.5959375rem;
@@ -69,7 +68,7 @@
     line-height: 120%;
   }
 
-  // creating stacking context so to fix psudo element stacking
+  // creating stacking context so to fix pseudo element stacking
   isolation: isolate;
 
   &::before {
