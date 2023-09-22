@@ -6,14 +6,14 @@ export const GameActions = () => {
   const { activeQuizScreen, handleAnswer, handleNext } = useGameContext();
 
   return (
-    <div>
+    <>
       {activeQuizScreen === "QUESTION" ? (
-        <div className="flex justify-center ca-gap--64 h-56 lg:h-52">
+        <div className="flex justify-center ca-gap--64 h-36 lg:h-52">
           <IconButton icon={<BiX />} onClick={handleAnswer(false)} />
           <IconButton icon={<BiCheck />} onClick={handleAnswer(true)} />
         </div>
       ) : (
-        <div className="flex h-52 lg:h-40 justify-center ca-gap--32">
+        <div className="flex h-32 lg:h-40 justify-center ca-gap--32">
           <Button
             size="medium"
             onClick={handleNext}
@@ -22,6 +22,6 @@ export const GameActions = () => {
           />
         </div>
       )}
-    </div>
+    </>
   );
 };
