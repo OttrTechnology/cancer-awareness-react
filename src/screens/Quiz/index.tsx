@@ -25,10 +25,7 @@ export const Quiz = () => {
   }, [activeScreen]);
 
   return (
-    <div
-      ref={quizRef}
-      className="ca-min-h-screen flex flex-col justify-between content-center flex-wrap ca-gap--16"
-    >
+    <div ref={quizRef} className="ca-h-screen content-center ca-gap--16">
       <Header />
 
       {activeQuizScreen === "QUESTION" ? <Question /> : <Result />}

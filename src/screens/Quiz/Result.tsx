@@ -37,7 +37,7 @@ export const Result = () => {
   }, [remainingLives]);
 
   return (
-    <div className="flex justify-center">
+    <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.body}>
           <img

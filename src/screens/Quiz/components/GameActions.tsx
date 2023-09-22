@@ -8,12 +8,12 @@ export const GameActions = () => {
   return (
     <div>
       {activeQuizScreen === "QUESTION" ? (
-        <div className="flex justify-center ca-mb--64 lg:ca-mb--96 ca-gap--64">
+        <div className="flex justify-center ca-gap--64 h-56 lg:h-52">
           <IconButton icon={<BiX />} onClick={handleAnswer(false)} />
           <IconButton icon={<BiCheck />} onClick={handleAnswer(true)} />
         </div>
       ) : (
-        <div className="flex justify-center ca-mb--64 md:ca-mb--96 ca-gap--32">
+        <div className="flex h-52 lg:h-40 justify-center ca-gap--32">
           <Button
             size="medium"
             onClick={handleNext}

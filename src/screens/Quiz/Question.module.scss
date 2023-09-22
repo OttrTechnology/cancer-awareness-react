@@ -1,7 +1,17 @@
 @use "main";
 
+.container{
+  @apply flex justify-center m-auto items-center;
+ 
+  height: calc(100% - 6rem - 13rem);
+
+  @include main.breakpoint-down(large) {
+    height: calc(100% - 5rem - 14rem)
+  }
+}
+
 .wrapper {
-  padding-top: main.em(120px);
+  padding-top: main.em(100px);
   position: relative;
   width: main.em(912px);
 
@@ -18,7 +28,7 @@
 
 .innerContainer {
   @apply flex justify-center text-center;
-  padding: main.em(152) main.em(96) main.em(80);
+  padding: main.em(148) main.em(96) main.em(80);
   background-color: main.$light-yellow;
 
   @include main.breakpoint-down(medium) {
@@ -32,8 +42,8 @@
 
 .image {
   @apply flex justify-center absolute top-0;
-  height: main.em(240);
-  width: main.em(240);
+  height: main.em(200);
+  width: main.em(200);
 
   @include main.breakpoint-down(medium) {
     height: main.em(180);
