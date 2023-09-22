@@ -23,7 +23,11 @@
           margin-top: functions.em($value);
         } @else if $spacing-type == pt {
           padding-top: functions.em($value);
-        } @else {
+        }
+        @else if $spacing-type == pb {
+          padding-bottom: functions.em($value);
+        }
+         @else {
           gap: functions.em($value);
         }
       }
