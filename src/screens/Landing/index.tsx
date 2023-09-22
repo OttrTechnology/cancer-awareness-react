@@ -120,14 +120,13 @@ export const Landing = () => {
 
   // add random quiz illustration circles
   useEffect(() => {
-    let radius = 0;
+    let radius = 60;
     if (window.innerWidth > 1600) {
       radius = 70;
     } else if (window.innerWidth < 1200) {
       radius = 50;
-    } else {
-      radius = 60;
     }
+
     const engine = engineRef.current;
     data
       .sort(() => 0.5 - Math.random())
