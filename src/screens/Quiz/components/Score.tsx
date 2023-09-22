@@ -4,6 +4,7 @@ import styles from "./Score.module.scss";
 
 export const Score = () => {
   const { currentScore } = useGameContext();
+  
   return (
     <div>
       <div className={styles.container}>

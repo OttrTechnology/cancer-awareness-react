@@ -19,7 +19,9 @@ export const Result = () => {
     // Preloading next quiz image if lives are remaining and next question exists
     if (remainingLives > 0 && nextQuestion) {
       const nextImg = new Image();
-      nextImg.src = `questionImg/${nextQuestion.imgSrc}`;
+      nextImg.src = `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
+        nextQuestion.imgSrc
+      }`;
     }
     // Preloading congratulation image when win condition has been reached
     else if (remainingLives > 0 && nextQuestion === undefined) {

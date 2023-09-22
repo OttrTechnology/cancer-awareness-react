@@ -10,7 +10,9 @@ export const Question = () => {
         <div className={styles.innerContainer}>
           <img
             className={styles.image}
-            src={`/questionImg/${currentQuestion.imgSrc}`}
+            src={`${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
+              currentQuestion.imgSrc
+            }`}
             alt={currentQuestion.imgSrc}
           />
 
