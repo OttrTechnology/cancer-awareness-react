@@ -14,7 +14,11 @@ import {
 } from "./components";
 import styles from "./index.module.scss";
 
-const getNumberOfPieces = (currentScore: number, isMobile: boolean) => {
+/**
+ * Calculates the amount of confetti to show when score meets certain thresholds.
+ * Reduces the amount by half for mobile views.
+ */
+const getConfettiPieces = (currentScore: number, isMobile: boolean) => {
   if (currentScore === 0) {
     return 0;
   } else if (currentScore <= 40) {
@@ -73,7 +77,7 @@ export const GameOver = () => {
       <Confetti
         width={width}
         height={height}
-        numberOfPieces={getNumberOfPieces(currentScore, width <= 640)}
+        numberOfPieces={getConfettiPieces(currentScore, width <= 640)}
       />
 
       <div className="relative ca-min-h-screen flex flex-col justify-center overflow-hidden">
