@@ -23,14 +23,16 @@
     z-index: -1;
   }
 
-  &:hover {
-    color: white;
+  @include main.breakpoint-up(large) {
+    &:hover {
+      color: white;
 
-    &::before {
-      border-radius: 10em;
-      transform: scaleY(1) translateZ(0);
-      svg path {
-        fill: white;
+      &::before {
+        border-radius: 10em;
+        transform: scaleY(1) translateZ(0);
+        svg path {
+          fill: white;
+        }
       }
     }
   }

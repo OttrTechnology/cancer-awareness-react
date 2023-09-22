@@ -22,7 +22,6 @@ import {
 } from "matter-js";
 import { useWindowSize } from "usehooks-ts";
 import { gsap } from "gsap";
-import clsx from "clsx";
 
 import { useGameContext } from "hooks";
 
@@ -51,9 +50,9 @@ export const Landing = () => {
 
   useEffect(() => {
     const render = Render.create({
-      element: boxRef.current || undefined,
+      element: boxRef.current ?? undefined,
       engine: engineRef.current,
-      canvas: canvasRef.current || undefined,
+      canvas: canvasRef.current ?? undefined,
       options: { wireframes: false, background: "transparent" },
     });
 
@@ -274,10 +273,6 @@ export const Landing = () => {
                   alt="Ottr Logo"
                   className={styles.logo}
                 />
-
-                <span className={clsx(styles.logoTitle, "ca-text--black-80")}>
-                  Presents
-                </span>
               </div>
 
               <div className="ca-mb--16 select-none lg:ca-mb--24">
