@@ -118,13 +118,21 @@ export const Landing = () => {
 
   // add random quiz illustration circles
   useEffect(() => {
+    let radius = 0;
+    if (window.innerWidth > 1600) {
+      radius = 70;
+    } else if (window.innerWidth < 1200) {
+      radius = 50;
+    } else {
+      radius = 60;
+    }
     data
       .sort(() => 0.5 - Math.random())
       .slice(0, window.innerWidth / 90)
       .forEach((quizItem, index) => {
         Composite.add(
           engineRef.current.world,
-          Bodies.circle(window.innerWidth / 2, -100 * index, 60, {
+          Bodies.circle(window.innerWidth / 2, -100 * index, radius, {
             label: "quiz-item",
             density: 0.001,
             frictionAir: 0.02,
@@ -136,8 +144,8 @@ export const Landing = () => {
                 texture: `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
                   quizItem.imgSrc
                 }`,
-                xScale: 0.5,
-                yScale: 0.5,
+                xScale: (radius * 2) / 240,
+                yScale: (radius * 2) / 240,
               },
             },
           })
