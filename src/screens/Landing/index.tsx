@@ -50,9 +50,9 @@ export const Landing = () => {
 
   useEffect(() => {
     const render = Render.create({
-      element: boxRef.current || undefined,
+      element: boxRef.current ?? undefined,
       engine: engineRef.current,
-      canvas: canvasRef.current || undefined,
+      canvas: canvasRef.current ?? undefined,
       options: { wireframes: false, background: "transparent" },
     });
 
