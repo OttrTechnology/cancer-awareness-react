@@ -49,9 +49,11 @@ export const Landing = () => {
   const [scene, setScene] = useState<Render>();
 
   useEffect(() => {
+    const engine = engineRef.current;
+
     const render = Render.create({
       element: boxRef.current ?? undefined,
-      engine: engineRef.current,
+      engine,
       canvas: canvasRef.current ?? undefined,
       options: { wireframes: false, background: "transparent" },
     });
@@ -111,20 +113,28 @@ export const Landing = () => {
 
     return () => {
       Render.stop(render);
-      Composite.clear(engineRef.current.world, false);
-      Engine.clear(engineRef.current);
+      Composite.clear(engine.world, false);
+      Engine.clear(engine);
     };
   }, []);
 
   // add random quiz illustration circles
   useEffect(() => {
+    let radius = 60;
+    if (window.innerWidth > 1600) {
+      radius = 70;
+    } else if (window.innerWidth < 1200) {
+      radius = 50;
+    }
+
+    const engine = engineRef.current;
     data
       .sort(() => 0.5 - Math.random())
       .slice(0, window.innerWidth / 90)
       .forEach((quizItem, index) => {
         Composite.add(
-          engineRef.current.world,
-          Bodies.circle(window.innerWidth / 2, -100 * index, 60, {
+          engine.world,
+          Bodies.circle(window.innerWidth / 2, -100 * index, radius, {
             label: "quiz-item",
             density: 0.001,
             frictionAir: 0.02,
@@ -136,8 +146,8 @@ export const Landing = () => {
                 texture: `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
                   quizItem.imgSrc
                 }`,
-                xScale: 0.5,
-                yScale: 0.5,
+                xScale: (radius * 2) / 240,
+                yScale: (radius * 2) / 240,
               },
             },
           })
@@ -145,7 +155,7 @@ export const Landing = () => {
       });
 
     return () => {
-      Composite.clear(engineRef.current.world, true);
+      Composite.clear(engine.world, true);
     };
   }, []);
 
