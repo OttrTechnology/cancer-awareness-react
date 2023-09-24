@@ -20,8 +20,13 @@ interface Props {
 }
 
 export const Share = ({ toggleShare }: Props) => {
-  const { shareSupported, handleCopyLink, clipboardSupported, copied } =
-    useGameContext();
+  const {
+    shareSupported,
+    clipboardSupported,
+    copied,
+    handleCopyLink,
+    registerShareEvent,
+  } = useGameContext();
 
   const wrapperRef = useRef(null);
 
@@ -55,7 +60,11 @@ export const Share = ({ toggleShare }: Props) => {
             )}
 
             <div className={styles.shareContainer}>
-              <FacebookShareButton hashtag="#CancerAwareness" url={import.meta.env.VITE_BASE_URL}>
+              <FacebookShareButton
+                hashtag="#CancerAwareness"
+                url={import.meta.env.VITE_BASE_URL}
+                onClick={registerShareEvent("Facebook")}
+              >
                 <div className={styles.shareButton}>
                   <BiLogoFacebook className={styles.shareIcon} />
                 </div>
@@ -65,7 +74,10 @@ export const Share = ({ toggleShare }: Props) => {
             </div>
 
             <div className={styles.shareContainer}>
-              <LinkedinShareButton url={import.meta.env.VITE_BASE_URL}>
+              <LinkedinShareButton
+                url={import.meta.env.VITE_BASE_URL}
+                onClick={registerShareEvent("LinkedIn")}
+              >
                 <div className={styles.shareButton}>
                   <BiLogoLinkedin className={styles.shareIcon} />
                 </div>
@@ -85,6 +97,7 @@ export const Share = ({ toggleShare }: Props) => {
                   "Ottr",
                 ]}
                 related={["@CR_UK", "@YLvsCancer", "@BreastCancerNDX"]}
+                onClick={registerShareEvent("Twitter")}
               >
                 <div className={styles.shareButton}>
                   <BiLogoTwitter className={styles.shareIcon} />

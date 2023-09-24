@@ -38,6 +38,11 @@ export const Result = () => {
     }
   }, [remainingLives]);
 
+  const handleLearnMore = () =>
+    window.gtag("event", "unlock_achievement", {
+      achievement_id: "Curiosity-Spark",
+    });
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -77,6 +82,7 @@ export const Result = () => {
               target="_blank"
               href={currentQuestion.source}
               rel="noreferrer"
+              onClick={handleLearnMore}
             >
               Learn more
             </a>
