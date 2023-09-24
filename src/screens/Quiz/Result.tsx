@@ -38,10 +38,15 @@ export const Result = () => {
     }
   }, [remainingLives]);
 
-  const handleLearnMore = () =>
-    window.gtag("event", "unlock_achievement", {
-      achievement_id: "Curiosity-Spark",
-    });
+  const handleLearnMore = () => {
+    if (
+      import.meta.env.PROD &&
+      import.meta.env.VITE_ENABLE_GOOGLE_ANALYTICS === "true"
+    )
+      window.gtag("event", "unlock_achievement", {
+        achievement_id: "Curiosity-Spark",
+      });
+  };
 
   return (
     <div className={styles.container}>

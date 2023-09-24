@@ -205,32 +205,37 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
         duration: 0.6,
       });
 
-      // post score event to Google Analytics
-      window.gtag("event", "post_score", {
-        score: currentScore,
-        level: activeQuestionIndex,
-      });
-
-      // post different achievements to Google Analytics
-      if (activeQuestionIndex === data.length - 1 && remainingLives === 3) {
-        window.gtag("event", "unlock_achievement", {
-          achievement_id: "0-Deaths",
-        });
-      } else if (
-        activeQuestionIndex === data.length - 1 &&
-        remainingLives > 0
+      if (
+        import.meta.env.PROD &&
+        import.meta.env.VITE_ENABLE_GOOGLE_ANALYTICS === "true"
       ) {
-        window.gtag("event", "unlock_achievement", {
-          achievement_id: "Quiz-Whiz",
+        // post score event to Google Analytics
+        window.gtag("event", "post_score", {
+          score: currentScore,
+          level: activeQuestionIndex,
         });
-      } else if (remainingLives === 0 && currentScore === 0) {
-        window.gtag("event", "unlock_achievement", {
-          achievement_id: "Defeatist-Dabbler",
-        });
-      } else if (currentScore > 360) {
-        window.gtag("event", "unlock_achievement", {
-          achievement_id: "Hackerman",
-        });
+
+        // post different achievements to Google Analytics
+        if (activeQuestionIndex === data.length - 1 && remainingLives === 3) {
+          window.gtag("event", "unlock_achievement", {
+            achievement_id: "0-Deaths",
+          });
+        } else if (
+          activeQuestionIndex === data.length - 1 &&
+          remainingLives > 0
+        ) {
+          window.gtag("event", "unlock_achievement", {
+            achievement_id: "Quiz-Whiz",
+          });
+        } else if (remainingLives === 0 && currentScore === 0) {
+          window.gtag("event", "unlock_achievement", {
+            achievement_id: "Defeatist-Dabbler",
+          });
+        } else if (currentScore > 360) {
+          window.gtag("event", "unlock_achievement", {
+            achievement_id: "Hackerman",
+          });
+        }
       }
     } else {
       setActiveQuestionIndex((questionNum) => questionNum + 1);
@@ -265,15 +270,28 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
         console.error("Error sharing:", error);
       });
 
-      window.gtag("event", "share", { method: "Native Share" });
+      if (
+        import.meta.env.PROD &&
+        import.meta.env.VITE_ENABLE_GOOGLE_ANALYTICS === "true"
+      )
+        window.gtag("event", "share", { method: "Native Share" });
     } else {
       copy(import.meta.env.VITE_BASE_URL);
-      window.gtag("event", "share", { method: "Copy Link" });
+
+      if (
+        import.meta.env.PROD &&
+        import.meta.env.VITE_ENABLE_GOOGLE_ANALYTICS === "true"
+      )
+        window.gtag("event", "share", { method: "Copy Link" });
     }
   };
 
   const registerShareEvent = (platform: SharePlatforms) => () => {
-    window.gtag("event", "share", { method: platform });
+    if (
+      import.meta.env.PROD &&
+      import.meta.env.VITE_ENABLE_GOOGLE_ANALYTICS === "true"
+    )
+      window.gtag("event", "share", { method: platform });
   };
 
   const value: GameContextProps = {
