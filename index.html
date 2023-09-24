@@ -26,7 +26,7 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
 
-  <% if (env.PROD || env.VITE_ENABLE_GOOGLE_ANALYTICS==="true") { %>
+  <% if (env.PROD && env.VITE_ENABLE_GOOGLE_ANALYTICS==="true") { %>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBM2GHD9ZX"></script>
   <script>
