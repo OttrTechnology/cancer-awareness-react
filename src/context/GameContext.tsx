@@ -59,6 +59,7 @@ interface CustomNavigationSetter extends CustomNavigation {
 }
 
 type SharePlatforms = "Facebook" | "Twitter" | "LinkedIn";
+
 interface GameContextProps {
   activeScreen: LocationType;
   setActiveScreen: (navigateData: CustomNavigationSetter) => void;
