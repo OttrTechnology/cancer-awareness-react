@@ -8,7 +8,9 @@ export default defineConfig({
   plugins: [
     react(),
     tsconfigPaths(),
-    ViteEjsPlugin((viteConfig) => ({ env: viteConfig.env })),
+    ViteEjsPlugin((viteConfig) => ({ env: viteConfig.env }), {
+      ejs: (viteConfig) => ({ views: [viteConfig.publicDir] }),
+    }),
   ],
   css: {
     preprocessorOptions: {
