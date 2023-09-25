@@ -6,11 +6,12 @@ import App from "./App.tsx";
 import "./styles/_main.scss";
 
 Sentry.init({
-  dsn: "https://12e8b1071e1bb5c9dd44bf9708349442@o573914.ingest.sentry.io/4505928027996160",
+  dsn: import.meta.env.VITE_SENTRY_DSN,
   integrations: [new Sentry.Replay()],
   // Session Replay
   replaysSessionSampleRate: import.meta.env.PROD ? 0.05 : 1.0,
   replaysOnErrorSampleRate: 1.0,
+  enabled: import.meta.env.PROD
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
