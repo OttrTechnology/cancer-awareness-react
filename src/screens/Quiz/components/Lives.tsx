@@ -17,7 +17,7 @@ export const Lives = () => {
         tl.to(`[data-effect=life-2]`, { fill: lifeLost, duration: 0.3 }).to(
           `[data-effect=droppingLife-2]`,
           {
-            y: 100,
+            y: "100%",
             duration: 0.3,
             autoAlpha: 0,
             rotate: 45,
@@ -36,7 +36,7 @@ export const Lives = () => {
         tl.to(`[data-effect=life-1]`, { fill: lifeLost, duration: 0.3 }).to(
           `[data-effect=droppingLife-1]`,
           {
-            y: 100,
+            y: "100%",
             duration: 0.3,
             autoAlpha: 0,
             rotate: 45,
@@ -55,7 +55,7 @@ export const Lives = () => {
         tl.to(`[data-effect=life-0]`, { fill: lifeLost, duration: 0.3 }).to(
           `[data-effect=droppingLife-0]`,
           {
-            y: 100,
+            y: "100%",
             duration: 0.3,
             autoAlpha: 0,
             rotate: 45,
