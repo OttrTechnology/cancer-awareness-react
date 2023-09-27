@@ -109,7 +109,7 @@
 
   @include main.breakpoint-up(large) {
     &:hover {
-      color: main.$dark-blue;
+      color: main.$pink;
     }
   }
 }
