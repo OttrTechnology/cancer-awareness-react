@@ -6,7 +6,7 @@ import { Landing, Quiz, GameOver } from "screens";
 import styles from "./App.module.scss";
 
 const { lightYellow } = styles;
-const backgroundImageURL = "url(/src/assets/bgPatternQuiz.svg)";
+const backgroundImageURL = "url(/bgPatternQuiz.svg)";
 
 const App = () => {
   const { activeScreen } = useGameContext();
