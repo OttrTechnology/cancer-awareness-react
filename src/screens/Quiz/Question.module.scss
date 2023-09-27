@@ -1,12 +1,17 @@
 @use "main";
 
+$header-height: 6rem;
+$header-height--mobile: 5rem;
+$action-container-height: 13rem;
+$action-container-height--mobile: 9rem;
+
 .container{
   @apply flex justify-center m-auto items-center;
  
-  height: calc(100% - 6rem - 13rem);
+  height: calc(100% - $header-height--mobile - $action-container-height--mobile);
 
-  @include main.breakpoint-down(large) {
-    height: calc(100% - 5rem - 9rem)
+  @include main.breakpoint-up(large) {
+    height: calc(100% - $header-height - $action-container-height);
   }
 }
 
