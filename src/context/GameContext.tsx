@@ -137,6 +137,10 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
 
   const [currentScore, setCurrentScore] = useState(0);
 
+  useEffect(() => {
+    if (currentScore > highScore) setHighScore(currentScore);
+  }, [currentScore]);
+
   const [userAnswer, setUserAnswer] = useState(true);
 
   /**
@@ -197,8 +201,6 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   };
 
   const handleNext = () => {
-    if (currentScore > highScore) setHighScore(currentScore);
-
     if (remainingLives === 0 || activeQuestionIndex === data.length - 1) {
       setActiveScreen({
         location: "GAME_OVER",

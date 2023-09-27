@@ -18,10 +18,10 @@ body {
 }
 
 .ca-header-container {
-  width: functions.em(1312);
+  width: functions.em(1264);
 
   @include variables.breakpoint-down(large) {
-    max-width: functions.em(1045);
+    max-width: functions.em(981);
   }
 
   @include variables.breakpoint-down(medium) {
