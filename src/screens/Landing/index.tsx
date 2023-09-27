@@ -32,6 +32,7 @@ import WrongEmoji from "assets/resultEmoji/wrong.png";
 
 import data from "context/cancer-findings-data.json";
 import styles from "./index.module.scss";
+import clsx from "clsx";
 
 const { fillStyle, strokeStyle } = styles;
 
@@ -310,7 +311,7 @@ export const Landing = () => {
                       <div className={styles.copiedText}>Link copied</div>
                     )}
 
-                    <BiLink className={styles.social} />
+                    <BiLink className={clsx(styles.social, styles.copyLink)} />
                   </button>
 
                   <LinkedinShareButton
@@ -348,7 +349,7 @@ export const Landing = () => {
 
             <div className="relative flex justify-end md:mr-32 lg:mr-0 col-start-7 mr-2 lg:col-start-8 col-span-3 mt-14 md:mt-4 lg:mt-auto pointer-events-auto">
               <button className={styles.primaryButton} onClick={startQuiz}>
-                Take the quiz
+                Start the quiz
               </button>
 
               <div className={styles.arrow}>

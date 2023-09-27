@@ -114,6 +114,14 @@
   }
 }
 
+.copyLink {
+  @include main.breakpoint-up(large) {
+    &:hover {
+      color: #fa6257;
+    }
+  }
+}
+
 .copiedText {
   position: absolute;
   color: main.$white;

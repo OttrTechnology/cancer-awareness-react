@@ -1,12 +1,19 @@
 @use "functions";
 @use "variables";
 
+body {
+  line-height: 170%;
+  background-color: variables.$yellow;
+  background-image: url("../assets/backgroundPattern.svg");
+  height: 100vh;
+}
+
 .ca-min-h-screen {
   min-height: 100vh;
   min-height: 100dvh;
 }
 
-.ca-h-screen{
+.ca-h-screen {
   height: 100vh;
 }
 

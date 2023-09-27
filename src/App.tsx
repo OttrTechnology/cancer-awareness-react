@@ -6,6 +6,7 @@ import { Landing, Quiz, GameOver } from "screens";
 import styles from "./App.module.scss";
 
 const { lightYellow } = styles;
+const backgroundImageURL = "url(/src/assets/pattern.svg)";
 
 const App = () => {
   const { activeScreen } = useGameContext();
@@ -13,9 +14,16 @@ const App = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (activeScreen == "TRANSITIONING_FROM_LANDING") {
-        gsap.to("body", { backgroundColor: lightYellow, duration: 0.3 });
+        gsap.to("body", {
+          backgroundColor: lightYellow,
+          backgroundImage: backgroundImageURL,
+          duration: 0.3,
+        });
       } else if (activeScreen == "QUIZ") {
-        gsap.set("body", { backgroundColor: lightYellow });
+        gsap.set("body", {
+          backgroundColor: lightYellow,
+          backgroundImage: backgroundImageURL,
+        });
       }
     });
 

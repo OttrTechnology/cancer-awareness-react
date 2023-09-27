@@ -2,12 +2,6 @@
 @use "functions";
 
 body {
-  line-height: 170%;
-  background-color: variables.$light-yellow;
-  background-color: variables.$yellow;
-  background-image: url("../assets/backgroundPattern.svg");
-  height: 100vh;
-
   font-size: 1vw;
 
   @media screen and (min-width: 1920px) {
