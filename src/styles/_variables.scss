@@ -1,6 +1,6 @@
 $primary: #470ff4;
 $dark-yellow: #f6ca73;
-$light-yellow: #F7EEC1;
+$light-yellow: #f7eec1;
 $dark-blue: #1e2675;
 $black: #262730;
 $white: #ffffff;
@@ -11,15 +11,15 @@ $yellow: #ffda91;
 $ease: cubic-bezier(0.5, 0, 0, 1);
 
 $breakpoints-up: (
-  "small": "40em", // 640px
-  "medium": "48em", // 768px
-  "large": "64em", // 1024px
+  "small": "640px",
+  "medium": "768px",
+  "large": "1024px",
 );
 
 $breakpoints-down: (
-  "small": "39.9375em",
-  "medium": "63.9375em",
-  "large": "81.51em",
+  "small": "640px",
+  "medium": "1024px",
+  "large": "1280px",
 );
 
 @mixin breakpoint-up($size) {

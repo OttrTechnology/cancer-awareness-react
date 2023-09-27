@@ -11,7 +11,7 @@
 }
 
 .ca-header-container {
-  width: functions.em(1296);
+  width: functions.em(1264);
 
   @include variables.breakpoint-down(large) {
     max-width: functions.em(981);
