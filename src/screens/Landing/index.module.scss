@@ -109,15 +109,7 @@
 
   @include main.breakpoint-up(large) {
     &:hover {
-      color: main.$dark-blue;
-    }
-  }
-}
-
-.copyLink {
-  @include main.breakpoint-up(large) {
-    &:hover {
-      color: #fa6257;
+      color: main.$pink;
     }
   }
 }
