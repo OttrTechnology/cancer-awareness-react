@@ -26,6 +26,18 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
 
+  <% if (env.PROD && env.VITE_ENABLE_GOOGLE_ANALYTICS==="true") { %>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBM2GHD9ZX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-FBM2GHD9ZX');
+  </script>
+  <% } %>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..700&display=swap" rel="stylesheet">

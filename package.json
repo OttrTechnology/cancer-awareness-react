@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@sentry/react": "^7.70.0",
     "clsx": "^2.0.0",
     "crypto-js": "^4.1.1",
     "gsap": "^3.12.2",
@@ -19,10 +20,12 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-share": "^4.4.1",
-    "usehooks-ts": "^2.9.1"
+    "usehooks-ts": "^2.9.1",
+    "vite-plugin-ejs": "^1.6.4"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.1.2",
+    "@types/gtag.js": "^0.0.14",
     "@types/matter-js": "^0.19.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",

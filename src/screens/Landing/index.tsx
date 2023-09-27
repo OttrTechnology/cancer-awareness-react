@@ -36,8 +36,13 @@ import styles from "./index.module.scss";
 const { fillStyle, strokeStyle } = styles;
 
 export const Landing = () => {
-  const { activeScreen, setActiveScreen, handleCopyLink, copied } =
-    useGameContext();
+  const {
+    activeScreen,
+    setActiveScreen,
+    copied,
+    handleCopyLink,
+    registerShareEvent,
+  } = useGameContext();
 
   const { width, height } = useWindowSize();
 
@@ -308,13 +313,17 @@ export const Landing = () => {
                     <BiLink className={styles.social} />
                   </button>
 
-                  <LinkedinShareButton url={import.meta.env.VITE_BASE_URL}>
+                  <LinkedinShareButton
+                    url={import.meta.env.VITE_BASE_URL}
+                    onClick={registerShareEvent("LinkedIn")}
+                  >
                     <BiLogoLinkedin className={styles.social} />
                   </LinkedinShareButton>
 
                   <FacebookShareButton
                     url={import.meta.env.VITE_BASE_URL}
                     hashtag="#CancerAwareness"
+                    onClick={registerShareEvent("Facebook")}
                   >
                     <BiLogoFacebook className={styles.social} />
                   </FacebookShareButton>
@@ -329,6 +338,7 @@ export const Landing = () => {
                       "Ottr",
                     ]}
                     related={["@CR_UK", "@YLvsCancer", "@BreastCancerNDX"]}
+                    onClick={registerShareEvent("Twitter")}
                   >
                     <BiLogoTwitter className={styles.social} />
                   </TwitterShareButton>
