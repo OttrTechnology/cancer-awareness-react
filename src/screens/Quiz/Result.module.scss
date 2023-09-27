@@ -17,10 +17,10 @@
 .container{
   @apply flex justify-center items-center m-auto;
  
-  height: calc(100% - 6rem - 10rem);
+  height: calc(100% - 5rem - 8rem);
 
-  @include main.breakpoint-down(large) {
-    height: calc(100% - 5rem - 8rem)
+  @include main.breakpoint-up(large) {
+    height: calc(100% - 6rem - 10rem);
   }
 }
 
