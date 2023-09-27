@@ -11,7 +11,7 @@ Sentry.init({
   // Session Replay
   replaysSessionSampleRate: import.meta.env.PROD ? 0.05 : 1.0,
   replaysOnErrorSampleRate: 1.0,
-  enabled: import.meta.env.PROD
+  enabled: import.meta.env.PROD,
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
