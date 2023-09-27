@@ -3,8 +3,6 @@
 .wrapper {
   @apply flex flex-col justify-center h-screen w-full text-center absolute z-10;
   gap: main.rem(8px);
-  background-color: main.$yellow;
-  background-image: url("../../../assets/bgPattern.svg");
 }
 
 .img {
