@@ -8,10 +8,11 @@ $action-container-height--mobile: 9rem;
 .container{
   @apply flex justify-center m-auto items-center;
  
-  height: calc(100% - $header-height--mobile - $action-container-height--mobile);
+  min-height: calc(100% - $header-height--mobile - $action-container-height--mobile);
+  padding: 2rem 0;
 
   @include main.breakpoint-up(large) {
-    height: calc(100% - $header-height - $action-container-height);
+    min-height: calc(100% - $header-height - $action-container-height);
   }
 }
 
