@@ -1,5 +1,10 @@
 @use "main";
 
+$header-height: 6rem;
+$header-height--mobile: 5rem;
+$action-container-height: 10rem;
+$action-container-height--mobile: 8rem;
+
 .body {
   @apply flex justify-center text-center;
   padding: main.em(80) main.em(96) main.em(64);
@@ -17,10 +22,10 @@
 .container{
   @apply flex justify-center items-center m-auto;
  
-  height: calc(100% - 5rem - 8rem);
+  height: calc(100% - $header-height--mobile - $action-container-height--mobile);
 
   @include main.breakpoint-up(large) {
-    height: calc(100% - 6rem - 10rem);
+    height: calc(100% - $header-height - $action-container-height);
   }
 }
 
