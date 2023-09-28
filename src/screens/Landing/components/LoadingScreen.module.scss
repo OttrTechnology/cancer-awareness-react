@@ -1,0 +1,26 @@
+@use "main";
+
+.loadingContainer {
+  @apply flex justify-center h-screen w-full absolute z-10;
+  background: #F7EEC1;
+}
+
+.wrapper {
+  @apply flex flex-col justify-center items-center relative;
+    max-width: main.em(700px);
+    gap: main.em(40);
+}
+  
+.loadingBarContainer {
+  @apply bg-slate-50 w-60 h-2 absolute;
+
+  bottom: 10%;
+  border-radius: main.em(100px);
+}
+
+.loadingBar {
+  @apply h-2;
+
+  border-radius: main.em(100px);
+  background: main.$red;
+}

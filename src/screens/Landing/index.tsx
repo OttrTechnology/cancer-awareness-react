@@ -32,8 +32,13 @@ import WrongEmoji from "assets/resultEmoji/wrong.png";
 
 import data from "context/cancer-findings-data.json";
 import styles from "./index.module.scss";
+import { LoadingScreen } from "./components/LoadingScreen";
 
 const { fillStyle, strokeStyle } = styles;
+
+const randomQuizIllustrations = data
+  .sort(() => 0.5 - Math.random())
+  .slice(0, window.innerWidth / 90);
 
 export const Landing = () => {
   const {
@@ -44,6 +49,9 @@ export const Landing = () => {
     registerShareEvent,
   } = useGameContext();
 
+  const [preloadedImageCounter, setPreloadedImageCounter] = useState(1);
+  const [preloadedImagePercentage, setPreloadedImagePercentage] = useState(0);
+
   const { width, height } = useWindowSize();
 
   const mainRef = useRef<HTMLDivElement>(null);
@@ -52,6 +60,29 @@ export const Landing = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef(Engine.create());
   const [scene, setScene] = useState<Render>();
+
+  useEffect(() => {
+    randomQuizIllustrations.forEach(({ imgSrc }) => {
+      const randomQuizIllustrations = new Image();
+      randomQuizIllustrations.src = `${
+        import.meta.env.VITE_ILLUSTRATIONS_BASE_URL
+      }/${imgSrc}`;
+
+      randomQuizIllustrations.onload = () => {
+        setPreloadedImageCounter((prev) => prev + 1);
+      };
+    });
+  }, []);
+
+  useEffect(() => {
+    if (randomQuizIllustrations.length > preloadedImageCounter) {
+      setPreloadedImagePercentage(
+        (preloadedImageCounter / randomQuizIllustrations.length) * 100
+      );
+    } else {
+      setPreloadedImagePercentage(100);
+    }
+  }, [preloadedImageCounter]);
 
   useEffect(() => {
     const engine = engineRef.current;
@@ -125,6 +156,8 @@ export const Landing = () => {
 
   // add random quiz illustration circles
   useEffect(() => {
+    const engine = engineRef.current;
+
     let radius = 60;
     if (window.innerWidth > 1600) {
       radius = 70;
@@ -132,32 +165,28 @@ export const Landing = () => {
       radius = 50;
     }
 
-    const engine = engineRef.current;
-    data
-      .sort(() => 0.5 - Math.random())
-      .slice(0, window.innerWidth / 90)
-      .forEach((quizItem, index) => {
-        Composite.add(
-          engine.world,
-          Bodies.circle(window.innerWidth / 2, -100 * index, radius, {
-            label: "quiz-item",
-            density: 0.001,
-            frictionAir: 0.02,
-            frictionStatic: 0.5,
-            restitution: 0.6,
-            friction: 0.1,
-            render: {
-              sprite: {
-                texture: `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
-                  quizItem.imgSrc
-                }`,
-                xScale: (radius * 2) / 240,
-                yScale: (radius * 2) / 240,
-              },
+    randomQuizIllustrations.forEach((quizItem, index) => {
+      Composite.add(
+        engine.world,
+        Bodies.circle(window.innerWidth / 2, -100 * index, radius, {
+          label: "quiz-item",
+          density: 0.001,
+          frictionAir: 0.02,
+          frictionStatic: 0.5,
+          restitution: 0.6,
+          friction: 0.1,
+          render: {
+            sprite: {
+              texture: `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
+                quizItem.imgSrc
+              }`,
+              xScale: (radius * 2) / 240,
+              yScale: (radius * 2) / 240,
             },
-          })
-        );
-      });
+          },
+        })
+      );
+    });
 
     return () => {
       Composite.clear(engine.world, true);
@@ -272,6 +301,8 @@ export const Landing = () => {
 
   return (
     <div ref={mainRef}>
+      <LoadingScreen preloadedImagePercentage={preloadedImagePercentage} />
+
       {window.innerWidth > 640 && (
         <div ref={boxRef} className="fixed w-full h-full">
           <canvas ref={canvasRef} />
