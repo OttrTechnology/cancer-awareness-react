@@ -46,7 +46,7 @@ export const LoadingScreen = ({ preloadedImagePercentage }: Props) => {
           loadingTextRef.current,
           { y: 30 },
           { y: 0, duration: 0.6, ease: Cubic.easeOut },
-          "<"
+          "<0.1"
         )
         .fromTo(
           loadingTextRef.current,
@@ -63,7 +63,7 @@ export const LoadingScreen = ({ preloadedImagePercentage }: Props) => {
     if (preloadedImagePercentage === 100) {
       tl.to(
         loadingImageRef.current,
-        { y: 30, delay: 0.3, autoAlpha: 0, duration: 0.3, ease: Cubic.easeOut },
+        { y: 30, delay: 0.5, autoAlpha: 0, duration: 0.3, ease: Cubic.easeOut },
         ">"
       )
         .to(

@@ -93,7 +93,7 @@ export const Landing = () => {
           { autoAlpha: 0 },
           {
             autoAlpha: 1,
-            delay: 1.3,
+            delay: 3,
             ease: Cubic.easeOut,
           }
         );
