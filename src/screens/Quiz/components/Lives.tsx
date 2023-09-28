@@ -44,7 +44,7 @@ export const Lives = () => {
           ease: Cubic.easeIn,
         });
       }
-    });
+    }, droppingLivesContainerRef);
 
     return () => ctx.revert();
   }, [remainingLives]);

@@ -1,13 +1,13 @@
 @use "main";
 
-$header-height: 8rem;
-$header-height--mobile: 5rem;
-$action-container-height: 10rem;
-$action-container-height--mobile: 8rem;
+$header-height: 5.5em;
+$header-height--mobile: 3.8em;
+$action-container-height: 10em;
+$action-container-height--mobile: 8em;
 
 .body {
   @apply flex justify-center text-center;
-  padding: main.em(80) main.em(96) main.em(64);
+  padding: main.em(74) main.em(96) main.em(56);
   background-color: main.$light-yellow;
 
   @include main.breakpoint-down(medium) {
@@ -23,16 +23,17 @@ $action-container-height--mobile: 8rem;
   @apply flex justify-center items-center m-auto;
  
   min-height: calc(100% - $header-height--mobile - $action-container-height--mobile);
-  padding: 2rem 0;
-
+  padding: 1.5rem 0;
+  
   @include main.breakpoint-up(large) {
     min-height: calc(100% - $header-height - $action-container-height);
+    padding: 0;
   }
 }
 
 .wrapper {
   position: relative;
-  padding-top: main.em(64);
+  padding-top: main.em(58);
   max-width: main.em(912px);
 
   @include main.breakpoint-down(medium) {
@@ -47,8 +48,8 @@ $action-container-height--mobile: 8rem;
 
 .image {
   @apply absolute top-0 flex justify-center;
-  height: main.em(128);
-  width: main.em(128);
+  height: main.em(116);
+  width: main.em(116);
 
   @include main.breakpoint-down(small) {
     height: main.em(96);
