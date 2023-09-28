@@ -21,7 +21,7 @@ import {
   Runner,
 } from "matter-js";
 import { useWindowSize } from "usehooks-ts";
-import { gsap } from "gsap";
+import { gsap, Cubic } from "gsap";
 
 import { useGameContext } from "hooks";
 
@@ -86,27 +86,21 @@ export const Landing = () => {
   }, [preloadedImageCounter]);
 
   useEffect(() => {
-    const tl = gsap.timeline();
-    if (preloadedImagePercentage === 100) {
-      tl.fromTo(
-        landingPageRef.current,
-        { autoAlpha: 0 },
-        {
-          autoAlpha: 1,
-          delay: 1.3,
-          ease: Cubic.easeOut,
-        }
-      ).fromTo(
-        boxRef.current,
-        { autoAlpha: 0 },
-        {
-          autoAlpha: 1,
-          ease: Cubic.easeOut,
-        },
-        "<"
-      );
-    }
-  }, []);
+    const ctx = gsap.context(() => {
+      if (preloadedImagePercentage === 100) {
+        gsap.fromTo(
+          landingPageRef.current,
+          { autoAlpha: 0 },
+          {
+            autoAlpha: 1,
+            delay: 1.3,
+            ease: Cubic.easeOut,
+          }
+        );
+      }
+    });
+    return () => ctx.kill();
+  }, [preloadedImagePercentage]);
 
   useEffect(() => {
     const engine = engineRef.current;
@@ -182,37 +176,39 @@ export const Landing = () => {
   useEffect(() => {
     const engine = engineRef.current;
 
-    let radius = 60;
-    if (window.innerWidth > 1600) {
-      radius = 70;
-    } else if (window.innerWidth < 1200) {
-      radius = 50;
-    }
+    const timer = setTimeout(() => {
+      let radius = 60;
+      if (window.innerWidth > 1600) {
+        radius = 70;
+      } else if (window.innerWidth < 1200) {
+        radius = 50;
+      }
 
-    randomQuizIllustrations.forEach((quizItem, index) => {
-      Composite.add(
-        engine.world,
-        Bodies.circle(window.innerWidth / 2, -100 * index, radius, {
-          label: "quiz-item",
-          density: 0.001,
-          frictionAir: 0.02,
-          frictionStatic: 0.5,
-          restitution: 0.6,
-          friction: 0.1,
-          render: {
-            sprite: {
-              texture: `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
-                quizItem.imgSrc
-              }`,
-              xScale: (radius * 2) / 240,
-              yScale: (radius * 2) / 240,
+      randomQuizIllustrations.forEach((quizItem, index) => {
+        Composite.add(
+          engine.world,
+          Bodies.circle(window.innerWidth / 2, -100 * index, radius, {
+            label: "quiz-item",
+            density: 0.001,
+            frictionAir: 0.02,
+            frictionStatic: 0.5,
+            restitution: 0.6,
+            friction: 0.1,
+            render: {
+              sprite: {
+                texture: `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
+                  quizItem.imgSrc
+                }`,
+                xScale: (radius * 2) / 240,
+                yScale: (radius * 2) / 240,
+              },
             },
-          },
-        })
-      );
-    });
-
+          })
+        );
+      });
+    }, 1300);
     return () => {
+      clearInterval(timer);
       Composite.clear(engine.world, true);
     };
   }, []);
