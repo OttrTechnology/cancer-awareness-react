@@ -55,6 +55,7 @@ export const Landing = () => {
   const { width, height } = useWindowSize();
 
   const mainRef = useRef<HTMLDivElement>(null);
+  const landingPageRef = useRef(null);
 
   const boxRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -83,6 +84,29 @@ export const Landing = () => {
       setPreloadedImagePercentage(100);
     }
   }, [preloadedImageCounter]);
+
+  useEffect(() => {
+    const tl = gsap.timeline();
+    if (preloadedImagePercentage === 100) {
+      tl.fromTo(
+        landingPageRef.current,
+        { autoAlpha: 0 },
+        {
+          autoAlpha: 1,
+          delay: 1.3,
+          ease: Cubic.easeOut,
+        }
+      ).fromTo(
+        boxRef.current,
+        { autoAlpha: 0 },
+        {
+          autoAlpha: 1,
+          ease: Cubic.easeOut,
+        },
+        "<"
+      );
+    }
+  }, []);
 
   useEffect(() => {
     const engine = engineRef.current;
@@ -309,7 +333,7 @@ export const Landing = () => {
         </div>
       )}
 
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} ref={landingPageRef}>
         <div className="flex justify-center items-center h-screen relative mx-auto pointer-events-none">
           <div className="lg:grid lg:ca-pb--180 lg:grid-cols-10 ca-gap--24">
             <div className="lg:col-span-6 relative">

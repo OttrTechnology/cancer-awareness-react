@@ -1,7 +1,5 @@
 import { useEffect, useRef } from "react";
 
-import dayjs from "dayjs";
-
 import { gsap, Cubic } from "gsap";
 
 import styles from "./LoadingScreen.module.scss";
@@ -14,6 +12,10 @@ export const LoadingScreen = ({ preloadedImagePercentage }: Props) => {
   const landingRef = useRef(null);
   const loadingImageRef = useRef(null);
   const loadingTextRef = useRef(null);
+  const loadingContainerRef = useRef(null);
+  const ProgressBarRef = useRef(null);
+
+  console.log(preloadedImagePercentage);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -32,12 +34,12 @@ export const LoadingScreen = ({ preloadedImagePercentage }: Props) => {
       tl.fromTo(
         loadingImageRef.current,
         { y: 60 },
-        { y: 0, duration: 0.6, ease: Cubic.easeOut }
+        { y: 0, delay: 0.2, duration: 0.6, ease: Cubic.easeOut }
       )
         .fromTo(
           loadingImageRef.current,
           { autoAlpha: 0 },
-          { autoAlpha: 1 },
+          { autoAlpha: 1, duration: 0.3 },
           "<"
         )
         .fromTo(
@@ -52,23 +54,30 @@ export const LoadingScreen = ({ preloadedImagePercentage }: Props) => {
           { autoAlpha: 1, ease: Cubic.easeOut },
           "<"
         );
-      // .to(
-      //   loadingImageRef.current,
-      //   { y: 30, delay: 0.8, autoAlpha: 0, ease: Cubic.easeOut },
-      //   ">"
-      // )
-      // .to(
-      //   loadingTextRef.current,
-      //   { y: 30, autoAlpha: 0, ease: Cubic.easeOut },
-      //   "<"
-      // );
     });
-
-    return () => ctx.revert();
+    return () => ctx.kill();
   }, []);
 
+  useEffect(() => {
+    const tl = gsap.timeline();
+    if (preloadedImagePercentage === 100) {
+      tl.to(
+        loadingImageRef.current,
+        { y: 30, delay: 0.3, autoAlpha: 0, duration: 0.3, ease: Cubic.easeOut },
+        ">"
+      )
+        .to(
+          loadingTextRef.current,
+          { y: 30, autoAlpha: 0, duration: 0.3, ease: Cubic.easeOut },
+          "<"
+        )
+        .to(ProgressBarRef.current, { autoAlpha: 0, duration: 0.3 }, "<")
+        .to(loadingContainerRef.current, { autoAlpha: 0, duration: 0.5 });
+    }
+  }, [preloadedImagePercentage]);
+
   return (
-    <div className={styles.loadingContainer}>
+    <div className={styles.loadingContainer} ref={loadingContainerRef}>
       <div className={styles.wrapper}>
         <div className={styles.img} ref={loadingImageRef}>
           <svg
@@ -95,8 +104,8 @@ export const LoadingScreen = ({ preloadedImagePercentage }: Props) => {
           }
           October is celebrated as Breast Cancer Awareness Month
         </div>
-        <div className={styles.loadingBarContainer}>
-          <div ref={landingRef} className={styles.loadingBar}></div>
+        <div className={styles.progressBarContainer} ref={ProgressBarRef}>
+          <div ref={landingRef} className={styles.progressBar}></div>
         </div>
       </div>
     </div>
