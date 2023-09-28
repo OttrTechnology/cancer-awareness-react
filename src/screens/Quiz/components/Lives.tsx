@@ -12,7 +12,7 @@ export const Lives = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (remainingLives === 2) {
-        gsap.to(`[data-effect=droppingLife-2]`, {
+        gsap.to("[data-effect=droppingLife-2]", {
           y: "100%",
           duration: 0.3,
           autoAlpha: 0,
@@ -20,11 +20,7 @@ export const Lives = () => {
           ease: Cubic.easeIn,
         });
       } else if (remainingLives === 1) {
-        gsap.set(` [data-effect=droppingLife-2]`, {
-          autoAlpha: 0,
-        });
-
-        gsap.to(`[data-effect=droppingLife-1]`, {
+        gsap.to("[data-effect=droppingLife-1]", {
           y: "100%",
           duration: 0.3,
           autoAlpha: 0,
@@ -32,11 +28,7 @@ export const Lives = () => {
           ease: Cubic.easeIn,
         });
       } else if (remainingLives === 0) {
-        gsap.set(`[data-effect=droppingLife-2], [data-effect=droppingLife-1]`, {
-          autoAlpha: 0,
-        });
-
-        gsap.to(`[data-effect=droppingLife-0]`, {
+        gsap.to("[data-effect=droppingLife-0]", {
           y: "100%",
           duration: 0.3,
           autoAlpha: 0,
@@ -46,7 +38,7 @@ export const Lives = () => {
       }
     }, droppingLivesContainerRef);
 
-    return () => ctx.revert();
+    return () => ctx.kill();
   }, [remainingLives]);
 
   return (
