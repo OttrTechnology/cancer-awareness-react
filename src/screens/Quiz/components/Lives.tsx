@@ -1,6 +1,6 @@
-import { useGameContext } from "hooks";
 import { useEffect, useRef } from "react";
 import { gsap, Cubic } from "gsap";
+import { useGameContext } from "hooks";
 import styles from "./Lives.module.scss";
 
 const { life, lifeLost } = styles;
@@ -14,25 +14,25 @@ export const Lives = () => {
       if (remainingLives === 2) {
         gsap.to("[data-effect=droppingLife-2]", {
           y: "100%",
-          duration: 0.3,
           autoAlpha: 0,
           rotate: 45,
+          duration: 0.3,
           ease: Cubic.easeIn,
         });
       } else if (remainingLives === 1) {
         gsap.to("[data-effect=droppingLife-1]", {
           y: "100%",
-          duration: 0.3,
           autoAlpha: 0,
           rotate: 45,
+          duration: 0.3,
           ease: Cubic.easeIn,
         });
       } else if (remainingLives === 0) {
         gsap.to("[data-effect=droppingLife-0]", {
           y: "100%",
-          duration: 0.3,
           autoAlpha: 0,
           rotate: 45,
+          duration: 0.3,
           ease: Cubic.easeIn,
         });
       }
@@ -48,7 +48,7 @@ export const Lives = () => {
           .fill(0)
           .map((_, index) => (
             <svg
-              className={styles.live}
+              className={styles.life}
               viewBox="0 0 40 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ export const Lives = () => {
           .fill(0)
           .map((_, index) => (
             <svg
-              className={styles.live}
+              className={styles.life}
               viewBox="0 0 40 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
