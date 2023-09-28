@@ -5,10 +5,12 @@ $header-height--mobile: 5rem;
 $action-container-height: 13rem;
 $action-container-height--mobile: 9rem;
 
-.container{
+.container {
   @apply flex justify-center m-auto items-center;
- 
-  min-height: calc(100% - $header-height--mobile - $action-container-height--mobile);
+
+  min-height: calc(
+    100% - $header-height--mobile - $action-container-height--mobile
+  );
   padding: 2rem 0;
 
   @include main.breakpoint-up(large) {
@@ -17,47 +19,47 @@ $action-container-height--mobile: 9rem;
 }
 
 .wrapper {
-  padding-top: main.em(100px);
   position: relative;
-  width: main.em(912px);
+  padding-top: main.em(72);
+  width: main.em(343);
 
-  @include main.breakpoint-down(medium) {
-    padding-top: main.em(90);
-    width: main.em(650);
+  @include main.breakpoint-up(large) {
+    padding-top: main.em(100px);
+    width: main.em(912px);
   }
 
-  @include main.breakpoint-down(small) {
-    padding-top: main.em(72);
-    width: main.em(343);
+  @include main.breakpoint-up(small) {
+    padding-top: main.em(90);
+    width: main.em(650);
   }
 }
 
 .innerContainer {
   @apply flex justify-center text-center;
-  padding: main.em(148) main.em(96) main.em(80);
   background-color: main.$light-yellow;
+  padding: main.em(96) main.em(16) main.em(48);
 
-  @include main.breakpoint-down(medium) {
-    padding: main.em(125) main.em(32) main.em(64);
+  @include main.breakpoint-up(large) {
+    padding: main.em(148) main.em(96) main.em(80);
   }
 
-  @include main.breakpoint-down(small) {
-    padding: main.em(96) main.em(16) main.em(48);
+  @include main.breakpoint-up(small) {
+    padding: main.em(125) main.em(32) main.em(64);
   }
 }
 
 .image {
   @apply flex justify-center absolute top-0;
-  height: main.em(200);
-  width: main.em(200);
+  height: main.em(144);
+  width: main.em(144);
 
-  @include main.breakpoint-down(medium) {
-    height: main.em(180);
-    width: main.em(180);
+  @include main.breakpoint-up(large) {
+    height: main.em(200);
+    width: main.em(200);
   }
 
-  @include main.breakpoint-down(small) {
-    height: main.em(144);
-    width: main.em(144);
+  @include main.breakpoint-up(small) {
+    height: main.em(180);
+    width: main.em(180);
   }
 }

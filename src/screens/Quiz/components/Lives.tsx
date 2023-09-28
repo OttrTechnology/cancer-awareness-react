@@ -28,7 +28,7 @@ export const Lives = () => {
   }, [remainingLives]);
 
   return (
-    <div className="flex items-start" ref={livesContainerRef}>
+    <div className="flex items-start px-4" ref={livesContainerRef}>
       {Array(totalLives)
         .fill(0)
         .map((_, index) => (

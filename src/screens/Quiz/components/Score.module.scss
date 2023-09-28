@@ -6,20 +6,20 @@
 }
 
 .label {
-  font-size: main.em(22);
+  font-size: 18px;
   font-weight: 600;
 
-  @include main.breakpoint-down(small) {
-    font-size: 18px;
+  @include main.breakpoint-up(small) {
+    font-size: main.em(22);
   }
 }
 
 .awardImg {
-  width: main.em(40);
-  height: main.em(40);
+  width: main.em(24);
+  height: main.em(24);
 
-  @include main.breakpoint-down(small) {
-    width: main.em(24);
-    height: main.em(24);
+  @include main.breakpoint-up(small) {
+    width: main.em(40);
+    height: main.em(40);
   }
 }

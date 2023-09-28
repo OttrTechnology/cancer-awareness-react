@@ -6,10 +6,10 @@
 }
 
 .img {
-  height: main.rem(200px);
+  height: main.rem(120px);
 
-  @include main.breakpoint-down(small) {
-    height: main.rem(120px);
+  @include main.breakpoint-up(small) {
+    height: main.rem(200px);
   }
 }
 

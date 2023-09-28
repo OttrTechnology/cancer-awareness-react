@@ -18,17 +18,5 @@ body {
 }
 
 .ca-header-container {
-  width: functions.em(1264);
-
-  @include variables.breakpoint-down(large) {
-    max-width: functions.em(981);
-  }
-
-  @include variables.breakpoint-down(medium) {
-    max-width: functions.em(650);
-  }
-
-  @include variables.breakpoint-down(small) {
-    max-width: functions.em(343);
-  }
+  max-width: functions.em(1312);
 }
