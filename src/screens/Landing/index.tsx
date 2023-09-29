@@ -40,6 +40,22 @@ const randomQuizIllustrations = data
   .sort(() => 0.5 - Math.random())
   .slice(0, window.innerWidth / 90);
 
+const getFibonacciSeries = (numOfTerms: number = 17) => {
+  let fn1 = 0,
+    fn2 = 1,
+    nextFibonacci,
+    series: number[] = [];
+
+  for (let i = 1; i <= numOfTerms; i++) {
+    series.push(fn1);
+    nextFibonacci = fn1 + fn2;
+    fn1 = fn2;
+    fn2 = nextFibonacci;
+  }
+
+  return series;
+};
+
 export const Landing = () => {
   const {
     activeScreen,
@@ -238,26 +254,40 @@ export const Landing = () => {
         radius = 50;
       }
 
+      const fibonacciSeries = getFibonacciSeries(
+        randomQuizIllustrations.length > 17
+          ? 17
+          : randomQuizIllustrations.length
+      );
+
       randomQuizIllustrations.forEach((quizItem, index) => {
         Composite.add(
           engine.world,
-          Bodies.circle(window.innerWidth / 2, -100 * index, radius, {
-            label: "quiz-item",
-            density: 0.001,
-            frictionAir: 0.02,
-            frictionStatic: 0.5,
-            restitution: 0.6,
-            friction: 0.1,
-            render: {
-              sprite: {
-                texture: `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
-                  quizItem.imgSrc
-                }`,
-                xScale: (radius * 2) / 240,
-                yScale: (radius * 2) / 240,
+          Bodies.circle(
+            window.innerWidth / (Math.random() * (4 - 1.333) + 1.333), // ? inner width divide by range 25% to 75%, see https://stackoverflow.com/a/1527820/10753343
+            -(
+              200 *
+              (index + (index > 17 ? 610 : fibonacciSeries[index]) * 0.008)
+            ),
+            radius,
+            {
+              label: "quiz-item",
+              density: 0.001,
+              frictionAir: 0.02,
+              frictionStatic: 0.5,
+              restitution: 0.6,
+              friction: 0.1,
+              render: {
+                sprite: {
+                  texture: `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
+                    quizItem.imgSrc
+                  }`,
+                  xScale: (radius * 2) / 240,
+                  yScale: (radius * 2) / 240,
+                },
               },
-            },
-          })
+            }
+          )
         );
       });
     }, 2800);
@@ -365,6 +395,17 @@ export const Landing = () => {
 
     const resultEmojiWrong = new Image();
     resultEmojiWrong.src = WrongEmoji;
+
+    if (scene) {
+      const floorIndex = engineRef.current.detector.bodies.findIndex(
+        (body) => body.label === "floor"
+      );
+
+      Composite.remove(
+        engineRef.current.world,
+        engineRef.current.detector.bodies[floorIndex]
+      );
+    }
 
     setActiveScreen({
       location: "QUIZ",
