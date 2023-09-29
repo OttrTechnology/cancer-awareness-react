@@ -71,8 +71,8 @@ export const Result = () => {
             <div className="ca-mb--24">
               <div className="ca-body--sm ca-text--black-70">
                 {isUserCorrect
-                  ? `That${"\u2019"}s great. Keep going`
-                  : `It${"\u2019"}s not the end. Try again.`}
+                  ? `That${"\u2019"}s great! Keep going.`
+                  : `It${"\u2019"}s not the end. Try again!`}
               </div>
             </div>
 

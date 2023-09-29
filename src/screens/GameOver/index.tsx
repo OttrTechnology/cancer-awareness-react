@@ -105,7 +105,7 @@ export const GameOver = () => {
                     </div>
                   </div>
                   <div className="ca-body--sm ca-text--black-70">
-                    Try again! Beat your high score.
+                    Keep going! Beat your highest score.
                   </div>
                 </div>
 
