@@ -15,6 +15,7 @@ $action-container-height--mobile: 6.8em;
 
   @include main.breakpoint-up(medium) {
     min-height: calc(100% - $header-height - $action-container-height);
+    padding: 0;
   }
 }
 

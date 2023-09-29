@@ -5,7 +5,8 @@ body {
   line-height: 170%;
   background-color: variables.$yellow;
   background-image: url("../assets/bgPattern.svg");
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .ca-min-h-screen {
@@ -15,6 +16,7 @@ body {
 
 .ca-h-screen {
   height: 100vh;
+  height: 100dvh;
 }
 
 .ca-header-container {
