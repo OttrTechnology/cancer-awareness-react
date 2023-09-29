@@ -6,26 +6,15 @@ import styles from "./LoadingScreen.module.scss";
 
 interface Props {
   preloadedImagePercentage: number;
+  count: number;
 }
 
-export const LoadingScreen = ({ preloadedImagePercentage }: Props) => {
+export const LoadingScreen = ({ preloadedImagePercentage, count }: Props) => {
   const landingRef = useRef(null);
   const loadingImageRef = useRef(null);
   const loadingTextRef = useRef(null);
   const loadingContainerRef = useRef(null);
-  const ProgressBarRef = useRef(null);
-
-  console.log(preloadedImagePercentage);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to(landingRef.current, {
-        width: `${preloadedImagePercentage}%`,
-      });
-    });
-
-    return () => ctx.kill();
-  }, [preloadedImagePercentage]);
+  const progressBarRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -59,22 +48,42 @@ export const LoadingScreen = ({ preloadedImagePercentage }: Props) => {
   }, []);
 
   useEffect(() => {
-    const tl = gsap.timeline();
-    if (preloadedImagePercentage === 100) {
-      tl.to(
-        loadingImageRef.current,
-        { y: 30, delay: 0.5, autoAlpha: 0, duration: 0.3, ease: Cubic.easeOut },
-        ">"
-      )
-        .to(
-          loadingTextRef.current,
-          { y: 30, autoAlpha: 0, duration: 0.3, ease: Cubic.easeOut },
-          "<"
-        )
-        .to(ProgressBarRef.current, { autoAlpha: 0, duration: 0.3 }, "<")
-        .to(loadingContainerRef.current, { autoAlpha: 0, duration: 0.5 });
-    }
+    const ctx = gsap.context(() => {
+      gsap.to(landingRef.current, {
+        width: `${preloadedImagePercentage}%`,
+      });
+    });
+
+    return () => ctx.kill();
   }, [preloadedImagePercentage]);
+
+  /**
+   * Fading out Preloader
+   */
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
+      if (preloadedImagePercentage === 100 && count === 0) {
+        tl.to(loadingImageRef.current, {
+          y: 30,
+          autoAlpha: 0,
+          duration: 0.3,
+          ease: Cubic.easeOut,
+        })
+          .to(
+            loadingTextRef.current,
+            { y: 30, autoAlpha: 0, duration: 0.3, ease: Cubic.easeOut },
+            "<"
+          )
+          .to(progressBarRef.current, { autoAlpha: 0, duration: 0.3 }, "<")
+          .to(loadingContainerRef.current, { autoAlpha: 0, duration: 0.5 });
+      }
+    });
+
+    return () => {
+      ctx.kill();
+    };
+  }, [count, preloadedImagePercentage]);
 
   return (
     <div className={styles.loadingContainer} ref={loadingContainerRef}>
@@ -104,7 +113,7 @@ export const LoadingScreen = ({ preloadedImagePercentage }: Props) => {
           }
           October is celebrated as Breast Cancer Awareness Month
         </div>
-        <div className={styles.progressBarContainer} ref={ProgressBarRef}>
+        <div className={styles.progressBarContainer} ref={progressBarRef}>
           <div ref={landingRef} className={styles.progressBar}></div>
         </div>
       </div>

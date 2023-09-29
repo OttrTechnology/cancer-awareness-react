@@ -20,7 +20,7 @@ import {
   Render,
   Runner,
 } from "matter-js";
-import { useWindowSize } from "usehooks-ts";
+import { useCountdown, useWindowSize } from "usehooks-ts";
 import { gsap, Cubic } from "gsap";
 
 import { useGameContext } from "hooks";
@@ -49,10 +49,14 @@ export const Landing = () => {
     registerShareEvent,
   } = useGameContext();
 
+  const { width, height } = useWindowSize();
+
+  const [count, { startCountdown }] = useCountdown({
+    countStart: 2,
+  });
+
   const [preloadedImageCounter, setPreloadedImageCounter] = useState(1);
   const [preloadedImagePercentage, setPreloadedImagePercentage] = useState(0);
-
-  const { width, height } = useWindowSize();
 
   const mainRef = useRef<HTMLDivElement>(null);
   const landingPageRef = useRef(null);
@@ -63,44 +67,94 @@ export const Landing = () => {
   const [scene, setScene] = useState<Render>();
 
   useEffect(() => {
-    randomQuizIllustrations.forEach(({ imgSrc }) => {
-      const randomQuizIllustrations = new Image();
-      randomQuizIllustrations.src = `${
-        import.meta.env.VITE_ILLUSTRATIONS_BASE_URL
-      }/${imgSrc}`;
-
-      randomQuizIllustrations.onload = () => {
-        setPreloadedImageCounter((prev) => prev + 1);
-      };
-    });
-  }, []);
+    startCountdown();
+  }, [startCountdown]);
 
   useEffect(() => {
-    if (randomQuizIllustrations.length > preloadedImageCounter) {
-      setPreloadedImagePercentage(
-        (preloadedImageCounter / randomQuizIllustrations.length) * 100
-      );
-    } else {
-      setPreloadedImagePercentage(100);
+    if (window.innerWidth > 640) {
+      randomQuizIllustrations.forEach(({ imgSrc }) => {
+        const randomQuizIllustrations = new Image();
+        randomQuizIllustrations.src = `${
+          import.meta.env.VITE_ILLUSTRATIONS_BASE_URL
+        }/${imgSrc}`;
+
+        randomQuizIllustrations.onload = () => {
+          setPreloadedImageCounter((prev) => prev + 1);
+        };
+      });
+    }
+  }, []);
+
+  /**
+   * faking percentage for mobile
+   */
+  useEffect(() => {
+    if (window.innerWidth < 640) {
+      const timers: number[] = [];
+      Array(4)
+        .fill(0)
+        .forEach((_, index) => {
+          const timer = setTimeout(() => {
+            setPreloadedImagePercentage((prev) => prev + 25);
+          }, index * 100);
+          timers.push(timer);
+        });
+
+      return () => {
+        timers.forEach((timer) => clearTimeout(timer));
+      };
+    }
+  }, []);
+
+  /**
+   * changing percentage according to images preloaded
+   */
+  useEffect(() => {
+    if (window.innerWidth > 640) {
+      // ? making sure the percentage is not above 100
+      if (randomQuizIllustrations.length > preloadedImageCounter) {
+        setPreloadedImagePercentage(
+          (preloadedImageCounter / randomQuizIllustrations.length) * 100
+        );
+      } else {
+        setPreloadedImagePercentage(100);
+      }
     }
   }, [preloadedImageCounter]);
 
+  /**
+   * fading in landing page
+   */
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (preloadedImagePercentage === 100) {
-        gsap.fromTo(
-          landingPageRef.current,
-          { autoAlpha: 0 },
-          {
-            autoAlpha: 1,
-            delay: 3,
-            ease: Cubic.easeOut,
+    const mm = gsap.matchMedia();
+
+    mm.add(
+      {
+        isMobile: "(max-width: 639px)",
+        isDesktop: "(min-width: 640px)",
+      },
+      (context) => {
+        if (context.conditions) {
+          const { isDesktop } = context.conditions;
+
+          if (preloadedImagePercentage === 100 && count === 0) {
+            gsap.fromTo(
+              landingPageRef.current,
+              { autoAlpha: 0 },
+              {
+                autoAlpha: 1,
+                duration: 0.4,
+                delay: isDesktop ? 3 : 0.3,
+                ease: Cubic.easeOut,
+              }
+            );
           }
-        );
+        }
       }
-    });
-    return () => ctx.kill();
-  }, [preloadedImagePercentage]);
+    );
+
+    return () => mm.kill();
+  }, [count, preloadedImagePercentage]);
 
   useEffect(() => {
     const engine = engineRef.current;
@@ -206,7 +260,7 @@ export const Landing = () => {
           })
         );
       });
-    }, 1300);
+    }, 2800);
     return () => {
       clearInterval(timer);
       Composite.clear(engine.world, true);
@@ -321,7 +375,10 @@ export const Landing = () => {
 
   return (
     <div ref={mainRef}>
-      <LoadingScreen preloadedImagePercentage={preloadedImagePercentage} />
+      <LoadingScreen
+        preloadedImagePercentage={preloadedImagePercentage}
+        count={count}
+      />
 
       {window.innerWidth > 640 && (
         <div ref={boxRef} className="fixed w-full h-full">

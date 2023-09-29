@@ -24,3 +24,13 @@
   border-radius: main.em(100px);
   background: main.$pink;
 }
+
+.img > svg{
+  width: 100px;
+  height: 100px;
+
+  @include main.breakpoint-up(medium) {
+    height: main.em(160);
+    width: main.em(160);
+  }
+}
