@@ -1,16 +1,16 @@
 @use "main";
 
 :export {
-  life: main.$primary;
-  lifeLost: #edcda6;
+  lifeColor: main.$primary;
+  lifeLostColor: #edcda6;
 }
 
 .life {
-  width: main.em(40);
-  height: main.em(40);
+  width: main.em(24);
+  height: main.em(24);
 
-  @include main.breakpoint-down(small) {
-    width: main.em(24);
-    height: main.em(24);
+  @include main.breakpoint-up(small) {
+    width: main.em(40);
+    height: main.em(40);
   }
 }

@@ -1,6 +1,6 @@
 export interface LivesScss {
-  life: string;
-  lifeLost: string;
+  lifeColor: string;
+  lifeLostColor: string;
 }
 
 export const styles: LivesScss;

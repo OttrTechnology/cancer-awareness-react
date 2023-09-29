@@ -5,7 +5,8 @@ body {
   line-height: 170%;
   background-color: variables.$yellow;
   background-image: url("../assets/bgPattern.svg");
-  height: 100vh;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .ca-min-h-screen {
@@ -15,39 +16,46 @@ body {
 
 .ca-h-screen {
   height: 100vh;
+  height: 100dvh;
 }
 
 .ca-header-container {
-  width: functions.em(1264);
-  height: 5.5em;
+  max-width: functions.em(1264);
+  height: 3.8em;
 
-  @include variables.breakpoint-down(large) {
-    max-width: functions.em(981);
-  }
-
-  @include variables.breakpoint-down(medium) {
-    max-width: functions.em(650);
-    height: 3.8em;
-  }
-  
-  @include variables.breakpoint-down(small) {
-    height: 3.8em;
-    max-width: functions.em(343);
+  @include variables.breakpoint-up(medium) {
+    height: 5.5em;
   }
 }
 
-.ca-footer-answer--btnGroup{
-  height: 12em;
+.ca-footer-answer--btnGroup {
+  height: 6.8em;
 
-  @include variables.breakpoint-down(medium) {
-    height: 6.8em;
+  @include variables.breakpoint-up(medium) {
+    height: 12em;
   }
 }
 
-.ca-footer-next--btn{
-  height: 10em;
+.ca-footer-next--btn {
+  height: 8em;
 
-  @include variables.breakpoint-down(medium) {
-    height: 8em;
+  @include variables.breakpoint-up(medium) {
+    height: 10em;
+  }
+}
+
+.ca-footer-answer--btnGroup {
+  height: 6.8em;
+
+  @include variables.breakpoint-up(medium) {
+    height: 12em;
+  }
+}
+
+.ca-footer-next--btn {
+  height: 8em;
+
+  @include variables.breakpoint-up(medium) {
+    height: 10em;
   }
 }
