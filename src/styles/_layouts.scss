@@ -28,34 +28,34 @@ body {
   }
 }
 
-.ca-footer-answer--btnGroup{
+.ca-footer-answer--btnGroup {
   height: 6.8em;
-  
+
   @include variables.breakpoint-up(medium) {
     height: 12em;
   }
 }
 
-.ca-footer-next--btn{
+.ca-footer-next--btn {
   height: 8em;
-  
+
   @include variables.breakpoint-up(medium) {
     height: 10em;
   }
 }
 
-.ca-footer-answer--btnGroup{
-  height: 12em;
+.ca-footer-answer--btnGroup {
+  height: 6.8em;
 
-  @include variables.breakpoint-down(medium) {
-    height: 6.8em;
+  @include variables.breakpoint-up(medium) {
+    height: 12em;
   }
 }
 
-.ca-footer-next--btn{
-  height: 10em;
+.ca-footer-next--btn {
+  height: 8em;
 
-  @include variables.breakpoint-down(medium) {
-    height: 8em;
+  @include variables.breakpoint-up(medium) {
+    height: 10em;
   }
 }
