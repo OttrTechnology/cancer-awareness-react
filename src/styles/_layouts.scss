@@ -43,3 +43,19 @@ body {
     height: 10em;
   }
 }
+
+.ca-footer-answer--btnGroup{
+  height: 12em;
+
+  @include variables.breakpoint-down(medium) {
+    height: 6.8em;
+  }
+}
+
+.ca-footer-next--btn{
+  height: 10em;
+
+  @include variables.breakpoint-down(medium) {
+    height: 8em;
+  }
+}

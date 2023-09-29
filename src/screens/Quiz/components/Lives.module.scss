@@ -1,11 +1,11 @@
 @use "main";
 
 :export {
-  life: main.$primary;
-  lifeLost: #edcda6;
+  lifeColor: main.$primary;
+  lifeLostColor: #edcda6;
 }
 
-.live {
+.life {
   width: main.em(24);
   height: main.em(24);
 
