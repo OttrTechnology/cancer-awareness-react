@@ -1,7 +1,7 @@
 import { createContext, useCallback, useEffect, useState } from "react";
+import { useWindowSize } from "usehooks-ts";
 import { useClipboard, useLocalStorageAvailable, useStorage } from "hooks";
 import data from "./cancer-findings-data.json";
-import { useWindowSize } from "usehooks-ts";
 
 const TOTAL_LIVES = 3;
 
@@ -271,20 +271,16 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
   const { clipboardSupported, copy, copied } = useClipboard();
 
   const handleCopyLink = () => {
-    if (isMobile) {
-      if (shareSupported) {
-        navigator.share(SHARE_DATA).catch((error) => {
-          console.error("Error sharing:", error);
-        });
+    if (shareSupported) {
+      navigator.share(SHARE_DATA).catch((error) => {
+        console.error("Error sharing:", error);
+      });
 
-        if (
-          import.meta.env.PROD &&
-          import.meta.env.VITE_ENABLE_GOOGLE_ANALYTICS === "true"
-        )
-          window.gtag("event", "share", { method: "Native Share" });
-      } else {
-        copy(import.meta.env.VITE_BASE_URL);
-      }
+      if (
+        import.meta.env.PROD &&
+        import.meta.env.VITE_ENABLE_GOOGLE_ANALYTICS === "true"
+      )
+        window.gtag("event", "share", { method: "Native Share" });
     } else {
       copy(import.meta.env.VITE_BASE_URL);
 
