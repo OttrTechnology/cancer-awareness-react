@@ -101,11 +101,13 @@ export const GameOver = () => {
                 <div className="flex flex-col">
                   <div className="ca-mb--8">
                     <div className="ca-heading--three ">
-                      Appreciate your effort
+                      {currentScore === highScore ? "You've just set a new record!" : "Appreciate your effort"}
                     </div>
                   </div>
                   <div className="ca-body--sm ca-text--black-70">
-                    Keep going! Beat your highest score.
+                    {currentScore === highScore
+                      ? "Appreciate your effort."
+                      : "Keep going! Beat your highest score."}
                   </div>
                 </div>
 
