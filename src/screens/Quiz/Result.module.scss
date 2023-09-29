@@ -1,9 +1,9 @@
 @use "main";
 
-$header-height: 6rem;
-$header-height--mobile: 5rem;
-$action-container-height: 10rem;
-$action-container-height--mobile: 8rem;
+$header-height: 5.5em;
+$header-height--mobile: 3.8em;
+$action-container-height: 10em;
+$action-container-height--mobile: 8em;
 
 .body {
   @apply flex justify-center text-center;
@@ -11,7 +11,7 @@ $action-container-height--mobile: 8rem;
   background-color: main.$light-yellow;
 
   @include main.breakpoint-up(large) {
-    padding: main.em(80) main.em(96) main.em(64);
+    padding: main.em(74) main.em(96) main.em(56);
   }
 
   @include main.breakpoint-up(small) {
@@ -25,9 +25,9 @@ $action-container-height--mobile: 8rem;
   min-height: calc(
     100% - $header-height--mobile - $action-container-height--mobile
   );
-  padding: 2rem 0;
+  padding: 1.5rem 0;
 
-  @include main.breakpoint-up(large) {
+  @include main.breakpoint-up(medium) {
     min-height: calc(100% - $header-height - $action-container-height);
   }
 }
@@ -53,8 +53,8 @@ $action-container-height--mobile: 8rem;
   width: main.em(96);
 
   @include main.breakpoint-up(small) {
-    height: main.em(128);
-    width: main.em(128);
+    height: main.em(116);
+    width: main.em(116);
   }
 }
 
