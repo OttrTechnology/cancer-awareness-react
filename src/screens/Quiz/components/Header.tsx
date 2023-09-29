@@ -3,7 +3,7 @@ import { Score } from "./Score";
 
 export const Header = () => {
   return (
-    <div className="ca-header-container m-auto flex justify-between items-end">
+    <div className="ca-header-container m-auto flex justify-between items-center">
       <Lives />
       <Score />
     </div>

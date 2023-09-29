@@ -23,38 +23,38 @@ body {
 
     &--one {
       @extend .ca-heading;
-      font-size: functions.em(82);
+      font-size: 48px;
       line-height: 100%;
       letter-spacing: -0.03em;
 
-      @include variables.breakpoint-down(medium) {
-        font-size: functions.em(65);
+      @include variables.breakpoint-up(large) {
+        font-size: functions.em(82);
       }
 
-      @include variables.breakpoint-down(small) {
-        font-size: 48px;
+      @include variables.breakpoint-up(small) {
+        font-size: functions.em(65);
       }
     }
 
     &--two {
       @extend .ca-heading;
-      font-size: functions.em(40px);
+      font-size: 30px;
       font-weight: 650;
       line-height: 120%;
       letter-spacing: -0.01em;
 
-      @include variables.breakpoint-down(small) {
-        font-size: 30px;
+      @include variables.breakpoint-up(small) {
+        font-size: functions.em(40px);
       }
     }
 
     &--three {
       @extend .ca-heading;
-      font-size: functions.em(32px);
+      font-size: 22px;
       line-height: 130%;
 
-      @include variables.breakpoint-down(small) {
-        font-size: 22px;
+      @include variables.breakpoint-up(small) {
+        font-size: functions.em(32px);
       }
     }
   }
@@ -62,62 +62,63 @@ body {
   &-body {
     &--md {
       color: variables.$black;
-      font-size: functions.em(20px);
+      font-size: 16px;
+
       font-weight: 400;
       line-height: 150%;
       letter-spacing: -0.01em;
 
-      @include variables.breakpoint-down(medium) {
-        font-size: 18px;
+      @include variables.breakpoint-up(large) {
+        font-size: functions.em(20px);
       }
 
-      @include variables.breakpoint-down(small) {
-        font-size: 16px;
+      @include variables.breakpoint-up(small) {
+        font-size: 18px;
       }
     }
 
     &--sm {
       color: variables.$black;
-      font-size: functions.em(18px);
+      font-size: 14px;
       font-weight: 400;
       line-height: 140%;
       letter-spacing: -0.01em;
 
-      @include variables.breakpoint-down(medium) {
-        font-size: 16px;
+      @include variables.breakpoint-up(large) {
+        font-size: functions.em(18px);
       }
 
-      @include variables.breakpoint-down(small) {
-        font-size: 14px;
+      @include variables.breakpoint-up(small) {
+        font-size: 16px;
       }
     }
   }
 
   &-misc {
     &--points {
-      font-size: functions.em(40px);
+      font-size: 28px;
       font-weight: 600;
       line-height: 100%;
 
-      @include variables.breakpoint-down(small) {
-        font-size: 28px;
+      @include variables.breakpoint-up(small) {
+        font-size: functions.em(40px);
       }
     }
 
     &--button-text {
       font-weight: 550;
-      font-size: 1em;
+      font-size: 16px;
       line-height: 120%;
 
-      @include variables.breakpoint-down(small) {
-        font-size: 16px;
+      @include variables.breakpoint-up(small) {
+        font-size: 1em;
       }
     }
 
     &--link {
       @apply underline underline-offset-4;
       font-weight: 550;
-      font-size: functions.em(20px);
+      font-size: 16px;
       line-height: 120%;
       letter-spacing: -0.01em;
       color: variables.$primary;
@@ -127,8 +128,8 @@ body {
         color: variables.$dark-blue;
       }
 
-      @include variables.breakpoint-down(small) {
-        font-size: 16px;
+      @include variables.breakpoint-up(small) {
+        font-size: functions.em(20px);
       }
     }
   }

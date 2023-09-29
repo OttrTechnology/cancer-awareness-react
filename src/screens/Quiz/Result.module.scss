@@ -7,25 +7,27 @@ $action-container-height--mobile: 8em;
 
 .body {
   @apply flex justify-center text-center;
-  padding: main.em(74) main.em(96) main.em(56);
+  padding: main.em(72) main.em(16) main.em(48);
   background-color: main.$light-yellow;
 
-  @include main.breakpoint-down(medium) {
-    padding: main.em(72) main.em(32) main.em(48);
+  @include main.breakpoint-up(large) {
+    padding: main.em(74) main.em(96) main.em(56);
   }
 
-  @include main.breakpoint-down(small) {
-    padding: main.em(72) main.em(16) main.em(48);
+  @include main.breakpoint-up(small) {
+    padding: main.em(72) main.em(32) main.em(48);
   }
 }
 
-.container{
+.container {
   @apply flex justify-center items-center m-auto;
- 
-  min-height: calc(100% - $header-height--mobile - $action-container-height--mobile);
+
+  min-height: calc(
+    100% - $header-height--mobile - $action-container-height--mobile
+  );
   padding: 1.5rem 0;
-  
-  @include main.breakpoint-up(large) {
+
+  @include main.breakpoint-up(medium) {
     min-height: calc(100% - $header-height - $action-container-height);
     padding: 0;
   }
@@ -33,27 +35,27 @@ $action-container-height--mobile: 8em;
 
 .wrapper {
   position: relative;
-  padding-top: main.em(58);
-  max-width: main.em(912px);
+  max-width: main.em(343px);
+  padding-top: main.em(48);
 
-  @include main.breakpoint-down(medium) {
-    max-width: main.em(650);
+  @include main.breakpoint-up(large) {
+    max-width: main.em(912px);
   }
 
-  @include main.breakpoint-down(small) {
-    max-width: main.em(343px);
-    padding-top: main.em(48);
+  @include main.breakpoint-up(small) {
+    max-width: main.em(650);
+    padding-top: main.em(64);
   }
 }
 
 .image {
   @apply absolute top-0 flex justify-center;
-  height: main.em(116);
-  width: main.em(116);
+  height: main.em(96);
+  width: main.em(96);
 
-  @include main.breakpoint-down(small) {
-    height: main.em(96);
-    width: main.em(96);
+  @include main.breakpoint-up(small) {
+    height: main.em(116);
+    width: main.em(116);
   }
 }
 
