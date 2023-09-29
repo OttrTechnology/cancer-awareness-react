@@ -18,5 +18,26 @@ body {
 }
 
 .ca-header-container {
-  max-width: functions.em(1312);
+  max-width: functions.em(1264);
+  height: 3.8em;
+
+  @include variables.breakpoint-up(medium) {
+    height: 5.5em;
+  }
+}
+
+.ca-footer-answer--btnGroup{
+  height: 6.8em;
+  
+  @include variables.breakpoint-up(medium) {
+    height: 12em;
+  }
+}
+
+.ca-footer-next--btn{
+  height: 8em;
+  
+  @include variables.breakpoint-up(medium) {
+    height: 10em;
+  }
 }

@@ -1,9 +1,9 @@
 @use "main";
 
-$header-height: 6rem;
-$header-height--mobile: 5rem;
-$action-container-height: 13rem;
-$action-container-height--mobile: 9rem;
+$header-height: 5.5em;
+$header-height--mobile: 3.8em;
+$action-container-height: 12em;
+$action-container-height--mobile: 6.8em;
 
 .container {
   @apply flex justify-center m-auto items-center;
@@ -11,9 +11,9 @@ $action-container-height--mobile: 9rem;
   min-height: calc(
     100% - $header-height--mobile - $action-container-height--mobile
   );
-  padding: 2rem 0;
+  padding: 1.5rem 0;
 
-  @include main.breakpoint-up(large) {
+  @include main.breakpoint-up(medium) {
     min-height: calc(100% - $header-height - $action-container-height);
   }
 }
