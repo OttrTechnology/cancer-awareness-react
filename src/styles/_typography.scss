@@ -26,13 +26,13 @@ body {
       font-size: 48px;
       line-height: 100%;
       letter-spacing: -0.03em;
+      
+      @include variables.breakpoint-up(small) {
+        font-size: functions.em(65);
+      }
 
       @include variables.breakpoint-up(large) {
         font-size: functions.em(82);
-      }
-
-      @include variables.breakpoint-up(small) {
-        font-size: functions.em(65);
       }
     }
 
@@ -68,12 +68,12 @@ body {
       line-height: 150%;
       letter-spacing: -0.01em;
 
-      @include variables.breakpoint-up(large) {
-        font-size: functions.em(20px);
-      }
-
       @include variables.breakpoint-up(small) {
         font-size: 18px;
+      }
+
+      @include variables.breakpoint-up(large) {
+        font-size: functions.em(20px);
       }
     }
 
@@ -84,12 +84,12 @@ body {
       line-height: 140%;
       letter-spacing: -0.01em;
 
-      @include variables.breakpoint-up(large) {
-        font-size: functions.em(18px);
-      }
-
       @include variables.breakpoint-up(small) {
         font-size: 16px;
+      }
+
+      @include variables.breakpoint-up(large) {
+        font-size: functions.em(18px);
       }
     }
   }

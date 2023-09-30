@@ -20,8 +20,8 @@ import {
   Render,
   Runner,
 } from "matter-js";
-import { useWindowSize } from "usehooks-ts";
-import { gsap } from "gsap";
+import { useCountdown, useWindowSize } from "usehooks-ts";
+import { gsap, Cubic } from "gsap";
 
 import { useGameContext } from "hooks";
 
@@ -32,8 +32,29 @@ import WrongEmoji from "assets/resultEmoji/wrong.png";
 
 import data from "context/cancer-findings-data.json";
 import styles from "./index.module.scss";
+import { LoadingScreen } from "./components/LoadingScreen";
 
 const { fillStyle, strokeStyle } = styles;
+
+const randomQuizIllustrations = data
+  .sort(() => 0.5 - Math.random())
+  .slice(0, window.innerWidth / 90);
+
+const getFibonacciSeries = (numOfTerms: number = 17) => {
+  let fn1 = 0,
+    fn2 = 1,
+    nextFibonacci,
+    series: number[] = [];
+
+  for (let i = 1; i <= numOfTerms; i++) {
+    series.push(fn1);
+    nextFibonacci = fn1 + fn2;
+    fn1 = fn2;
+    fn2 = nextFibonacci;
+  }
+
+  return series;
+};
 
 export const Landing = () => {
   const {
@@ -46,12 +67,109 @@ export const Landing = () => {
 
   const { width, height } = useWindowSize();
 
+  const [loadingTimerCountdown, { startCountdown }] = useCountdown({
+    countStart: 2,
+  });
+
+  const [preloadedImageCounter, setPreloadedImageCounter] = useState(1);
+  const [preloadedImagePercentage, setPreloadedImagePercentage] = useState(0);
+
   const mainRef = useRef<HTMLDivElement>(null);
+  const landingPageRef = useRef(null);
 
   const boxRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef(Engine.create());
   const [scene, setScene] = useState<Render>();
+
+  useEffect(() => {
+    startCountdown();
+  }, [startCountdown]);
+
+  useEffect(() => {
+    if (window.innerWidth > 640) {
+      randomQuizIllustrations.forEach(({ imgSrc }) => {
+        const randomQuizIllustrations = new Image();
+        randomQuizIllustrations.src = `${
+          import.meta.env.VITE_ILLUSTRATIONS_BASE_URL
+        }/${imgSrc}`;
+
+        randomQuizIllustrations.onload = () => {
+          setPreloadedImageCounter((prev) => prev + 1);
+        };
+      });
+    }
+  }, []);
+
+  /**
+   * faking percentage for mobile
+   */
+  useEffect(() => {
+    if (window.innerWidth < 640) {
+      const timers: number[] = [];
+
+      Array(4)
+        .fill(0)
+        .forEach((_, index) => {
+          const timer = setTimeout(() => {
+            setPreloadedImagePercentage((prev) => prev + 25);
+          }, index * 100);
+
+          timers.push(timer);
+        });
+
+      return () => {
+        timers.forEach((timer) => clearTimeout(timer));
+      };
+    }
+  }, []);
+
+  /**
+   * changing percentage according to images preloaded
+   */
+  useEffect(() => {
+    if (window.innerWidth > 640) {
+      // ? making sure the percentage is not above 100
+      if (randomQuizIllustrations.length > preloadedImageCounter) {
+        setPreloadedImagePercentage(
+          (preloadedImageCounter / randomQuizIllustrations.length) * 100
+        );
+      } else {
+        setPreloadedImagePercentage(100);
+      }
+    }
+  }, [preloadedImageCounter]);
+
+  /**
+   * fading in landing page
+   */
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add(
+      { isMobile: "(max-width: 639px)", isDesktop: "(min-width: 640px)" },
+      (context) => {
+        if (context.conditions) {
+          const { isDesktop } = context.conditions;
+
+          if (preloadedImagePercentage === 100 && loadingTimerCountdown === 0) {
+            gsap.fromTo(
+              landingPageRef.current,
+              { autoAlpha: 0 },
+              {
+                autoAlpha: 1,
+                duration: 0.4,
+                delay: isDesktop ? 2 : 0.3,
+                ease: Cubic.easeOut,
+              }
+            );
+          }
+        }
+      }
+    );
+
+    return () => mm.kill();
+  }, [loadingTimerCountdown, preloadedImagePercentage]);
 
   useEffect(() => {
     const engine = engineRef.current;
@@ -125,41 +243,56 @@ export const Landing = () => {
 
   // add random quiz illustration circles
   useEffect(() => {
-    let radius = 60;
-    if (window.innerWidth > 1600) {
-      radius = 70;
-    } else if (window.innerWidth < 1200) {
-      radius = 50;
-    }
-
     const engine = engineRef.current;
-    data
-      .sort(() => 0.5 - Math.random())
-      .slice(0, window.innerWidth / 90)
-      .forEach((quizItem, index) => {
+
+    const timer = setTimeout(() => {
+      let radius = 60;
+      if (window.innerWidth > 1600) {
+        radius = 70;
+      } else if (window.innerWidth < 1200) {
+        radius = 50;
+      }
+
+      const fibonacciSeries = getFibonacciSeries(
+        randomQuizIllustrations.length > 17 // ? after 17th term, the series gets too big
+          ? 17
+          : randomQuizIllustrations.length
+      );
+
+      randomQuizIllustrations.forEach((quizItem, index) => {
         Composite.add(
           engine.world,
-          Bodies.circle(window.innerWidth / 2, -100 * index, radius, {
-            label: "quiz-item",
-            density: 0.001,
-            frictionAir: 0.02,
-            frictionStatic: 0.5,
-            restitution: 0.6,
-            friction: 0.1,
-            render: {
-              sprite: {
-                texture: `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
-                  quizItem.imgSrc
-                }`,
-                xScale: (radius * 2) / 240,
-                yScale: (radius * 2) / 240,
+          Bodies.circle(
+            window.innerWidth / (Math.random() * (4 - 1.333) + 1.333), // ? inner width divide by range 25% to 75%, see https://stackoverflow.com/a/1527820/10753343
+            -(
+              200 *
+              (index + (index > 17 ? 610 : fibonacciSeries[index]) * 0.008)
+            ),
+            radius,
+            {
+              label: "quiz-item",
+              density: 0.001,
+              frictionAir: 0.02,
+              frictionStatic: 0.5,
+              restitution: 0.6,
+              friction: 0.1,
+              render: {
+                sprite: {
+                  texture: `${import.meta.env.VITE_ILLUSTRATIONS_BASE_URL}/${
+                    quizItem.imgSrc
+                  }`,
+                  xScale: (radius * 2) / 240,
+                  yScale: (radius * 2) / 240,
+                },
               },
-            },
-          })
+            }
+          )
         );
       });
+    }, 2800);
 
     return () => {
+      clearInterval(timer);
       Composite.clear(engine.world, true);
     };
   }, []);
@@ -263,6 +396,17 @@ export const Landing = () => {
     const resultEmojiWrong = new Image();
     resultEmojiWrong.src = WrongEmoji;
 
+    if (scene) {
+      const floorIndex = engineRef.current.detector.bodies.findIndex(
+        (body) => body.label === "floor"
+      );
+
+      Composite.remove(
+        engineRef.current.world,
+        engineRef.current.detector.bodies[floorIndex]
+      );
+    }
+
     setActiveScreen({
       location: "QUIZ",
       transition: "TRANSITION_FROM_LANDING",
@@ -272,13 +416,15 @@ export const Landing = () => {
 
   return (
     <div ref={mainRef}>
+      <LoadingScreen {...{ preloadedImagePercentage, loadingTimerCountdown }} />
+
       {window.innerWidth > 640 && (
         <div ref={boxRef} className="fixed w-full h-full">
           <canvas ref={canvasRef} />
         </div>
       )}
 
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} ref={landingPageRef}>
         <div className="flex justify-center items-center h-screen relative mx-auto pointer-events-none">
           <div className="lg:grid lg:ca-pb--180 lg:grid-cols-10 ca-gap--24">
             <div className="lg:col-span-6 relative">

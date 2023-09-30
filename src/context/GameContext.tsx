@@ -311,7 +311,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     totalLives: TOTAL_LIVES,
     remainingLives,
     currentScore,
-    highScore,
+    highScore: Number(highScore),
     userAnswer,
 
     handleAnswer,

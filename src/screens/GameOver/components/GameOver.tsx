@@ -51,14 +51,7 @@ export const GameOverAnimation = () => {
           { y: 30, autoAlpha: 0, ease: Cubic.easeOut },
           "<"
         )
-        .to(
-          gameOverRef.current,
-          {
-            autoAlpha: 0,
-            duration: 0,
-          },
-          ">"
-        );
+        .to(gameOverRef.current, { autoAlpha: 0, duration: 0 }, ">");
     });
 
     return () => ctx.revert();
