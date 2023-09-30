@@ -217,6 +217,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
         window.gtag("event", "post_score", {
           score: currentScore,
           level: activeQuestionIndex,
+          value: currentScore,
         });
 
         // post different achievements to Google Analytics
