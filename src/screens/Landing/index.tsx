@@ -67,7 +67,7 @@ export const Landing = () => {
 
   const { width, height } = useWindowSize();
 
-  const [count, { startCountdown }] = useCountdown({
+  const [loadingTimerCountdown, { startCountdown }] = useCountdown({
     countStart: 2,
   });
 
@@ -107,12 +107,14 @@ export const Landing = () => {
   useEffect(() => {
     if (window.innerWidth < 640) {
       const timers: number[] = [];
+
       Array(4)
         .fill(0)
         .forEach((_, index) => {
           const timer = setTimeout(() => {
             setPreloadedImagePercentage((prev) => prev + 25);
           }, index * 100);
+
           timers.push(timer);
         });
 
@@ -145,22 +147,19 @@ export const Landing = () => {
     const mm = gsap.matchMedia();
 
     mm.add(
-      {
-        isMobile: "(max-width: 639px)",
-        isDesktop: "(min-width: 640px)",
-      },
+      { isMobile: "(max-width: 639px)", isDesktop: "(min-width: 640px)" },
       (context) => {
         if (context.conditions) {
           const { isDesktop } = context.conditions;
 
-          if (preloadedImagePercentage === 100 && count === 0) {
+          if (preloadedImagePercentage === 100 && loadingTimerCountdown === 0) {
             gsap.fromTo(
               landingPageRef.current,
               { autoAlpha: 0 },
               {
                 autoAlpha: 1,
                 duration: 0.4,
-                delay: isDesktop ? 3 : 0.3,
+                delay: isDesktop ? 2 : 0.3,
                 ease: Cubic.easeOut,
               }
             );
@@ -170,7 +169,7 @@ export const Landing = () => {
     );
 
     return () => mm.kill();
-  }, [count, preloadedImagePercentage]);
+  }, [loadingTimerCountdown, preloadedImagePercentage]);
 
   useEffect(() => {
     const engine = engineRef.current;
@@ -255,7 +254,7 @@ export const Landing = () => {
       }
 
       const fibonacciSeries = getFibonacciSeries(
-        randomQuizIllustrations.length > 17
+        randomQuizIllustrations.length > 17 // ? after 17th term, the series gets too big
           ? 17
           : randomQuizIllustrations.length
       );
@@ -291,6 +290,7 @@ export const Landing = () => {
         );
       });
     }, 2800);
+
     return () => {
       clearInterval(timer);
       Composite.clear(engine.world, true);
@@ -416,10 +416,7 @@ export const Landing = () => {
 
   return (
     <div ref={mainRef}>
-      <LoadingScreen
-        preloadedImagePercentage={preloadedImagePercentage}
-        count={count}
-      />
+      <LoadingScreen {...{ preloadedImagePercentage, loadingTimerCountdown }} />
 
       {window.innerWidth > 640 && (
         <div ref={boxRef} className="fixed w-full h-full">

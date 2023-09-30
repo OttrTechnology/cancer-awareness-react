@@ -107,7 +107,7 @@ export const GameOver = () => {
                   <div className="ca-body--sm ca-text--black-70">
                     {currentScore === highScore
                       ? "Appreciate your effort."
-                      : "Keep going! Beat your highest score."}
+                      : "Keep going! Beat your high score."}
                   </div>
                 </div>
 

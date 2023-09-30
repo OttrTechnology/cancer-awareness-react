@@ -6,10 +6,10 @@ import styles from "./LoadingScreen.module.scss";
 
 interface Props {
   preloadedImagePercentage: number;
-  count: number;
+  loadingTimerCountdown: number;
 }
 
-export const LoadingScreen = ({ preloadedImagePercentage, count }: Props) => {
+export const LoadingScreen = ({ preloadedImagePercentage, loadingTimerCountdown }: Props) => {
   const landingRef = useRef(null);
   const loadingImageRef = useRef(null);
   const loadingTextRef = useRef(null);
@@ -44,14 +44,13 @@ export const LoadingScreen = ({ preloadedImagePercentage, count }: Props) => {
           "<"
         );
     });
+
     return () => ctx.kill();
   }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.to(landingRef.current, {
-        width: `${preloadedImagePercentage}%`,
-      });
+      gsap.to(landingRef.current, { width: `${preloadedImagePercentage}%` });
     });
 
     return () => ctx.kill();
@@ -62,8 +61,9 @@ export const LoadingScreen = ({ preloadedImagePercentage, count }: Props) => {
    */
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-      if (preloadedImagePercentage === 100 && count === 0) {
+      if (preloadedImagePercentage === 100 && loadingTimerCountdown === 0) {
+        const tl = gsap.timeline();
+        
         tl.to(loadingImageRef.current, {
           y: 30,
           autoAlpha: 0,
@@ -83,7 +83,7 @@ export const LoadingScreen = ({ preloadedImagePercentage, count }: Props) => {
     return () => {
       ctx.kill();
     };
-  }, [count, preloadedImagePercentage]);
+  }, [loadingTimerCountdown, preloadedImagePercentage]);
 
   return (
     <div className={styles.loadingContainer} ref={loadingContainerRef}>
@@ -113,8 +113,9 @@ export const LoadingScreen = ({ preloadedImagePercentage, count }: Props) => {
           }
           October is celebrated as Breast Cancer Awareness Month
         </div>
+
         <div className={styles.progressBarContainer} ref={progressBarRef}>
-          <div ref={landingRef} className={styles.progressBar}></div>
+          <div ref={landingRef} className={styles.progressBar} />
         </div>
       </div>
     </div>
