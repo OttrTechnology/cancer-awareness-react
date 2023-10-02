@@ -283,11 +283,18 @@ export const Landing = () => {
           <div className="lg:grid lg:ca-pb--180 lg:grid-cols-10 ca-gap--24">
             <div className="lg:col-span-6 relative">
               <div className="flex items-end lg:ca-gap--8 ca-gap--4 ca-mb--24 lg:ca-mb--32 select-none">
-                <img
-                  src={LandingLogo}
-                  alt="Ottr Logo"
-                  className={styles.logo}
-                />
+                <a
+                  href="https://www.ottr.com.np/"
+                  className="pointer-events-auto"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={LandingLogo}
+                    alt="Ottr Logo"
+                    className={styles.logo}
+                  />
+                </a>
               </div>
 
               <div className="ca-mb--16 select-none lg:ca-mb--24">
