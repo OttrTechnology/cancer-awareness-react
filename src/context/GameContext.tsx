@@ -1,5 +1,4 @@
 import { createContext, useCallback, useEffect, useState } from "react";
-import { useWindowSize } from "usehooks-ts";
 import { useClipboard, useLocalStorageAvailable, useStorage } from "hooks";
 import data from "./cancer-findings-data.json";
 
@@ -217,6 +216,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
         window.gtag("event", "post_score", {
           score: currentScore,
           level: activeQuestionIndex,
+          value: currentScore,
         });
 
         // post different achievements to Google Analytics
@@ -261,8 +261,8 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
       transition: "TRANSITION_FROM_GAME_OVER",
     });
   };
-  const { width } = useWindowSize();
-  const isMobile = width < 1024;
+
+  const isMobile = window.innerWidth < 1024;
 
   const shareSupported =
     isMobile &&
@@ -311,7 +311,7 @@ export const GameContextProvider = (props: { children: React.ReactNode }) => {
     totalLives: TOTAL_LIVES,
     remainingLives,
     currentScore,
-    highScore,
+    highScore: Number(highScore),
     userAnswer,
 
     handleAnswer,

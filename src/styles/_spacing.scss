@@ -15,24 +15,6 @@
       }
     }
 
-    @include variables.breakpoint-up(large) {
-      .lg\:ca-#{$spacing-type}--#{$space} {
-        @if $spacing-type == mb {
-          margin-bottom: functions.em($value);
-        } @else if $spacing-type == mt {
-          margin-top: functions.em($value);
-        } @else if $spacing-type == pt {
-          padding-top: functions.em($value);
-        }
-        @else if $spacing-type == pb {
-          padding-bottom: functions.em($value);
-        }
-         @else {
-          gap: functions.em($value);
-        }
-      }
-    }
-
     @include variables.breakpoint-up(medium) {
       .md\:ca-#{$spacing-type}--#{$space} {
         @if $spacing-type == mb {
@@ -41,6 +23,22 @@
           margin-top: functions.em($value);
         } @else if $spacing-type == pt {
           padding-top: functions.em($value);
+        } @else {
+          gap: functions.em($value);
+        }
+      }
+    }
+
+    @include variables.breakpoint-up(large) {
+      .lg\:ca-#{$spacing-type}--#{$space} {
+        @if $spacing-type == mb {
+          margin-bottom: functions.em($value);
+        } @else if $spacing-type == mt {
+          margin-top: functions.em($value);
+        } @else if $spacing-type == pt {
+          padding-top: functions.em($value);
+        } @else if $spacing-type == pb {
+          padding-bottom: functions.em($value);
         } @else {
           gap: functions.em($value);
         }

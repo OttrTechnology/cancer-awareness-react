@@ -10,13 +10,14 @@ $action-container-height--mobile: 8em;
   padding: main.em(72) main.em(16) main.em(48);
   background-color: main.$light-yellow;
 
+  @include main.breakpoint-up(small) {
+    padding: main.em(72) main.em(32) main.em(48);
+  }
+
   @include main.breakpoint-up(large) {
     padding: main.em(74) main.em(96) main.em(56);
   }
 
-  @include main.breakpoint-up(small) {
-    padding: main.em(72) main.em(32) main.em(48);
-  }
 }
 
 .container {
@@ -38,14 +39,15 @@ $action-container-height--mobile: 8em;
   max-width: main.em(343px);
   padding-top: main.em(48);
 
-  @include main.breakpoint-up(large) {
-    max-width: main.em(912px);
-  }
-
   @include main.breakpoint-up(small) {
     max-width: main.em(650);
     padding-top: main.em(64);
   }
+  
+  @include main.breakpoint-up(large) {
+    max-width: main.em(912px);
+  }
+
 }
 
 .image {
