@@ -29,7 +29,7 @@
     "source": "https:\/\/cancerfactfinder.org\/consumer-products\/disposable-chopsticks\/",
     "fact": false,
     "imgSrc": "chopsticks.svg",
-    "scoreValue": 6
+    "scoreValue": 8
   },
   {
     "claim": "The use of bug spray with DEET (diethyltoluamide - commonly found active ingredient) can cause cancer.\n",
@@ -104,20 +104,12 @@
     "scoreValue": 10
   },
   {
-    "claim": "Consuming burnt foods or burnt marshmallows increases the risk of developing cancer.",
-    "explanation": "Though no specific studies have been done on the link between burnt marshmallows and cancer, eating burnt marshmallows is not likely to increase cancer risk.",
-    "source": "https:\/\/cancerfactfinder.org\/diet-nutrition\/burnt-marshmallows\/",
-    "fact": false,
-    "imgSrc": "marshmellow.svg",
-    "scoreValue": 10
-  },
-  {
     "claim": "Eating charred or burnt meat can increase your risk of cancer.\n",
     "explanation": "Grilling at high heat and eating charred meat, poultry, or fish can increase risk of colorectal cancer. To decrease your risk, swap plants for these meats, or avoid charring or burning meat, poultry, or fish.",
     "source": "https:\/\/cancerfactfinder.org\/diet-nutrition\/charcoal-grilling\/",
     "fact": true,
     "imgSrc": "burnt-meat.svg",
-    "scoreValue": 6
+    "scoreValue": 8
   },
   {
     "claim": "Coffee consumption can increase your risk of cancer.",
@@ -165,7 +157,7 @@
     "source": "https:\/\/cancerfactfinder.org\/diet-nutrition\/processed-meat\/",
     "fact": true,
     "imgSrc": "processed-meat.svg",
-    "scoreValue": 6
+    "scoreValue": 8
   },
   {
     "claim": "High red meat consumption increases the risk of developing cancer.",
@@ -293,7 +285,7 @@
     "source": "https:\/\/cancerfactfinder.org\/occupational-environmental-exposure\/asbestos\/",
     "fact": true,
     "imgSrc": "carcinogen.svg",
-    "scoreValue": 6
+    "scoreValue": 8
   },
   {
     "claim": "Inhalation of diesel exhaust can cause cancer.",
@@ -341,7 +333,7 @@
     "source": "https:\/\/cancerfactfinder.org\/occupational-environmental-exposure\/pesticides\/",
     "fact": true,
     "imgSrc": "pesticides.svg",
-    "scoreValue": 6
+    "scoreValue": 8
   },
   {
     "claim": "Radon exposure (used in radiation therapy) causes lung cancer.",
