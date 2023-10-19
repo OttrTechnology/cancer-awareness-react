@@ -1,0 +1,315 @@
+[
+  {
+    "month": "January",
+    "ribbons": [
+      {
+        "path1": "#00FDC2",
+        "path2": "#00FDC2",
+        "path3": "#FFF",
+        "path4": "#FFF",
+        "backgroundColor": "#00886B",
+        "message": "Did you know that January is celebrated as Cervical Cancer Awareness Month",
+        "progressBarColor": null
+      }
+    ],
+    "cancers": [
+      "Cervical Cancer"
+    ]
+  },
+  {
+    "month": "February",
+    "ribbons": [
+      {
+        "path1": "#00886B",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that February is celebrated as Gallbladder & Bile Duct Cancer Awareness Month",
+        "progressBarColor": null
+      }
+    ],
+    "cancers": [
+      "Oesophageal Cancer",
+      "Bile Duct Cancer"
+    ]
+  },
+  {
+    "month": "March",
+    "ribbons": [
+      {
+        "path1": "#0089D9",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that March is celebrated as Colorectal Cancer Awareness Month",
+        "progressBarColor": null
+      },
+      {
+        "path1": "#FD6D05",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that March is celebrated as Kidney Cancer Awareness Month ",
+        "progressBarColor": null
+      }
+    ],
+    "cancers": [
+      "Kidney Cancer",
+      "Colorectal Cancer",
+      "Prostate Cancer",
+      "Ovarian Cancer",
+      "Brain Tumour"
+    ]
+  },
+  {
+    "month": "April",
+    "ribbons": [
+      {
+        "path1": "#920091",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that April is celebrated as Testicular Cancer Awareness Month",
+        "progressBarColor": null
+      },
+      {
+        "path1": "#A275E7",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that April is celebrated as Esophageal Cancer Awareness Month ",
+        "progressBarColor": null
+      }
+    ],
+    "cancers": [
+      "Bowel Cancer",
+      "Testicular Cancer"
+    ]
+  },
+  {
+    "month": "May",
+    "ribbons": [
+      {
+        "path1": "#262730",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that May is celebrated as Skin Cancer Awareness Month",
+        "progressBarColor": null
+      },
+      {
+        "path1": "#909293",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that May is celebrated as Brain Cancer Awareness Month",
+        "progressBarColor": null
+      },
+      {
+        "path1": "#F7B461",
+        "path2": "#0A74EB",
+        "path3": "#0A74EB",
+        "path4": "#814BF5",
+        "backgroundColor": null,
+        "message": "Did you know that May is celebrated as Bladder Cancer Awareness Month",
+        "progressBarColor": "#814BF5"
+      }
+    ], 
+    "cancers": [
+      "Bladder Cancer",
+      "Melanoma",
+      "Skin Cancer"
+    ]
+  },
+  {
+    "month": "June",
+    "ribbons": [
+      {
+        "path1": "#B73EFB",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that June is celebrated as National Cancer Survivors Month",
+        "progressBarColor": null
+      }
+    ]
+  },
+  {
+    "month": "July",
+    "ribbons": [
+      {
+        "path1": "#FCC803 ",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that July is celebrated as Sarcoma Awareness Month",
+        "progressBarColor": null
+      }
+    ],
+    "cancers": [
+      "Sarcoma",
+      "Bone Cancer"
+    ]
+  },
+  {
+    "month": "August",
+    "ribbons": [
+      {
+        "path1": "#F79E4F",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that August is celebrated as Appendix Cancer Awareness Month ",
+        "progressBarColor": null
+      }
+    ],
+    "cancers": [
+      "Appendix Cancer"
+    ]
+  },
+  {
+    "month": "September",
+    "ribbons": [
+      {
+        "path1": "#F6C71D",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that September is celebrated as Childhood Cancer Awareness Month",
+        "progressBarColor": null
+      },
+      {
+        "path1": "#00BDBD",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that September is celebrated as Ovarian Cancer Awareness Month",
+        "progressBarColor": null
+      },
+      {
+        "path1": "#FD6D05",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that September is celebrated as Leukemia Awareness Month",
+        "progressBarColor": null
+      },
+      {
+        "path1": "#00CDF5",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that September is celebrated as Prostate Cancer Awareness Month",
+        "progressBarColor": null
+      },
+      {
+        "path1": "#F7B294",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that September is celebrated as Uterine Cancer Awareness Month",
+        "progressBarColor": null
+      }
+    ],
+    "cancers": [
+      "Blood Cancer",
+      "Childhood Cancer",
+      "Gynaecological Cancer",
+      "Thyroid Cancer",
+      "Urological Cancer"
+    ]
+  },
+  {
+    "month": "October",
+    "ribbons": [
+      {
+        "path1": "#FF3E83",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that October is celebrated as Breast Cancer Awareness Month",
+        "progressBarColor": null
+      },
+      {
+        "path1": "#007254",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that October is celebrated as Liver Cancer Awareness Month",
+        "progressBarColor": null
+      }
+    ],
+    "cancers": [
+      "Breast Cancer",
+      "Liver Cancer"
+    ]
+  },
+  {
+    "month": "November",
+    "ribbons": [
+      {
+        "path1": "#FFF",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": "#F79E4F",
+        "message": "Did you know that November is celebrated as Lung Cancer Awareness Month",
+        "progressBarColor": "#F79E4F"
+      },
+      {
+        "path1": "#CB93F1",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that November is celebrated as Pancreatic Cancer Awareness Month",
+        "progressBarColor": null
+      },
+      {
+        "path1": "#9B91ED",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Did you know that November is celebrated as Stomach Cancer Awareness Month",
+        "progressBarColor": null
+      }
+    ],
+    "cancers": [
+      "Gastric Cancer",
+      "Lung Cancer",
+      "Pancreatic Cancer"
+    ]
+  },
+  {
+    "month": "December",
+    "ribbons": [
+      {
+        "path1": "#a28cbf",
+        "path2": null,
+        "path3": null,
+        "path4": null,
+        "backgroundColor": null,
+        "message": "Every month of the year — except for December — is a Cancer Awareness Month.",
+        "progressBarColor": null
+      }
+    ]
+  }
+]
