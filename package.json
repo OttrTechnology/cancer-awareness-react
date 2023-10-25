@@ -12,7 +12,7 @@
   "dependencies": {
     "@sentry/react": "^7.70.0",
     "clsx": "^2.0.0",
-    "crypto-js": "^4.1.1",
+    "crypto-js": "^4.2.0",
     "dayjs": "^1.11.10",
     "gsap": "^3.12.2",
     "matter-js": "^0.19.0",
