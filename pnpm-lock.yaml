@@ -50,8 +50,8 @@ devDependencies:
     specifier: ^4.1.2
     version: 4.1.2
   '@types/gtag.js':
-    specifier: ^0.0.14
-    version: 0.0.14
+    specifier: ^0.0.18
+    version: 0.0.18
   '@types/matter-js':
     specifier: ^0.19.1
     version: 0.19.1
@@ -616,8 +616,8 @@ packages:
     resolution: {integrity: sha512-t33RNmTu5ufG/sorROIafiCVJMx3jz95bXUMoPAZcUD14fxMXnuTzqzXZoxpR0tNx2xpw11Dlmem9vGCsrSOfA==}
     dev: true
 
-  /@types/gtag.js@0.0.14:
-    resolution: {integrity: sha512-NcR9rf3B93ie5T086NIpXGTtoIJeOeQ14+IBIBwfNBztb175e/0gONc60ywUU4+f9dwctgz9L3I4h5Gs/hl31g==}
+  /@types/gtag.js@0.0.18:
+    resolution: {integrity: sha512-GJxnIvuXuVhKaHfsOdzGipoOoXq72y3mdcncc9h6i6E7nlz89zBEj2wrLM7bqO5Xk9Lm2B94MwdQsSwRlaPSWw==}
     dev: true
 
   /@types/json-schema@7.0.12:
