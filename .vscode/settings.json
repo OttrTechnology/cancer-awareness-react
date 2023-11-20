@@ -1,0 +1,25 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#ffebc4",
+    "activityBar.background": "#ffebc4",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#470ff4",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#ffebc4",
+    "statusBar.background": "#ffda91",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#ffc95e",
+    "statusBarItem.remoteBackground": "#ffda91",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#ffda91",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#ffda9199",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#ffda91",
+  "cSpell.words": [
+    "Hackerman"
+  ]
+}
