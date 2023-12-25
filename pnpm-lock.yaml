@@ -47,8 +47,8 @@ dependencies:
 
 devDependencies:
   '@types/crypto-js':
-    specifier: ^4.1.2
-    version: 4.1.2
+    specifier: ^4.2.1
+    version: 4.2.1
   '@types/gtag.js':
     specifier: ^0.0.18
     version: 0.0.18
@@ -601,8 +601,8 @@ packages:
       '@swc/core-win32-x64-msvc': 1.3.78
     dev: true
 
-  /@types/crypto-js@4.1.2:
-    resolution: {integrity: sha512-t33RNmTu5ufG/sorROIafiCVJMx3jz95bXUMoPAZcUD14fxMXnuTzqzXZoxpR0tNx2xpw11Dlmem9vGCsrSOfA==}
+  /@types/crypto-js@4.2.1:
+    resolution: {integrity: sha512-FSPGd9+OcSok3RsM0UZ/9fcvMOXJ1ENE/ZbLfOPlBWj7BgXtEAM8VYfTtT760GiLbQIMoVozwVuisjvsVwqYWw==}
     dev: true
 
   /@types/gtag.js@0.0.18:
